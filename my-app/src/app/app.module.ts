@@ -6,6 +6,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { AppComponent } from './app.component';
 import { DocumentsComponent } from './documents/documents.component';
 import { HomeComponent } from './home/home.component';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
 const routes: Routes = [
   {
@@ -20,13 +21,15 @@ const routes: Routes = [
     path: 'documents',
     component: DocumentsComponent
   },
+  { path: '**', component:  PageNotFoundComponent}
 ];
 
 @NgModule({
   declarations: [
     AppComponent,
     DocumentsComponent,
-    HomeComponent
+    HomeComponent,
+    PageNotFoundComponent
   ],
   imports: [
     BrowserModule,
