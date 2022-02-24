@@ -15,13 +15,15 @@ const routes: Routes = [
   },
   {
     path: '', redirectTo: '/home', pathMatch: 'full',
-  
   },
   {
     path: 'documents',
     component: DocumentsComponent
   },
-  { path: '**', component:  PageNotFoundComponent}
+  { 
+    path: '**', 
+    component:  PageNotFoundComponent
+  }
 ];
 
 @NgModule({
