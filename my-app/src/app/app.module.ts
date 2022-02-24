@@ -4,12 +4,29 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule, Routes } from '@angular/router';
 import { AppComponent } from './app.component';
+import { DocumentsComponent } from './documents/documents.component';
+import { HomeComponent } from './home/home.component';
 
-const routes: Routes = []
+const routes: Routes = [
+  {
+    path: 'home',
+    component: HomeComponent
+  },
+  {
+    path: '', redirectTo: '/home', pathMatch: 'full',
+  
+  },
+  {
+    path: 'documents',
+    component: DocumentsComponent
+  },
+];
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    DocumentsComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
