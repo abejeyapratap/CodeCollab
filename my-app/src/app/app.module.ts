@@ -7,6 +7,8 @@ import { AppComponent } from './app.component';
 import { DocumentsComponent } from './documents/documents.component';
 import { HomeComponent } from './home/home.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { CreateComponent } from './create/create.component';
+import { ViewComponent } from './view/view.component';
 
 const routes: Routes = [
   {
@@ -20,6 +22,14 @@ const routes: Routes = [
     path: 'documents',
     component: DocumentsComponent
   },
+  {
+    path: 'create',
+    component: CreateComponent
+  },
+  {
+    path: 'view',
+    component: ViewComponent
+  },
   { 
     path: '**', 
     component:  PageNotFoundComponent
@@ -31,7 +41,9 @@ const routes: Routes = [
     AppComponent,
     DocumentsComponent,
     HomeComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    CreateComponent,
+    ViewComponent
   ],
   imports: [
     BrowserModule,
