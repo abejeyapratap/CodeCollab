@@ -1,4 +1,4 @@
-/*Contains the styles for AppComponent. You use this file when you want to define styles that only apply to a specific component, as opposed to your application overall.*/
+/* You use this file when you want to define styles that only apply to a specific component, as opposed to your application overall.*/
 
 :host {
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";

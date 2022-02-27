@@ -9,6 +9,8 @@ import { HomeComponent } from './home/home.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { CreateComponent } from './create/create.component';
 import { ViewComponent } from './view/view.component';
+import {ButtonModule} from 'primeng/button';
+
 
 const routes: Routes = [
   {
@@ -47,7 +49,8 @@ const routes: Routes = [
   ],
   imports: [
     BrowserModule,
-    RouterModule.forRoot(routes)
+    RouterModule.forRoot(routes),
+    ButtonModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
