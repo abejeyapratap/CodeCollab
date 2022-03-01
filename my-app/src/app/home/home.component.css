@@ -49,7 +49,7 @@
   }
 
   .toolbar img {
-    margin: 0 16px;
+    margin: 0 5px;
     padding: 0px;
   }
 
@@ -76,7 +76,7 @@
   .card {
     all: unset;
     border-radius: px;
-    border: 1px solid #eee;
+    border: 1px solid #ada9a9;
     background-color: #fafafa;
     height: 40px;
     width: 200px;

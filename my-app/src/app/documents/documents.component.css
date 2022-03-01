@@ -51,14 +51,13 @@
     justify-content: center;
     line-height: 24px;
   }
-
-  .my-account img {
-    vertical-align: middle;
-    margin: 0 1px;
+  .my-account img{
+    position:flex;
+    float:left;
   }
 
-  .my-account span {
-    vertical-align: middle;
+  .my-account span{
+    position:flex;
   }
 
   .spacer {
@@ -84,8 +83,8 @@
   }
 
   .toolbar img {
-    margin: 0 16px;
     padding: 0px;
+    margin: 0 5px;
   }
 
   .content {
