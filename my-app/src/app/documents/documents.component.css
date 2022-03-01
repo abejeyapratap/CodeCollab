@@ -21,7 +21,8 @@
   }
 
   img{
-    padding: 12px;
+    padding: 1px;
+    display: inline;
   }
 
   .online-now {
@@ -32,20 +33,40 @@
     z-index: 1; /* Stay on top */
     right: 0;
     text-align: center;
+    margin: 5px;
   }
 
   .my-account{
-    outline: 2px solid black;
-    height: 20px;
-    width: 100px;
+    outline: 1px solid black;
+    color:black;
+    height: 45px;
+    width: 150px;
+    right:1px;
+    bottom: 0;
+    border-radius: px;
+    background-color: #fafafa;
     margin: 0 px 16px;
     padding: 10px;
-    text-align: center;
+    display: flex;
+    justify-content: center;
+    line-height: 24px;
+  }
 
+  .my-account img {
+    vertical-align: middle;
+    margin: 0 1px;
+  }
+
+  .my-account span {
+    vertical-align: middle;
   }
 
   .spacer {
     flex: 1;
+  }
+
+  .spacer1 {
+    flex: .2;
   }
 
   .toolbar {
@@ -55,6 +76,7 @@
     right: 0;
     height: 60px;
     display: flex;
+    flex-direction: row;
     align-items: center;
     background-color: #f2f3f4;
     color: black;
