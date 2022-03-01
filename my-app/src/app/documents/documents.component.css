@@ -40,11 +40,11 @@
     outline: 1px solid black;
     color:black;
     height: 45px;
-    width: 150px;
+    width: 170px;
     right:1px;
     bottom: 0;
     border-radius: px;
-    background-color: #fafafa;
+    background-color: #cfcbcb;
     margin: 0 px 16px;
     padding: 10px;
     display: flex;
@@ -66,7 +66,7 @@
   }
 
   .spacer1 {
-    flex: .2;
+    flex: .1;
   }
 
   .toolbar {
@@ -108,7 +108,7 @@
   .card {
     all: unset;
     border-radius: px;
-    border: 1px solid #eee;
+    border: 1px solid #ada9a9;
     background-color: #fafafa;
     height: 30px;
     width: 150px;
