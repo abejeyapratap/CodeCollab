@@ -19,7 +19,7 @@ export class AppComponent {
     socketScript.src = 'https://cdn.socket.io/4.4.1/socket.io.min.js';
     googleScript.src = 'https://apis.google.com/js/platform.js';
     socketScript.onload = () => {
-      let socket = io('localhost');
+      let socket = io('localhost:3000');
     }
     document.getElementsByTagName('head')[0].appendChild(socketScript);
     document.getElementsByTagName('head')[0].appendChild(googleScript);

@@ -53,7 +53,12 @@ app.set("port", port);
 
 // Use Express app to start Server
 const server = http.createServer(app);
-const io = new Server(server);
+const io = new Server(server, {
+    cors: {
+      origin: "http://localhost:4200",
+      methods: ["GET", "POST"]
+    }
+  });
 
 server.on("error", onError);
 server.on("listening", onListening);
