@@ -12,8 +12,8 @@
     "type": "git",
     "url": "git+https://github.com/rmoroz20/CodeCollab.git"
   },
-  "author": "Abe Jeyapratap",
-  "license": "ISC",
+  "author": "Meatball Fan Club",
+  "license": "UNLICENSED",
   "bugs": {
     "url": "https://github.com/rmoroz20/CodeCollab/issues"
   },
@@ -22,6 +22,7 @@
     "nodemon": "^2.0.15"
   },
   "dependencies": {
-    "express": "^4.17.3"
+    "express": "^4.17.3",
+    "socket.io": "^4.4.1"
   }
 }

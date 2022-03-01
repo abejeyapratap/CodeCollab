@@ -1,6 +1,8 @@
 const http = require("http");
 const app = require("./backend/app");
 const debug = require("debug")("node-angular");
+const { Server } = require('socket.io');
+
 
 // Ensure port is valid number
 const normalizePort = (val) => {
@@ -51,8 +53,21 @@ app.set("port", port);
 
 // Use Express app to start Server
 const server = http.createServer(app);
+const io = new Server(server);
 
 server.on("error", onError);
 server.on("listening", onListening);
 
+io.on('connection', (socket) => {
+    console.log('User connected ' + socket.id);
+});
+
 server.listen(port);
+
+// Ryan's comments for reference :)
+// <script src="https://cdn.socket.io/4.4.1/socket.io.min.js" integrity="sha384-fKnu0iswBIqkjxrhQCTZ7qlLHOFEgNkRmK2vaO/LbTZSXdJfAu6ewRBdwHPhBo/H" crossorigin="anonymous"></script>
+
+//const http = require('http');
+//const server = http.createServer(app);
+//const io = new Server(server);
+// const io = new Server();
