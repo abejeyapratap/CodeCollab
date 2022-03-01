@@ -1,4 +1,4 @@
-<div class="toolbar" role="banner">
+<!-- <div class="toolbar" role="banner">
     <img
       width="40"
       alt="CodeCollab Logo"
@@ -6,29 +6,37 @@
     />
     <span>CodeCollab</span>
       <div class="spacer"></div>
-  </div>
+  </div> -->
 
-  <div class="content" role="main">
-    <div id="buttonDiv"></div>
-    <!-- STAND IN FOR REAL GOOGLE SIGN IN BUTTON -->
+<div class="content" role="main">
+  <div id="buttonDiv"></div>
+  <!-- STAND IN FOR REAL GOOGLE SIGN IN BUTTON -->
 
-    <div class="card-container">
-      <a class="card" target="_blank" rel="noopener" href="https://angular.io/cli">
-        <img
+  <div class="card-container">
+    <a
+      class="card"
+      target="_blank"
+      rel="noopener"
+      href="https://angular.io/cli"
+    >
+      <img
         width="30"
         alt="Google Logo"
         src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg"
-        />
-        <span>Sign in with Google</span>
-        <svg class="material-icons" width="24" height="24" viewBox="0 0 24 24"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg>
-      </a>
-
-    </div>
-
-    <div class = "card-container">
-      <a class="card" target="_self" rel="noopener" href="/documents">
-        <span>Open Code Collab</span>
-      </a>
-    </div>
+      />
+      <span>Sign in with Google</span>
+      <svg class="material-icons" width="24" height="24" viewBox="0 0 24 24">
+        <path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z" />
+      </svg>
+    </a>
   </div>
 
+  <div class="card-container">
+    <!-- <a class="card" target="_self" rel="noopener" href="/documents">
+        <span>Open Code Collab</span>
+      </a> -->
+    <a class="card" routerLink="/documents">
+      <span>Open Code Collab</span>
+    </a>
+  </div>
+</div>
