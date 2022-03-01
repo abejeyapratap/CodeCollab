@@ -24,7 +24,7 @@
     padding: 12px;
   }
 
-/*   .spacer {
+  .spacer {
     flex: 1;
   }
 
@@ -44,7 +44,7 @@
   .toolbar img {
     margin: 0 16px;
     padding: 0px;
-  } */
+  }
 
   .content {
     display: flex;

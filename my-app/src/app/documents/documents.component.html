@@ -1,11 +1,7 @@
-<router-outlet></router-outlet>
+<!-- <router-outlet></router-outlet> -->
 <div class="toolbar" role="banner">
-  <a href = "/home">
-    <img
-      width="40"
-      alt="CodeCollab Logo"
-      src="assets\images\logo.svg"
-    />
+  <a routerLink="/home">
+    <img width="40" alt="CodeCollab Logo" src="assets\images\logo.svg" />
   </a>
 
   <span>CodeCollab</span>
@@ -13,7 +9,7 @@
 
   <a>
     <div class="card-container">
-      <a class="card" target="_self" rel="noopener" href="/create">
+      <a class="card" routerLink="/create">
         <span>Create New Document</span>
       </a>
     </div>
@@ -26,12 +22,12 @@
       />
       <span class = "text">My Account</span>
     </div>
-  </a>  
+  </a>
   <div class="spacer1"></div>
 </div>
 
 <div class="content" role="main">
-  <div class=" online-now">
+  <div class="online-now">
     <h2>Online Now:</h2>
   </div>
 </div>
