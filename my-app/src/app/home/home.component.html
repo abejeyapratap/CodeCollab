@@ -1,26 +1,37 @@
 <div class="toolbar" role="banner">
+  <a routerLink="/home">
     <img
       width="40"
       alt="CodeCollab Logo"
       src="assets\images\logo.svg"
     />
-    <span>CodeCollab</span>
-      <div class="spacer"></div>
-  </div>
+  </a>
+  <span>CodeCollab</span>
+
+  <div class="spacer"></div>
+</div>
+
 
 <div class="content" role="main">
+  <h1><em>Welcome to CodeCollab</em></h1>
+
+  <img 
+  width = 320
+  src="assets\images\logo.svg"
+  >
+  
   <div id="buttonDiv"></div>
   <!-- STAND IN FOR REAL GOOGLE SIGN IN BUTTON -->
 
   <div class="card-container">
     <a
       class="card"
-      target="_blank"
+      target="_self"
       rel="noopener"
-      href="https://angular.io/cli"
+      href=""
     >
       <img
-        width="30"
+        width="40"
         alt="Google Logo"
         src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg"
       />
@@ -36,7 +47,7 @@
         <span>Open Code Collab</span>
       </a> -->
     <a class="card" routerLink="/documents">
-      <span>Open Code Collab</span>
+      <span>Open CodeCollab</span>
     </a>
   </div>
 </div>

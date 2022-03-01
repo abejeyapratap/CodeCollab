@@ -9,6 +9,11 @@
     -moz-osx-font-smoothing: grayscale;
   }
 
+  h1{
+    font-size: 60px;
+    font-weight: lighter;
+  }
+
   h1,
   h2,
   h3,
