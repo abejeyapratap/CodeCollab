@@ -63,9 +63,9 @@ const io = new Server(server, {
 server.on("error", onError);
 server.on("listening", onListening);
 
-/* io.on('connection', (socket) => {
+io.on('connection', (socket) => {
     console.log('User connected ' + socket.id);
-}); */
+});
 
 server.listen(port);
 
