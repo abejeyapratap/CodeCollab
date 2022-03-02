@@ -34,13 +34,10 @@ app.get(
 // authenticate w/ Google and re-direct
 app.get(
     "/google/callback",
-    passport.authenticate(
-        "google",
-        { session: false }
-        /*         {
-            failureRedirect: "/failure",
-        } */
-    ),
+    passport.authenticate("google", {
+        session: false,
+        failureRedirect: "/failure", // TODO
+    }),
     (req, res) => {
         console.log(req.user.id);
         res.redirect("http://localhost:4200");
