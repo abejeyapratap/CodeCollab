@@ -1,8 +1,7 @@
 const express = require("express");
 const mongoose = require("mongoose");
-const passport = require("passport");
-require("./passport");
-const jwt = require("jsonwebtoken");
+
+const userRoutes = require("./routes/auth");
 
 const app = express();
 
@@ -34,44 +33,6 @@ app.use((req, res, next) => {
     next();
 });
 
-app.get("/", (req, res) => res.send("Hello"));
-
-// Google login "prompt"
-// Scope: what info we want from Google user-profile
-app.get(
-    "/auth/google",
-    passport.authenticate("google", {
-        session: false,
-        scope: ["profile", "email"],
-    })
-);
-
-// Authenticate w/ Google and re-direct
-app.get(
-    "/google/callback",
-    passport.authenticate("google", {
-        session: false,
-        failureRedirect: "/failure", // TODO
-    }),
-    (req, res) => {
-        // Generate JWT for Angular
-        const token = jwt.sign(
-            { userGoogleId: req.user.id, userEmail: req.user.emails[0].value },
-            process.env.JWT_SECRET_KEY,
-            { expiresIn: "1h" }
-        );
-        res.cookie("coco_auth", token); // store token in cookie for use by Angular
-        res.redirect("http://localhost:4200");
-        // console.log(req.user.id, req.user.displayName, req.user.emails[0].value);
-    }
-);
-
-app.get("/failure", (req, res) => res.send("Log in failed."));
-
-// TODO
-app.get("/logout", (req, res) => {
-    req.logout(); // logout from Passport
-    res.redirect("http://localhost:4200");
-});
+app.use("/api/auth", userRoutes); // forward requests to /api/auth to userRoutes
 
 module.exports = app;

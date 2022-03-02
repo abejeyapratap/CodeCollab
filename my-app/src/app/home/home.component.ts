@@ -11,6 +11,6 @@ export class HomeComponent implements OnInit {
   ngOnInit() {}
 
   onLogin() {
-    window.location.href = 'http://localhost:3000/auth/google';
+    window.location.href = 'http://localhost:3000/api/auth/google';
   }
 }
