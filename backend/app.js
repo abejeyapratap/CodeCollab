@@ -1,9 +1,23 @@
 const express = require("express");
+const mongoose = require("mongoose");
 const passport = require("passport");
 require("./passport");
 const jwt = require("jsonwebtoken");
 
 const app = express();
+
+mongoose
+    .connect(
+        "mongodb+srv://abejeyapratap:" +
+            process.env.MONGO_ATLAS_PW +
+            "@cluster0.5a7ml.mongodb.net/code-collab?retryWrites=true&w=majority"
+    )
+    .then(() => {
+        console.log("Connected to database");
+    })
+    .catch(() => {
+        console.log("Connection failed");
+    });
 
 // CORS Middleware
 const ANGULAR_ORIGIN = "http://localhost:4200";
