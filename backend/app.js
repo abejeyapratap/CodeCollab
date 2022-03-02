@@ -1,6 +1,7 @@
 const express = require("express");
 const passport = require("passport");
 require("./passport");
+const jwt = require("jsonwebtoken");
 
 const app = express();
 
@@ -31,7 +32,7 @@ app.get(
     })
 );
 
-// authenticate w/ Google and re-direct
+// Authenticate w/ Google and re-direct
 app.get(
     "/google/callback",
     passport.authenticate("google", {
@@ -39,13 +40,21 @@ app.get(
         failureRedirect: "/failure", // TODO
     }),
     (req, res) => {
-        console.log(req.user.id);
+        // Generate JWT for Angular
+        const token = jwt.sign(
+            { userGoogleId: req.user.id, userEmail: req.user.emails[0].value },
+            process.env.JWT_SECRET_KEY,
+            { expiresIn: "1h" }
+        );
+        res.cookie("coco_auth", token); // store token in cookie for use by Angular
         res.redirect("http://localhost:4200");
+        // console.log(req.user.id, req.user.displayName, req.user.emails[0].value);
     }
 );
 
 app.get("/failure", (req, res) => res.send("Log in failed."));
 
+// TODO
 app.get("/logout", (req, res) => {
     req.logout(); // logout from Passport
     res.redirect("http://localhost:4200");
