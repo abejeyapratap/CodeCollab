@@ -30,8 +30,10 @@ const GoogleStrategy = require("passport-google-oauth20").Strategy; // Google OA
  const authUser = function (accessToken, refreshToken, profile, done) {
     const newUser = {
         googleId: profile.id,
+        email: profile.emails[0].value,
         displayName: profile.displayName
     };
+    console.log(newUser);
     // Store user in mongo
     
     return done(null, profile);

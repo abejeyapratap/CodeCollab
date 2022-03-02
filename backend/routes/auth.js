@@ -3,6 +3,8 @@ const passport = require("passport");
 require("../passport");
 const jwt = require("jsonwebtoken");
 
+const User = require("../models/auth");
+
 const router = express.Router();
 
 // Google login "prompt"
