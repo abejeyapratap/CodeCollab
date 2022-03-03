@@ -34,6 +34,15 @@
     right: 0;
     text-align: center;
     margin: 5px;
+  
+  }
+
+  .inner-online {
+    outline: 2px solid black;
+    height: 80%;
+    width: 90%;
+    position: absolute;
+    margin-left: 16px;
   }
 
   .my-account{
@@ -112,7 +121,6 @@
   
   .share-button-container .card:not(.highlight-card):hover {
     transform: translateY(-3px);
-    box-shadow: 0 4px 17px rgba(0, 0, 0, 0.35);
   }
 
   .card-container {
