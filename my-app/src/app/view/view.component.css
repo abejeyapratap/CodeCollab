@@ -21,40 +21,61 @@
   }
 
   img{
-    padding: 12px;
+    padding: 1px;
+    display: inline;
   }
 
   .online-now {
     outline: 2px solid black;
     height: 100%;
-    width: 20%; /* Set the width of the sidebar */
-    position: fixed; /* Fixed Sidebar (stay in place on scroll) */
-    z-index: 1; /* Stay on top */
+    width: 20%; 
+    position: fixed; 
+    z-index: 1; 
     right: 0;
     text-align: center;
+    margin: 5px;
   }
 
   .my-account{
-    outline: 2px solid black;
-    height: 20px;
-    width: 100px;
+    outline: 1px solid black;
+    color:black;
+    height: 45px;
+    width: 170px;
+    right:1px;
+    bottom: 0;
+    border-radius: px;
+    background-color: #cfcbcb;
     margin: 0 px 16px;
     padding: 10px;
-    text-align: center;
+    display: flex;
+    justify-content: center;
+    line-height: 24px;
+  }
+  .my-account img{
+    position:flex;
+    float:left;
+  }
 
+  .my-account span{
+    position:flex;
   }
 
   .spacer {
     flex: 1;
   }
 
+  .spacer1 {
+    flex: .1;
+  }
+
   .toolbar {
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
     right: 0;
     height: 60px;
     display: flex;
+    flex-direction: row;
     align-items: center;
     background-color: #f2f3f4;
     color: black;
@@ -62,8 +83,8 @@
   }
 
   .toolbar img {
-    margin: 0 5px;
     padding: 0px;
+    margin: 0 5px;
   }
 
   .content {
@@ -76,6 +97,24 @@
     fill: #888;
   }
 
+  .pi-link {
+    font-size: 1.5rem;
+    color: rgb(75, 74, 74);
+    padding-right: 11px;
+  }
+
+  .share-button-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 5px;
+  }
+  
+  .share-button-container .card:not(.highlight-card):hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 17px rgba(0, 0, 0, 0.35);
+  }
+
   .card-container {
     display: flex;
     flex-wrap: wrap;
@@ -86,7 +125,7 @@
   .card {
     all: unset;
     border-radius: px;
-    border: 1px solid #eee;
+    border: 1px solid #ada9a9;
     background-color: #fafafa;
     height: 30px;
     width: 150px;
