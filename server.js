@@ -2,7 +2,7 @@ const http = require("http");
 const app = require("./backend/app");
 const debug = require("debug")("node-angular");
 const { Server } = require('socket.io');
-
+const sockets = require('./sockets');
 
 // Ensure port is valid number
 const normalizePort = (val) => {
