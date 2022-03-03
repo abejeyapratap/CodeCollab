@@ -1,0 +1,6 @@
+{
+    "_id":{"$oid":"62200a73d3ddaf2af31f72d8"},
+    "ownerID": 12345,
+    "creationTime": {"$date":{"$numberLong":"1646266995252"}},
+    "body": "Nice code dude!"
+}

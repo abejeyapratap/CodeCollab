@@ -1,0 +1,8 @@
+{
+    "_id":{"$oid":"62200a73d3ddaf2af31f72d8"},
+    "googleId":"105206948443537965355",
+    "email":"ccollab123@gmail.com",
+    "displayName":"Collab Admin",
+    "createdAt":{"$date":{"$numberLong":"1646266995252"}},
+    "__v":{"$numberInt":"0"}
+}
