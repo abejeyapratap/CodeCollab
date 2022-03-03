@@ -13,6 +13,16 @@ import { CreateComponent } from './create/create.component';
 import { ViewComponent } from './view/view.component';
 import { HeaderComponent } from './header/header.component';
 
+import { environment } from 'src/environments/environment';
+import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
+
+const config: SocketIoConfig = {
+	url: environment.socketUrl, // socket server url;
+	options: {
+		transports: ['websocket']
+	}
+}
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -28,6 +38,7 @@ import { HeaderComponent } from './header/header.component';
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
+    SocketIoModule.forRoot(config),
   ],
   providers: [],
   bootstrap: [AppComponent],
