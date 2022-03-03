@@ -27,13 +27,14 @@ router.get(
     (req, res) => {
         // Generate JWT for Angular
         const token = jwt.sign(
-            { userGoogleId: req.user.id, userEmail: req.user.emails[0].value },
+            { userGoogleId: req.user.googleId, userEmail: req.user.email },
             process.env.JWT_SECRET_KEY,
             { expiresIn: "1h" }
         );
         res.cookie("coco_auth", token); // store token in cookie for use by Angular
         res.redirect("http://localhost:4200");
-        // console.log(req.user.id, req.user.displayName, req.user.emails[0].value);
+        // console.log(req.user.id, req.user.displayName, req.user.emails[0].value); // for profile
+        // console.log(req.user.googleId, req.user.displayName, req.user.email); // for mongo user
     }
 );
 
@@ -42,6 +43,7 @@ router.get("/failure", (req, res) => res.send("Log in failed."));
 // TODO
 router.get("/logout", (req, res) => {
     req.logout(); // logout from Passport
+    // delete cookie?
     res.redirect("http://localhost:4200");
 });
 
