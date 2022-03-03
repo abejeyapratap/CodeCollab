@@ -45,6 +45,24 @@
     margin-left: 16px;
   }
 
+  .comment {
+    outline: 2px solid black;
+    height: 8%;
+    width: 70%;
+    position: absolute;
+    margin-left: 50px;
+  }
+  .comment-container {
+    margin-top: 17px;
+    display: flex;
+    align-items: center;
+    padding-bottom: 10px;
+  }
+
+  .comment-container img {
+    margin-left: 8px;
+  }
+
   .my-account{
     outline: 1px solid black;
     color:black;
