@@ -28,12 +28,30 @@ export class SocketService {
     this.socket.emit('logout');
   }
 
+  onUserLogin() {
+    // When another user logs in to the website
+    // Message: displayName: string
+    // Display the chat message
+    return this.socket.fromEvent('remoteUserLogin');
+    // How to use:
+    // this.socketService.onUserLogin().subscribe((data: any) => this.movies = data)
+  }
+
+  onUserLogout() {
+    // When another user logs in to the website
+    // Message: displayName: string
+    // Display the chat message
+    return this.socket.fromEvent('remoteUserLogout');
+    // How to use:
+    // this.socketService.onUserLogout().subscribe((data: any) => this.movies = data)
+  }
+
   sendChatMessage(message: string) {
     this.socket.emit('sendChatMessage', message);
   }
 
   onNewChatMessage() {
-    // Message: sender: string, message: string, time: number
+    // Message: senderName: string, senderIcon: string, message: string, time: number
     // Display the chat message
     return this.socket.fromEvent('newChatMessage');
     // How to use:
@@ -45,9 +63,9 @@ export class SocketService {
   }
 
   onNewComment() {
-    // Message: sender: string, message: string, line:number, time: number
+    // Message: senderName: string, senderIcon: string, message: string, line:number, time: number
     // Display the chat message
-    return this.socket.fromEvent('newChatMessage');
+    return this.socket.fromEvent('newComment');
     // How to use:
     // this.socketService.onNewComment().subscribe((data: any) => this.movies = data)
   }
