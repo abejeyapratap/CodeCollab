@@ -25,7 +25,7 @@
     display: inline;
   }
 
-  .online-now {
+  .chat-box {
     outline: 2px solid black;
     height: 100%;
     width: 20%; 
@@ -34,33 +34,62 @@
     right: 0;
     text-align: center;
     margin: 5px;
-  
   }
 
   .inner-online {
     outline: 2px solid black;
-    height: 80%;
+    height: 65%;
     width: 90%;
     position: absolute;
     margin-left: 16px;
+    overflow: auto;
   }
 
-  .comment {
+  .chat {
     outline: 2px solid black;
-    height: 8%;
+    min-height: 8%;
     width: 70%;
     position: absolute;
     margin-left: 50px;
   }
-  .comment-container {
+  .chat-container {
     margin-top: 17px;
     display: flex;
     align-items: center;
     padding-bottom: 10px;
   }
 
-  .comment-container img {
+  .chat-container img {
     margin-left: 8px;
+  }
+
+  .message-input{
+    outline: 2px solid black;
+    height: 12%;
+    width: 90%;
+    position: absolute;
+    margin-left: 16px;
+    margin-top: 480px;
+    overflow: auto;
+  }
+
+  .my-chat-container {
+    margin-top: 17px;
+    display: flex;
+    align-items: center;
+    padding-bottom: 10px;
+  }
+
+  .my-chat-container img {
+    margin-left: 85%;
+  }
+
+  .my-chat{
+    outline: 2px solid black;
+    min-height: 8%;
+    width: 70%;
+    position: absolute;
+    margin-left: 10%;
   }
 
   .my-account{
