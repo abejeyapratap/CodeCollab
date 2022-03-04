@@ -42,7 +42,7 @@
     width: 90%;
     position: absolute;
     margin-left: 16px;
-    overflow: auto;
+    overflow-y: auto;
   }
 
   .chat {
@@ -51,7 +51,15 @@
     width: 70%;
     position: absolute;
     margin-left: 50px;
+    text-align: left;
+    padding: 6px;
   }
+
+  .chat span {
+    display: inline;
+    font-size: smaller;
+  }
+
   .chat-container {
     margin-top: 17px;
     display: flex;
@@ -90,6 +98,59 @@
     width: 70%;
     position: absolute;
     margin-left: 10%;
+    text-align: left;
+    padding: 6px;
+  }
+
+  .my-chat span {
+    display: inline;
+    font-size: smaller;
+  }
+
+  .comment-draft-cont {
+    margin: 30px;
+    outline: solid 2px black;
+    height: 150px;
+    width: 260px;
+  }
+
+  .comment-buttons-cont {
+    width:98%;
+    height: 20px;
+  }
+
+  .comment-button{
+    margin-left: 3px;
+    padding: 10px;
+    display: inline-block;
+  }
+
+  .cancel-button{
+    margin-left: 50%;
+  }
+
+  .user-cont {
+    display: flex;
+    justify-content: left;
+    line-height: 30px;
+    margin-left: 3px;
+    padding-right: 10px;
+  }
+
+  .user-cont img {
+    margin-top: 3px;
+  }
+
+  .user-cont span {
+    margin-left: 5px;
+  }
+
+  .comment {
+    outline: solid 2px black;
+    height: 50%;
+    width: 90%;
+    margin-top: 10px;
+    margin-left: 13px;
   }
 
   .my-account{
