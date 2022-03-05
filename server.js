@@ -65,6 +65,14 @@ server.on("listening", onListening);
 
 io.on('connection', (socket) => {
     console.log('User connected ' + socket.id);
+    let user = sockets.onConnect(socket);
+    socket.on('disconnect', (reason) => { sockets.onDisconnect(user) });
+    socket.on('sendAPIKey', (key) => { sockets.sendAPIKey(user, key) });
+    socket.on('logout', (key) => { sockets.logoutUser(user) });
+    socket.on('viewDocument', (docID) => { sockets.viewDocument(user, docID) });
+    socket.on('endViewingDocument', () => { sockets.endViewingDocument(user) });
+    socket.on('postComment', (comment, line) => { sockets.postComment(user, comment, line) });
+    socket.on('sendChatMessage', (msg) => { sockets.sendChatMessage(user, msg) });
 });
 
 server.listen(port);
