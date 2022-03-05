@@ -29,10 +29,11 @@ router.get(
         const token = jwt.sign(
             { userGoogleId: req.user.googleId, userEmail: req.user.email },
             process.env.JWT_SECRET_KEY,
-            { expiresIn: "1h" }
+            { expiresIn: "1h" } // secure against XSS security-attacks
         );
-        res.cookie("coco_auth", token); // store token in cookie for use by Angular
+        res.cookie("coco_auth", token); // store JWT in cookie for Angular; { httpOnly: true }
         res.redirect("http://localhost:4200");
+        
         // console.log(req.user.id, req.user.displayName, req.user.emails[0].value); // for profile
         // console.log(req.user.googleId, req.user.displayName, req.user.email); // for mongo user
     }
