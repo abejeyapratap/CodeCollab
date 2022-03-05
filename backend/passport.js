@@ -39,7 +39,7 @@ const authUser = function (accessToken, refreshToken, profile, done) {
                         done(null, newUser);
                     })
                     .catch((err) => {
-                        console.log("Auth failed");
+                        console.log("User creation failed");
                     });
             }
         });
