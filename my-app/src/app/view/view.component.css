@@ -220,6 +220,12 @@
     padding-right: 11px;
   }
 
+  .pi-trash {
+    font-size: 1.5rem;
+    color: rgb(75, 74, 74);
+    padding-right: 11px;
+  }
+
   .share-button-container {
     display: flex;
     flex-wrap: wrap;
@@ -229,6 +235,54 @@
   
   .share-button-container .card:not(.highlight-card):hover {
     transform: translateY(-3px);
+  }
+
+  .delete-button-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 5px;
+  }
+
+  .delete-button-container .card:not(.highlight-card):hover {
+    transform: translateY(-3px);
+  }
+
+  .delete-confirm-cont {
+    outline: solid 2px rgb(65, 64, 64);
+    width: 200px;
+    height: 90px;
+    border-radius: 20px;
+    padding: 10px;
+  }
+
+  .delete-confirm-cont p {
+    font-size: 16px;
+    text-align: center;
+  }
+
+  .delete-confirm-cont .confirm-delete:hover {
+    font-weight: 900;
+    font-size: 18px;
+    color: rgb(4, 196, 4);
+  }
+
+  .delete-confirm-cont .cancel-delete:hover {
+    font-weight: 900;
+    font-size: 18px;
+    color: red;
+  }
+
+  .confirm-delete {
+    float: left;
+    font-weight: 700;
+    color: green;
+  }
+
+  .cancel-delete {
+    float: right;
+    font-weight: 700;
+    color: rgb(197, 2, 2);
   }
 
   .card-container {
