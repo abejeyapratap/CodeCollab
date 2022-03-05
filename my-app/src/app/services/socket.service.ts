@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Socket } from 'ngx-socket-io';
+import { map } from 'rxjs';
 
 @Injectable({
 	providedIn: 'root'
@@ -10,14 +11,18 @@ export class SocketService {
   documentViewRequest:any = null;
 
   constructor(private socket: Socket) {
-    socket.on('requestAPIKey', this.onRequestAPIKey);
+    socket.on('requestAPIKey', () => {this.onRequestAPIKey(this)});
 
     socket.on('documentsList', this.onDocumentsList);
     socket.on('document', this.onDocument);
   }
 
-  onRequestAPIKey() {
+  onRequestAPIKey(s:SocketService) {
+    // TEMP CODE
     console.log('requestedAPIKey');
+    s.sendAPIKey('testAPI');
+    s.socket.emit('viewDocument', 'testDoc');
+    s.sendChatMessage('testMSG');
   }
 
   sendAPIKey(key:string) {
@@ -53,7 +58,7 @@ export class SocketService {
   onNewChatMessage() {
     // Message: senderName: string, senderIcon: string, message: string, time: number
     // Display the chat message
-    return this.socket.fromEvent('newChatMessage');
+    return this.socket.fromEvent<any[]>('newChatMessage');
     // How to use:
     // this.socketService.onNewChatMessage().subscribe((data: any) => this.movies = data)
   }
@@ -65,7 +70,7 @@ export class SocketService {
   onNewComment() {
     // Message: senderName: string, senderIcon: string, message: string, line:number, time: number
     // Display the chat message
-    return this.socket.fromEvent('newComment');
+    return this.socket.fromEvent<any[]>('newComment');
     // How to use:
     // this.socketService.onNewComment().subscribe((data: any) => this.movies = data)
   }
@@ -108,4 +113,5 @@ export class SocketService {
   endViewingDocument() {
     this.socket.emit('endViewingDocument');
   }
+
 }
