@@ -11,7 +11,8 @@ export class ViewComponent implements OnInit {
   constructor(private sockets:SocketService) { }
 
   messages: MessageData[] = [];
-  myDisplayName: string = 'p';
+  newMessage = '';
+  myDisplayName: string = '';
 
   ngOnInit(): void {
     this.sockets.onNewChatMessage().subscribe((data) => { this.addChatMessage(data[0], data[1], data[2], data[3]) })
@@ -19,7 +20,10 @@ export class ViewComponent implements OnInit {
 
   addChatMessage(username: string, icon: string, msg: string, date: number): void {
     this.messages.push(new MessageData(username, icon, msg, date));
-    console.log(msg);
+  }
+
+  async sendChatMessage() {
+
   }
 
 }

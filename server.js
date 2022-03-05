@@ -76,11 +76,3 @@ io.on('connection', (socket) => {
 });
 
 server.listen(port);
-
-// Ryan's comments for reference :)
-// <script src="https://cdn.socket.io/4.4.1/socket.io.min.js" integrity="sha384-fKnu0iswBIqkjxrhQCTZ7qlLHOFEgNkRmK2vaO/LbTZSXdJfAu6ewRBdwHPhBo/H" crossorigin="anonymous"></script>
-
-//const http = require('http');
-//const server = http.createServer(app);
-//const io = new Server(server);
-// const io = new Server();
