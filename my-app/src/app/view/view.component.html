@@ -6,7 +6,7 @@
   <span>CodeCollab</span>
 
   <div class="spacer1"></div>
-  
+
   <div class="share-button-container">
     <a class="card" style="background-color: #ffffff; border-radius: 12px;">
       <div class = "link-icon">
@@ -17,8 +17,8 @@
       <span style="color: navy;font-size: larger; font-weight: 700;">Share Board</span>
     </a>
   </div>
-  
-  
+
+
   <div class="spacer"></div>
   <a>
     <div class = "my-account">
@@ -41,69 +41,51 @@
 
   <div class="chat-box">
     <h2>CHAT:</h2>
-    <div class = "inner-online">
-      <div class ="chat-container">
-        <img 
-        width = "30"
-        src="assets\images\user-generic-icon.svg">
-        <div class="chat">
-          <span>This code sucks. Have you tried being better at coding? Get a clue.</span>
+    <div class = "inner-online" *ngFor="let message of messages">
+      <div *ngIf="
+        message.username !== myDisplayName;
+        then othermsg
+        else mymsg
+      "></div>
+      <ng-template #othermsg>
+        <div class ="chat-container">
+          <img
+          width = "30"
+          src="assets\images\user-generic-icon.svg">
+          <div class="chat">
+            <span>{{message.username}}: {{message.text}}</span>
+          </div>
         </div>
-      </div>
-      <div class ="chat-container">
-        <img 
-        width = "30"
-        src="assets\images\user-generic-icon.svg">
-        <div class="chat"></div>
-      </div>
-      <div class ="chat-container">
-        <img 
-        width = "30"
-        src="assets\images\user-generic-icon.svg">
-        <div class="chat"></div>
-      </div>
-      <div class ="chat-container">
-        <img 
-        width = "30"
-        src="assets\images\user-generic-icon.svg">
-        <div class="chat"></div>
-      </div>
-      <div class ="chat-container">
-        <img 
-        width = "30"
-        src="assets\images\user-generic-icon.svg">
-        <div class="chat"></div>
-      </div>
-      <div class ="chat-container">
-        <img 
-        width = "30"
-        src="assets\images\user-generic-icon.svg">
-        <div class="chat"></div>
-      </div>
-      <div class ="my-chat-container">
-        <div class="my-chat"></div>
-        <img 
-        width = "30"
-        src="assets\images\user-generic-icon.svg">
-      </div>
+      </ng-template>
+      <ng-template #mymsg>
+        <div class="my-chat-container">
+          <div class="my-chat"></div>
+          <img
+          width = "30"
+          src="assets\images\user-generic-icon.svg">
+          <div class="chat">
+            <span>{{message.username}}: {{message.text}}</span>
+          </div>
+        </div>
+      </ng-template>
     </div>
     <div class="message-input"></div>
   </div>
 
   <div class = "comment-draft-cont">
     <div class = "user-cont">
-      <img 
+      <img
         width = "30"
         src="assets\images\user-generic-icon.svg">
         <span>Username</span>
     </div>
-    
+
     <div class = "comment"></div>
     <div class = "comment-buttons-cont">
       <span class="comment-button">Comment</span>
       <span class="cancel-button">Cancel</span>
     </div>
-    
+
   </div>
 
 </div>
