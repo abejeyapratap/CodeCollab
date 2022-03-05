@@ -46,7 +46,7 @@ function logoutUser(user) {
 exports.logoutUser = logoutUser;
 
 function viewDocument(user, documentID) {
-    console.log('viewingDoc');
+    // console.log('viewingDoc');
     // TODO: Check to see document exists
     user.viewingDocument = documentID;
     if (!usersViewingDocs.has(documentID)) {
@@ -81,7 +81,7 @@ function postComment(user, comment, line) {
 exports.postComment = postComment;
 
 function sendChatMessage(user, message) {
-    console.log('chat message');
+    // console.log('chat message');
     if (user.viewingDocument == null) return;
 
     let viewers = usersViewingDocs.get(user.viewingDocument);
