@@ -1,4 +1,6 @@
 <!-- <router-outlet></router-outlet> -->
+<!DOCTYPE html>
+<html lang="en">
 <div class="toolbar" role="banner">
   <a routerLink="/home">
     <img width="40" alt="CodeCollab Logo" src="assets\images\logo.svg" />
@@ -18,12 +20,27 @@
     </a>
   </div>
 
+  <div class="spacer1"></div>
+
+  <div class="delete-button-container">
+    <button class="card" type="button" style="background-color: #ffffff; border-radius: 12px;">
+      <div class = "trash-icon">
+        <a>
+          <i class="pi pi-trash"></i>
+        </a>
+      </div>
+      <span style="color: navy;font-size: larger; font-weight: 700;">Delete Board</span>
+    </button>
+  </div>
+  
+  
 
   <div class="spacer"></div>
   <a>
     <div class = "my-account">
       <img
         src="assets\images\user-generic-icon.svg"
+        width=""
       />
       <div class="spacer1"></div>
       <span class = "text">My Account</span>
@@ -96,4 +113,13 @@
 
   </div>
 
+  <div class="delete-confirm-cont">
+    <p>Are you sure you want to delete this document?</p>
+    <p class="confirm-delete">Confirm</p> <p class="cancel-delete">Cancel</p>
+  </div>
+
 </div>
+
+<script>
+  
+</script>

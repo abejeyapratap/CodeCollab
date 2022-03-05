@@ -2,6 +2,7 @@ const express = require("express");
 const mongoose = require("mongoose");
 
 const userRoutes = require("./routes/auth");
+const documentRoutes = require("./routes/documents");
 
 const app = express();
 
@@ -34,5 +35,6 @@ app.use((req, res, next) => {
 });
 
 app.use("/api/auth", userRoutes); // forward requests to /api/auth to userRoutes
+app.use("/api/documents", documentRoutes); // forward requests to /api/documents
 
 module.exports = app;

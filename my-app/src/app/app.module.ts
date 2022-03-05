@@ -11,17 +11,16 @@ import { HomeComponent } from './home/home.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { CreateComponent } from './create/create.component';
 import { ViewComponent } from './view/view.component';
-import { HeaderComponent } from './header/header.component';
 
 import { environment } from 'src/environments/environment';
 import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
 
 const config: SocketIoConfig = {
-	url: environment.socketUrl, // socket server url;
-	options: {
-		transports: ['websocket']
-	}
-}
+  url: environment.socketUrl, // socket server url;
+  options: {
+    transports: ['websocket'],
+  },
+};
 
 @NgModule({
   declarations: [
@@ -31,7 +30,6 @@ const config: SocketIoConfig = {
     PageNotFoundComponent,
     CreateComponent,
     ViewComponent,
-    HeaderComponent,
   ],
   imports: [
     BrowserModule,
