@@ -28,6 +28,7 @@ const authUser = function (accessToken, refreshToken, profile, done) {
                 const newUser = new User({
                     googleId: profile.id,
                     email: profile.emails[0].value,
+                    profilePic: profile.photos[0].value,
                     displayName: profile.displayName,
                 });
 
