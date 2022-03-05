@@ -44,7 +44,7 @@
     right:1px;
     bottom: 0;
     border-radius: px;
-    background-color: #cfcbcb;
+    background-color: #f4f5fa;
     margin: 0 px 16px;
     padding: 10px;
     display: flex;
@@ -58,6 +58,7 @@
 
   .my-account span{
     position:flex;
+    font-weight: bold;
   }
 
   .spacer {
