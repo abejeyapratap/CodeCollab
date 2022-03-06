@@ -23,7 +23,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    console.log('I destroyed component!');
+    // console.log('I destroyed component!');
     this.authListenerSubs.unsubscribe();
   }
 
