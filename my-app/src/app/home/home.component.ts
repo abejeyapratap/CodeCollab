@@ -9,7 +9,9 @@ import { AuthService } from '../services/auth.service';
 export class HomeComponent implements OnInit {
   constructor(private authService: AuthService) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.authService.setToken();
+  }
 
   onLogin() {
     window.location.href = 'http://localhost:3000/api/auth/google';
@@ -17,5 +19,6 @@ export class HomeComponent implements OnInit {
 
   onGetToken() {
     this.authService.getToken();
+    // this.authService.deleteToken();
   }
 }
