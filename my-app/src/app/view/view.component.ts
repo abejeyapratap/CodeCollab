@@ -27,7 +27,13 @@ export class ViewComponent implements OnInit {
   }
 
   deleteConfirmShow = false;
-   
+  linkCopyMessage = false;
+
+  linkShareConfirm() {
+    this.linkCopyMessage = !this.linkCopyMessage;
+  }
+  
+
   toggleDeleteConfirm() {
     this.deleteConfirmShow = !this.deleteConfirmShow;
   }

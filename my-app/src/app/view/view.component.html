@@ -9,7 +9,7 @@
 
   <div class="spacer1"></div>
 
-  <div class="share-button-container">
+  <div class="share-button-container" (click)="linkShareConfirm()">
     <a class="card" style="background-color: #ffffff; border-radius: 12px;">
       <div class = "link-icon">
         <a>
@@ -48,11 +48,6 @@
 </div>
 
 <div class="content" role="main">
-  <div class="card-container">
-    <a class="card" routerLink="../create">
-      <span>Current Document: </span>
-    </a>
-  </div>
 
   <div class="chat-box">
     <h2>CHAT:</h2>
@@ -111,18 +106,14 @@
 
   </div>
 
+  <div [hidden]="!linkCopyMessage" class="link-copy-div">
+    <span>Link copied to clipboard!</span>
+  </div>
+
   <div [hidden]="!deleteConfirmShow" class="delete-confirm-cont">
     <p>Are you sure you want to delete this document?</p>
     <p class="confirm-delete">Confirm</p> <p class="cancel-delete">Cancel</p>
   </div>
 
+
 </div>
-
-<script>
-
-function showDeleteConfirm () {
-    let cont = document.getElementById("delete-confirm-cont")
-
-  }
-
-</script>
