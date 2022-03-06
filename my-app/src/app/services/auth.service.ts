@@ -6,6 +6,7 @@ import { BehaviorSubject } from 'rxjs';
   providedIn: 'root',
 })
 export class AuthService {
+  private isAuth = false;
   private token: string; // authenticated JWT to be used for authorization in other parts
   private authStatusListener = new BehaviorSubject<boolean>(false); // "push" auth status to rest of app
 
@@ -15,6 +16,7 @@ export class AuthService {
     this.token = this.cookieService.get('coco_auth');
 
     if (this.token) {
+      this.isAuth = true;
       this.authStatusListener.next(true); // tell rest of app that authenticated
     }
     // console.log(this.token);
@@ -45,5 +47,9 @@ export class AuthService {
     this.token = "";
     this.deleteTokenInCookie();
     this.authStatusListener.next(false); // tell rest of app that we logged out
+  }
+
+  getIsAuth() {
+    return this.isAuth;
   }
 }
