@@ -1,15 +1,32 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-documents',
   templateUrl: './documents.component.html',
-  styleUrls: ['./documents.component.css']
+  styleUrls: ['./documents.component.css'],
 })
-export class DocumentsComponent implements OnInit {
+export class DocumentsComponent implements OnInit, OnDestroy {
+  isUserAuthenticated = false;
+  private authStatusSub: Subscription;
 
-  constructor() { }
+  constructor(private authService: AuthService) {}
 
-  ngOnInit(): void {
+  ngOnInit() {
+    this.authStatusSub = this.authService
+      .getAuthStatusListener()
+      .subscribe((isAuthenticated) => {
+        this.isUserAuthenticated = isAuthenticated;
+      });
   }
 
+  ngOnDestroy() {
+    this.authStatusSub.unsubscribe();
+  }
+
+  // TODO
+  getAccountInfo() {
+
+  }
 }

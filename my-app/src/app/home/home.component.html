@@ -12,7 +12,7 @@
 
   <img width="320" src="assets\images\logo.svg" />
 
-  <div class="card-container" (click)="onLogin()">
+  <div class="card-container" (click)="onLogin()" *ngIf="!isUserAuthenticated">
     <a class="card">
       <img
         width="40"
@@ -28,5 +28,10 @@
       <span>Open CodeCollab</span>
     </a>
   </div>
+
+  <div class="card-container" (click)="onLogout()" *ngIf="isUserAuthenticated">
+    <a class="card">
+      <span>Logout</span>
+    </a>
+  </div>
 </div>
-<!-- <button (click)="onGetToken()">Find token</button> -->

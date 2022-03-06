@@ -1,4 +1,3 @@
-<!-- <router-outlet></router-outlet> -->
 <div class="toolbar" role="banner">
   <a routerLink="/home">
     <img width="40" alt="CodeCollab Logo" src="assets\images\logo.svg" />
@@ -7,24 +6,18 @@
   <span>CodeCollab</span>
   <div class="spacer1"></div>
 
-  <a>
-    <div class="card-container">
-      <a class="card" routerLink="/create">
-        <span>Create New Document</span>
-      </a>
-    </div>
-  </a>
+  <div class="card-container" *ngIf="isUserAuthenticated">
+    <a class="card" routerLink="/create">
+      <span>Create New Document</span>
+    </a>
+  </div>
+
   <div class="spacer"></div>
-  <a>
-    <button class = "my-account" onclick= getAccountInfo()>
-      <img
-        src="assets\images\user-generic-icon.svg"
-        width="28"
-      />
-      <div class="spacer1"></div>
-      <span class = "text">My Account</span>
-    </button>
-  </a>
+  <button class="my-account" (click)="getAccountInfo()">
+    <img src="assets\images\user-generic-icon.svg" width="28" />
+    <div class="spacer1"></div>
+    <span class="text">My Account</span>
+  </button>
   <div class="spacer1"></div>
 </div>
 
