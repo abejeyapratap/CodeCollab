@@ -4,7 +4,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { FormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AppComponent } from './app.component';
 import { DocumentsComponent } from './documents/documents.component';
 import { HomeComponent } from './home/home.component';
@@ -14,6 +14,7 @@ import { ViewComponent } from './view/view.component';
 
 import { environment } from 'src/environments/environment';
 import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
+import { AuthInterceptor } from './services/auth-interceptor';
 
 const config: SocketIoConfig = {
   url: environment.socketUrl, // socket server url;
@@ -38,7 +39,9 @@ const config: SocketIoConfig = {
     HttpClientModule,
     SocketIoModule.forRoot(config),
   ],
-  providers: [],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }, // register interceptor
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
