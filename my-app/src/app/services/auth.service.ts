@@ -9,6 +9,7 @@ export class AuthService {
   private isAuth = false;
   private token: string; // authenticated JWT to be used for authorization in other parts
   private authStatusListener = new BehaviorSubject<boolean>(false); // "push" auth status to rest of app
+  private tokenTimerObj: any;
 
   constructor(private cookieService: CookieService) {}
 
@@ -44,12 +45,23 @@ export class AuthService {
   }
 
   logout() {
-    this.token = "";
+    this.token = '';
     this.deleteTokenInCookie();
+    clearTimeout(this.tokenTimerObj);
     this.authStatusListener.next(false); // tell rest of app that we logged out
   }
 
   getIsAuth() {
     return this.isAuth;
+  }
+
+  // logout automatically after 1h (bc JWT becomes expires then)
+  setTokenTimer(expiresInDuration = 3600) {
+    if (!this.token) return;
+
+    // console.log("i've begun");
+    this.tokenTimerObj = setTimeout(() => {
+      this.logout();
+    }, expiresInDuration);
   }
 }

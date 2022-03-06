@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, HostListener, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { AuthService } from '../services/auth.service';
 
@@ -11,6 +11,15 @@ export class HomeComponent implements OnInit, OnDestroy {
   isUserAuthenticated = false;
   private authListenerSubs: Subscription;
 
+  @HostListener('window:load')
+  onLoad() {
+    // console.log('setting token');
+    this.authService.setToken();
+    if (this.authService.getToken()) {
+      this.authService.setTokenTimer();
+    }
+  }
+
   constructor(private authService: AuthService) {}
 
   ngOnInit() {
@@ -19,7 +28,7 @@ export class HomeComponent implements OnInit, OnDestroy {
       .subscribe((isAuthenticated) => {
         this.isUserAuthenticated = isAuthenticated;
       });
-    this.authService.setToken();
+    this.authService.setToken(); // maybe delete?
   }
 
   ngOnDestroy() {
