@@ -62,6 +62,6 @@ export class AuthService {
     // console.log("i've begun");
     this.tokenTimerObj = setTimeout(() => {
       this.logout();
-    }, expiresInDuration);
+    }, expiresInDuration * 1000);
   }
 }
