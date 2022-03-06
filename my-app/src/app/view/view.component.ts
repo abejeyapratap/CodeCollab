@@ -26,6 +26,12 @@ export class ViewComponent implements OnInit {
 
   }
 
+  deleteConfirmShow = false;
+   
+  toggleDeleteConfirm() {
+    this.deleteConfirmShow = !this.deleteConfirmShow;
+  }
+
 }
 
 class MessageData {
