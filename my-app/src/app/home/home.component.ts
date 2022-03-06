@@ -11,6 +11,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   isUserAuthenticated = false;
   private authListenerSubs: Subscription;
 
+  // fetch token on page re-load & start timer
   @HostListener('window:load')
   onLoad() {
     // console.log('setting token');
