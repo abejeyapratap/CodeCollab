@@ -31,6 +31,8 @@ export class ViewComponent implements OnInit {
   newMessage = '';
   myDisplayName: string = '';
 
+  documentLines:string[] = ["test1", "test2", "test my shoe"]
+
   ngOnInit(): void {
     this.sockets.onNewChatMessage().subscribe((data) => { this.addChatMessage(data[0], data[1], data[2], data[3]) })
   }
@@ -39,8 +41,13 @@ export class ViewComponent implements OnInit {
     this.messages.push(new MessageData(username, icon, msg, date));
   }
 
-  async sendChatMessage() {
+  sendChatMessage() {
+    this.sockets.sendChatMessage(this.newMessage);
+    this.newMessage = '';
+  }
 
+  startComment(line:number) {
+    console.log(`comment on line ${line}`);
   }
 
   deleteConfirmShow = false;
@@ -50,7 +57,7 @@ export class ViewComponent implements OnInit {
   linkShareConfirm() {
     this.linkCopyMessage = true;
   }
-  
+
   showDeleteConfirm() {
     this.deleteConfirmShow = true;
   }

@@ -1,337 +1,336 @@
 :host {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-    font-size: 14px;
-    color: #333;
-    box-sizing: border-box;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-  }
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica,
+    Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  font-size: 14px;
+  color: #333;
+  box-sizing: border-box;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
 
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6 {
-    margin: 8px 0;
-  }
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 8px 0;
+}
 
-  p {
-    margin: 0;
-  }
+p {
+  margin: 0;
+}
 
-  img{
-    padding: 1px;
-    display: inline;
-  }
+img {
+  padding: 1px;
+  display: inline;
+}
 
-  .chat-box {
-    outline: 2px solid black;
-    height: 100%;
-    width: 20%; 
-    position: fixed; 
-    z-index: 1; 
-    right: 0;
-    text-align: center;
-    margin: 5px;
-  }
+.chat-box {
+  outline: 2px solid black;
+  height: 100%;
+  width: 20%;
+  position: fixed;
+  z-index: 1;
+  right: 0;
+  text-align: center;
+  margin: 5px;
+}
 
-  .inner-online {
-    outline: 2px solid black;
-    height: 65%;
-    width: 90%;
-    position: absolute;
-    margin-left: 16px;
-    overflow-y: auto;
-  }
+.inner-online {
+  outline: 2px solid black;
+  height: 65%;
+  width: 90%;
+  position: absolute;
+  margin-left: 16px;
+  overflow-y: auto;
+}
 
-  .chat {
-    outline: 2px solid black;
-    min-height: 8%;
-    width: 70%;
-    position: absolute;
-    margin-left: 50px;
-    text-align: left;
-    padding: 6px;
-  }
+.chat {
+  outline: 2px solid black;
+  min-height: 8%;
+  width: 70%;
+  position: absolute;
+  margin-left: 50px;
+  text-align: left;
+  padding: 6px;
+}
 
-  .chat span {
-    display: inline;
-    font-size: smaller;
-  }
+.chat span {
+  display: inline;
+  font-size: smaller;
+}
 
-  .chat-container {
-    margin-top: 17px;
-    display: flex;
-    align-items: center;
-    padding-bottom: 10px;
-  }
+.chat-container {
+  margin-top: 17px;
+  display: flex;
+  align-items: center;
+  padding-bottom: 10px;
+}
 
-  .chat-container img {
-    margin-left: 8px;
-  }
+.chat-container img {
+  margin-left: 8px;
+}
 
-  .message-input{
-    outline: 2px solid black;
-    height: 12%;
-    width: 90%;
-    position: absolute;
-    margin-left: 16px;
-    margin-top: 480px;
-    overflow: auto;
-  }
+.message-input {
+  outline: 2px solid black;
+  height: 12%;
+  width: 90%;
+  position: absolute;
+  margin-left: 16px;
+  margin-top: 480px;
+  overflow: auto;
+}
 
-  .my-chat-container {
-    margin-top: 17px;
-    display: flex;
-    align-items: center;
-    padding-bottom: 10px;
-  }
+.my-chat-container {
+  margin-top: 17px;
+  display: flex;
+  align-items: center;
+  padding-bottom: 10px;
+}
 
-  .my-chat-container img {
-    margin-left: 85%;
-  }
+.my-chat-container img {
+  margin-left: 85%;
+}
 
-  .my-chat{
-    outline: 2px solid black;
-    min-height: 8%;
-    width: 70%;
-    position: absolute;
-    margin-left: 10%;
-    text-align: left;
-    padding: 6px;
-  }
+.my-chat {
+  outline: 2px solid black;
+  min-height: 8%;
+  width: 70%;
+  position: absolute;
+  margin-left: 10%;
+  text-align: left;
+  padding: 6px;
+}
 
-  .my-chat span {
-    display: inline;
-    font-size: smaller;
-  }
+.my-chat span {
+  display: inline;
+  font-size: smaller;
+}
 
-  .comment-cont {
-    margin: 30px;
-    outline: solid 1px black;
-    background-color: #fbfbfb;
-    border-radius: 8px;
-    height: 150px;
-    width: 260px;
-  }
+.comment-cont {
+  margin: 30px;
+  outline: solid 1px black;
+  background-color: #fbfbfb;
+  border-radius: 8px;
+  height: 150px;
+  width: 260px;
+}
 
-  .comment-buttons-cont {
-    width:98%;
-    height: 20px;
-  }
+.comment-buttons-cont {
+  width: 98%;
+  height: 20px;
+}
 
-  .comment-button{
-    margin-left: 3px;
-    padding: 10px;
-    display: inline-block;
-  }
+.comment-button {
+  margin-left: 3px;
+  padding: 10px;
+  display: inline-block;
+}
 
-  .cancel-button{
-    margin-left: 50%;
-  }
+.cancel-button {
+  margin-left: 50%;
+}
 
-  .user-cont {
-    display: flex;
-    justify-content: left;
-    line-height: 30px;
-    margin-left: 3px;
-    padding-right: 10px;
-  }
+.user-cont {
+  display: flex;
+  justify-content: left;
+  line-height: 30px;
+  margin-left: 3px;
+  padding-right: 10px;
+}
 
-  .user-cont img {
-    margin-top: 3px;
-  }
+.user-cont img {
+  margin-top: 3px;
+}
 
-  .user-cont span {
-    margin-left: 5px;
-  }
+.user-cont span {
+  margin-left: 5px;
+}
 
-  .comment {
-    outline: solid 1px black;
-    height: 50%;
-    width: 90%;
-    margin-top: 10px;
-    margin-left: 13px;
-    overflow-y: auto;
-  }
+.comment {
+  outline: solid 1px black;
+  height: 50%;
+  width: 90%;
+  margin-top: 10px;
+  margin-left: 13px;
+  overflow-y: auto;
+}
 
-  .my-account{
-    outline: 1px solid black;
-    color:black;
-    height: 45px;
-    width: 170px;
-    right:1px;
-    bottom: 0;
-    border-radius: px;
-    background-color: #cfcbcb;
-    margin: 0 px 16px;
-    padding: 10px;
-    display: flex;
-    justify-content: center;
-    line-height: 24px;
-  }
-  .my-account img{
-    position:flex;
-    float:left;
-  }
+.my-account {
+  outline: 1px solid black;
+  color: black;
+  height: 45px;
+  width: 170px;
+  right: 1px;
+  bottom: 0;
+  border-radius: px;
+  background-color: #cfcbcb;
+  margin: 0 px 16px;
+  padding: 10px;
+  display: flex;
+  justify-content: center;
+  line-height: 24px;
+}
+.my-account img {
+  position: flex;
+  float: left;
+}
 
-  .my-account span{
-    position:flex;
-  }
+.my-account span {
+  position: flex;
+}
 
-  .spacer {
-    flex: 1;
-  }
+.spacer {
+  flex: 1;
+}
 
-  .spacer1 {
-    flex: .1;
-  }
+.spacer1 {
+  flex: 0.1;
+}
 
-  .toolbar {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 60px;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    background-color: #f2f3f4;
-    color: black;
-    font-weight: 600;
-  }
+.toolbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 60px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  background-color: #f2f3f4;
+  color: black;
+  font-weight: 600;
+}
 
-  .toolbar img {
-    padding: 0px;
-    margin: 0 5px;
-  }
+.toolbar img {
+  padding: 0px;
+  margin: 0 5px;
+}
 
-  .content {
-    display: flex;
-    margin: 82px auto 32px;
-    padding: 0 16px;
-  }
+.content {
+  display: flex;
+  margin: 82px auto 32px;
+  padding: 0 16px;
+}
 
-  .card svg.material-icons path {
-    fill: #888;
-  }
+.card svg.material-icons path {
+  fill: #888;
+}
 
-  .pi-link {
-    font-size: 1.5rem;
-    color: rgb(75, 74, 74);
-    padding-right: 11px;
-  }
+.pi-link {
+  font-size: 1.5rem;
+  color: rgb(75, 74, 74);
+  padding-right: 11px;
+}
 
-  .pi-trash {
-    font-size: 1.5rem;
-    color: rgb(75, 74, 74);
-    padding-right: 11px;
-  }
+.pi-trash {
+  font-size: 1.5rem;
+  color: rgb(75, 74, 74);
+  padding-right: 11px;
+}
 
-  .share-button-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    margin-top: 5px;
-  }
-  
-  .share-button-container .card:not(.highlight-card):hover {
-    transform: translateY(-3px);
-  }
+.share-button-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 5px;
+}
 
-  .link-copy-div {
-    text-align: center;
-    border-radius: 10px;
-    width: 180px;
-    line-height: 50px;
-    height: 50px;
-    background-color: #cfcbcb;
-  }
+.share-button-container .card:not(.highlight-card):hover {
+  transform: translateY(-3px);
+}
 
+.link-copy-div {
+  text-align: center;
+  border-radius: 10px;
+  width: 180px;
+  line-height: 50px;
+  height: 50px;
+  background-color: #cfcbcb;
+}
 
-  .delete-button-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    margin-top: 5px;
-  }
+.delete-button-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 5px;
+}
 
-  .delete-button-container .card:not(.highlight-card):hover {
-    transform: translateY(-3px);
-  }
+.delete-button-container .card:not(.highlight-card):hover {
+  transform: translateY(-3px);
+}
 
-  .delete-confirm-cont {
-    outline: solid 2px rgb(65, 64, 64);
-    width: 200px;
-    height: 90px;
-    border-radius: 20px;
-    padding: 10px;
-  }
+.delete-confirm-cont {
+  outline: solid 2px rgb(65, 64, 64);
+  width: 200px;
+  height: 90px;
+  border-radius: 20px;
+  padding: 10px;
+}
 
-  .delete-confirm-cont p {
-    font-size: 16px;
-    text-align: center;
-  }
+.delete-confirm-cont p {
+  font-size: 16px;
+  text-align: center;
+}
 
-  .delete-confirm-cont .confirm-delete:hover {
-    font-weight: 900;
-    font-size: 18px;
-    color: rgb(4, 196, 4);
-  }
+.delete-confirm-cont .confirm-delete:hover {
+  font-weight: 900;
+  font-size: 18px;
+  color: rgb(4, 196, 4);
+}
 
-  .delete-confirm-cont .cancel-delete:hover {
-    font-weight: 900;
-    font-size: 18px;
-    color: red;
-  }
+.delete-confirm-cont .cancel-delete:hover {
+  font-weight: 900;
+  font-size: 18px;
+  color: red;
+}
 
-  .confirm-delete {
-    float: left;
-    font-weight: 700;
-    color: green;
-  }
+.confirm-delete {
+  float: left;
+  font-weight: 700;
+  color: green;
+}
 
-  .cancel-delete {
-    float: right;
-    font-weight: 700;
-    color: rgb(197, 2, 2);
-  }
+.cancel-delete {
+  float: right;
+  font-weight: 700;
+  color: rgb(197, 2, 2);
+}
 
-  .card-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    margin-top: 5px;
-  }
+.card-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 5px;
+}
 
-  .card {
-    all: unset;
-    border-radius: px;
-    border: 1px solid #ada9a9;
-    background-color: #fafafa;
-    height: 30px;
-    width: 150px;
-    margin: 0 px 16px;
-    padding: 10px;
-    display: flex;
-    justify-content: center;
-    line-height: 24px;
-  }
+.card {
+  all: unset;
+  border-radius: px;
+  border: 1px solid #ada9a9;
+  background-color: #fafafa;
+  height: 30px;
+  width: 150px;
+  margin: 0 px 16px;
+  padding: 10px;
+  display: flex;
+  justify-content: center;
+  line-height: 24px;
+}
 
-  .card-container .card:not(:last-child) {
-    margin-right: 0;
-  }
+.card-container .card:not(:last-child) {
+  margin-right: 0;
+}
 
-  .card.card-small {
-    height: 16px;
-    margin: 8px 0;
-  }
+.card.card-small {
+  height: 16px;
+  margin: 8px 0;
+}
 
-  .card.highlight-card span {
-    margin-left: 72px;
-  }
+.card.highlight-card span {
+  margin-left: 72px;
+}
 
-
-  @media screen and (max-width: 575px) {
-  }
+@media screen and (max-width: 575px) {
+}
