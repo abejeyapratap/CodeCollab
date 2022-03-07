@@ -28,12 +28,12 @@ export class ViewComponent implements OnInit {
 
   deleteConfirmShow = false;
   linkCopyMessage = false;
+  commentCancel = true;
 
   linkShareConfirm() {
     this.linkCopyMessage = !this.linkCopyMessage;
   }
   
-
   showDeleteConfirm() {
     this.deleteConfirmShow = true;
   }
@@ -45,6 +45,10 @@ export class ViewComponent implements OnInit {
   confirmDelete() {
     this.hideDeleteConfirm()
     //blahblah delete document from DB here idk
+  }
+
+  dismissComment() {
+    this.commentCancel = false;
   }
 
 }

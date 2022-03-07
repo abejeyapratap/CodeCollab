@@ -90,7 +90,7 @@
     </div>
   </div>
 
-  <div class = "comment-draft-cont">
+  <div [hidden]="!commentCancel" class = "comment-cont">
     <div class = "user-cont">
       <img
         width = "30"
@@ -101,7 +101,7 @@
     <div class = "comment"></div>
     <div class = "comment-buttons-cont">
       <span class="comment-button">Comment</span>
-      <span class="cancel-button">Cancel</span>
+      <span class="cancel-button" (click)="dismissComment()">Cancel</span>
     </div>
 
   </div>

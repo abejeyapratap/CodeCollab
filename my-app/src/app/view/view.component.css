@@ -107,9 +107,11 @@
     font-size: smaller;
   }
 
-  .comment-draft-cont {
+  .comment-cont {
     margin: 30px;
-    outline: solid 2px black;
+    outline: solid 1px black;
+    background-color: #fbfbfb;
+    border-radius: 8px;
     height: 150px;
     width: 260px;
   }
@@ -146,11 +148,12 @@
   }
 
   .comment {
-    outline: solid 2px black;
+    outline: solid 1px black;
     height: 50%;
     width: 90%;
     margin-top: 10px;
     margin-left: 13px;
+    overflow-y: auto;
   }
 
   .my-account{
