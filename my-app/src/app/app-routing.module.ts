@@ -29,7 +29,7 @@ const routes: Routes = [
   {
     path: 'view',
     component: ViewComponent,
-    canActivate: [AuthGuard],
+    /* canActivate: [AuthGuard], */
   },
   {
     path: '**',

@@ -35,7 +35,12 @@ export class ViewComponent implements OnInit {
   
 
   toggleDeleteConfirm() {
-    this.deleteConfirmShow = !this.deleteConfirmShow;
+    this.deleteConfirmShow = true;
+  }
+
+  cancelDelete() {
+    this.deleteConfirmShow = false;
+
   }
 
 }
