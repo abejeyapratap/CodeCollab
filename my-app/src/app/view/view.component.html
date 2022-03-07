@@ -9,7 +9,7 @@
 
   <div class="spacer1"></div>
 
-  <div class="share-button-container" (click)="linkShareConfirm()">
+  <div [cdkCopyToClipboard]="pageURL" class="share-button-container" (click)="linkShareConfirm()">
     <a class="card" style="background-color: #ffffff; border-radius: 12px;">
       <div class = "link-icon">
         <a>
@@ -106,14 +106,14 @@
 
   </div>
 
-  <div [hidden]="!linkCopyMessage" class="link-copy-div">
-    <span>Link copied to clipboard!</span>
+  <div [hidden]="!linkCopyMessage" *ngIf="show" @fadeOut>
+    <div class="link-copy-div" (click)="onSave()">
+      <span>Link copied to clipboard!</span>
+    </div>
   </div>
-
+  
   <div [hidden]="!deleteConfirmShow" class="delete-confirm-cont">
     <p>Are you sure you want to delete this document?</p>
     <p class="confirm-delete"(click)=confirmDelete()>Confirm</p> <p class="cancel-delete" (click)=hideDeleteConfirm()>Cancel</p>
   </div>
-
-
 </div>

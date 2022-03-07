@@ -15,6 +15,9 @@ import { ViewComponent } from './view/view.component';
 import { environment } from 'src/environments/environment';
 import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
 import { AuthInterceptor } from './services/auth-interceptor';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+import { ClipboardModule } from '@angular/cdk/clipboard';
 
 const config: SocketIoConfig = {
   url: environment.socketUrl, // socket server url;
@@ -38,6 +41,8 @@ const config: SocketIoConfig = {
     FormsModule,
     HttpClientModule,
     SocketIoModule.forRoot(config),
+    BrowserAnimationsModule,
+    ClipboardModule,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }, // register interceptor
