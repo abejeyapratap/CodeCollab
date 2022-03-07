@@ -34,13 +34,17 @@ export class ViewComponent implements OnInit {
   }
   
 
-  toggleDeleteConfirm() {
+  showDeleteConfirm() {
     this.deleteConfirmShow = true;
   }
 
-  cancelDelete() {
+  hideDeleteConfirm() {
     this.deleteConfirmShow = false;
+  }
 
+  confirmDelete() {
+    this.hideDeleteConfirm()
+    //blahblah delete document from DB here idk
   }
 
 }
