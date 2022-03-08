@@ -80,7 +80,7 @@
       </ng-template>
     </div>
     </div>
-    
+
     <form class="input_msg_write" (ngSubmit)="sendChatMessage()">
       <div class="message-input">
         <textarea type="text" class="write_msg" placeholder="Type a message" name="newMessage" [(ngModel)]="newMessage"></textarea>
@@ -94,7 +94,7 @@
 
   <div class="document">
     <div class="docLine" *ngFor="let line of documentLines; let i = index" (click)="startComment(i)">
-      {{line}}
+      <span class="lineNum">{{i + 1}}</span><code class="codeLine">{{line}}</code>
     </div>
   </div>
 

@@ -31,7 +31,7 @@ export class ViewComponent implements OnInit {
   newMessage = '';
   myDisplayName: string = '';
 
-  documentLines:string[] = ["test1", "test2", "test my shoe"]
+  documentLines:string[] = ["function foo() {", "\treturn 0;", "}"]
 
   ngOnInit(): void {
     this.sockets.onNewChatMessage().subscribe((data) => { this.addChatMessage(data[0], data[1], data[2], data[3]) })
