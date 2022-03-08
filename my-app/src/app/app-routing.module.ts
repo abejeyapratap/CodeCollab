@@ -24,7 +24,7 @@ const routes: Routes = [
   {
     path: 'create',
     component: CreateComponent,
-    canActivate: [AuthGuard],
+    /* canActivate: [AuthGuard], */
   },
   {
     path: 'view',
