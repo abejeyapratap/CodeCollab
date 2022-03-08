@@ -11,69 +11,70 @@
       <div class="spacer"></div>
 </div>
 
-<div class="createTitle">
-    <h1>Create a Document</h1>
-</div>
+
 
 <div class="content" role="main">
+  <div class="create-doc-title">
+    <h1>Create a Document</h1>
+  </div>
+
   <div class = "card-container">
     <a class="card" target="_self" rel="noopener" href="/create">
       <span>Upload a File</span>
     </a>
   </div>
-</div>
 
-<div class="content" role="main">
   <div class = "card-container">
     <a class="card" target="_self" rel="noopener" href="/view">
       <span>View File</span>
     </a>
   </div>
-</div>
-
-<div class="container">
-  <form [formGroup]="form" (ngSubmit)="submitUser()">
 
 
-    <div class="form-group input-group-lg">
-      <input class="form-control" placeholder="Name of Document" formControlName="name" />
-    </div>
-
+  <div class="container">
+    <form [formGroup]="form" (ngSubmit)="submitUser()">
+  
+      <div class="form-group input-group-lg">
+        <input class="form-control" placeholder="Name of Document" formControlName="name" />
+      </div>
+  
+      <br>
+  
+      <div class="form-group">
+        <input type="file" name="uploadedFile" (change)="uploadFile($event)"/>
+      </div>
+  
+      <br>
+  
+      <!-- Progress Bar -->
+      <div class="progress form-group" *ngIf="progress > 0">
+        <div
+          class="progress-bar progress-bar-striped bg-success"
+          role="progressbar"
+          [style.width.%]="progress"
+        ></div>
+      </div>
+  
+      <br>
+  
+      <div class="form-group">
+        <button class="btn btn-danger btn-block btn-lg">Upload</button>
+      </div>
+  
+    </form>
+  
     <br>
-
-    <div class="form-group">
-      <input type="file" name="uploadedFile" (change)="uploadFile($event)"/>
-    </div>
-
-    <br>
-
-    <!-- Progress Bar -->
-    <div class="progress form-group" *ngIf="progress > 0">
-      <div
-        class="progress-bar progress-bar-striped bg-success"
-        role="progressbar"
-        [style.width.%]="progress"
-      ></div>
-    </div>
-
-    <br>
-
-    <div class="form-group">
-      <button class="btn btn-danger btn-block btn-lg">Upload</button>
-    </div>
-
-  </form>
-
-  <br>
-
-  <div id="viewDoc">
-
+  
+    <div id="viewDoc">
+  
       <button class="btn btn-danger btn-block btn-lg"(click)="viewFile() ">View</button>
-
+  
+    </div>
+  
+    <textarea id="textbox" cols="50"></textarea>
+  
   </div>
 
-  <textarea id="textbox" cols="50"></textarea>
-
-
-
 </div>
+
+
