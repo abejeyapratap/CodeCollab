@@ -82,7 +82,12 @@ export class ViewComponent implements OnInit {
   onSave() {
     this.show = false;
   }
-
+  
+  loadTextarea () {
+    let viewBox = <HTMLInputElement>document.getElementById("viewBox");
+    viewBox.value = sessionStorage.getItem("textContent")!;
+    console.log(viewBox.value)
+  }
 }
 
 class MessageData {
