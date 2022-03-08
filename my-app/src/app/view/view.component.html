@@ -81,15 +81,16 @@
       </ng-template>
     </div>
     </div>
-    <div class="message-input">
-      <form class="input_msg_write" (ngSubmit)="sendChatMessage()">
-        <input type="text" class="write_msg" placeholder="Type a message" name="newMessage" [(ngModel)]="newMessage" />
-        <button class="msg_send_btn" type="button" (click)="sendChatMessage()">
+    
+    <form class="input_msg_write" (ngSubmit)="sendChatMessage()">
+      <div class="message-input">
+        <textarea type="text" class="write_msg" placeholder="Type a message" name="newMessage" [(ngModel)]="newMessage"></textarea>
+        <div class="msg_send_btn" type="button" (click)="sendChatMessage()">
           Send
           <!-- <i class="fa fa-paper-plane-o" aria-hidden="true"></i> -->
-        </button>
-      </form>
-    </div>
+        </div>
+      </div>
+    </form>
   </div>
 
   <div class="document">
