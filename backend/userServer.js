@@ -4,7 +4,7 @@ const cors = require('cors')
 const bodyParser = require('body-parser')
 
 // Routes to Handle Request
-const userRoute = require('../backend/routes/user.route')
+const userRoute = require('./routes/user.route')
 
 // MongoDB Setup
 mongoose
