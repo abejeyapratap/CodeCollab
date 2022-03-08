@@ -272,12 +272,24 @@ img {
 }
 
 .link-copy-div {
+  outline: solid 1px rgb(58, 58, 58);
   text-align: center;
   border-radius: 10px;
   width: 180px;
   line-height: 50px;
   height: 50px;
   background-color: #cfcbcb;
+  z-index: 99;
+  left: 10px;
+  top: 10px;
+  color: black;
+}
+
+.link-copy-outer-div {
+  position: fixed;
+  z-index: 100;
+  left: 620px;
+  top: 10px;
 }
 
 .delete-button-container {
