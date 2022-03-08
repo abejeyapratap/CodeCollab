@@ -93,7 +93,7 @@
   </div>
 
   <div class="document">
-    <div class="docLine" *ngFor="let line of documentLines; let i = index" (click)="startComment(i)">
+    <div #refEl class="docLine" *ngFor="let line of documentLines; let i = index" (click)="startComment(i, refEl)">
       <span class="lineNum">{{i + 1}}</span><code class="codeLine">{{line}}</code>
     </div>
   </div>
