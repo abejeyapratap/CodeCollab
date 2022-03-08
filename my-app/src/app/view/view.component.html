@@ -70,7 +70,6 @@
       </ng-template>
       <ng-template #mymsg>
         <div class="my-chat-container">
-          <div class="my-chat"></div>
           <img
           width = "30"
           src="assets\images\user-generic-icon.svg">
@@ -81,20 +80,21 @@
       </ng-template>
     </div>
     </div>
-    <div class="message-input">
-      <form class="input_msg_write" (ngSubmit)="sendChatMessage()">
-        <input type="text" class="write_msg" placeholder="Type a message" name="newMessage" [(ngModel)]="newMessage" />
-        <button class="msg_send_btn" type="button" (click)="sendChatMessage()">
+
+    <form class="input_msg_write" (ngSubmit)="sendChatMessage()">
+      <div class="message-input">
+        <textarea type="text" class="write_msg" placeholder="Type a message" name="newMessage" [(ngModel)]="newMessage"></textarea>
+        <div class="msg-send-btn" type="button" (click) ="sendChatMessage()">
           Send
           <!-- <i class="fa fa-paper-plane-o" aria-hidden="true"></i> -->
-        </button>
-      </form>
-    </div>
+        </div>
+      </div>
+    </form>
   </div>
 
   <div class="document">
     <div class="docLine" *ngFor="let line of documentLines; let i = index" (click)="startComment(i)">
-      {{line}}
+      <span class="lineNum">{{i + 1}}</span><code class="codeLine">{{line}}</code>
     </div>
   </div>
 
@@ -106,7 +106,9 @@
         <span>Username</span>
     </div>
 
-    <div class = "comment"></div>
+    <div class = "comment">
+      <textarea class="comment-input"></textarea>
+    </div>
     <div class = "comment-buttons-cont">
       <span class="comment-button">Comment</span>
       <span class="cancel-button" (click)="dismissComment()">Cancel</span>
@@ -120,6 +122,8 @@
 
   <div [hidden]="!linkCopyMessage" *ngIf="show" @fadeOut>
     <div class="link-copy-div" (click)="onSave()">
+  <div [hidden]="!linkCopyMessage">
+    <div class="link-copy-div" *ngIf="show" @fadeOut>
       <span>Link copied to clipboard!</span>
     </div>
   </div>

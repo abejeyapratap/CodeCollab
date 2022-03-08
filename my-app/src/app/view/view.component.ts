@@ -6,7 +6,7 @@ const leaveTrans = transition(':leave', [
   style({
     opacity: 1
   }),
-  animate('1s ease-out', style({
+  animate('7s ease-out', style({
     opacity: 0
   }))
 ])
@@ -31,7 +31,7 @@ export class ViewComponent implements OnInit {
   newMessage = '';
   myDisplayName: string = '';
 
-  documentLines:string[] = ["test1", "test2", "test my shoe"]
+  documentLines:string[] = ["function foo() {", "\treturn 0;", "}"]
 
   ngOnInit(): void {
     this.sockets.onNewChatMessage().subscribe((data) => { this.addChatMessage(data[0], data[1], data[2], data[3]) })
@@ -56,6 +56,7 @@ export class ViewComponent implements OnInit {
 
   linkShareConfirm() {
     this.linkCopyMessage = true;
+    this.onSave()
   }
 
   showDeleteConfirm() {
@@ -75,7 +76,7 @@ export class ViewComponent implements OnInit {
     this.commentCancel = false;
   }
 
-  pageURL = "URL_HERE";
+  pageURL = "http://localhost:4200/view";
 
   show = true;
 
