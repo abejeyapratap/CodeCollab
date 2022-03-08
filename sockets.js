@@ -75,7 +75,7 @@ function postComment(user, comment, line) {
     // TODO: save in database
     let viewers = usersViewingDocs.get(user.viewingDocument);
     for(let u of viewers) {
-        connectedUsers.get(u).socket.emit('newComment', user.displayName, user.iconURL, comment, line, Date.now());
+        connectedUsers.get(u).socket.emit('newComment', user.displayName, user.iconURL, comment, Date.now(), line);
     }
 }
 exports.postComment = postComment;

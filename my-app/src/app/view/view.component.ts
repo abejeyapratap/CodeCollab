@@ -28,18 +28,27 @@ export class ViewComponent implements OnInit {
   constructor(private sockets:SocketService) { }
 
   messages: MessageData[] = [];
+  comments: CommentData[] = [];
   newMessage = '';
   myDisplayName: string = '';
 
   documentLines:string[] = ["function foo() {", "\treturn 0;", "}"]
   commentingLine:HTMLDivElement;
+  commentLineNum:number;
 
   ngOnInit(): void {
     this.sockets.onNewChatMessage().subscribe((data) => { this.addChatMessage(data[0], data[1], data[2], data[3]) })
+    this.sockets.onNewComment().subscribe((data) => { this.addComment(data[0], data[1], data[2], data[3], data[4]) })
+    // TEMP
+    this.addComment('jerk','','your code sux', 0, 0);
   }
 
   addChatMessage(username: string, icon: string, msg: string, date: number): void {
     this.messages.push(new MessageData(username, icon, msg, date));
+  }
+  
+  addComment(username: string, icon: string, msg: string, date: number, line:number): void {
+    this.comments.push(new CommentData(username, icon, msg, date, line));
   }
 
   sendChatMessage() {
@@ -47,17 +56,17 @@ export class ViewComponent implements OnInit {
     this.newMessage = '';
   }
 
+  deleteConfirmShow = false;
+  linkCopyMessage = false;
+  commentCancel = false;
+
   startComment(line:number, divElement:HTMLDivElement) {
     if (this.commentingLine != null) this.commentingLine.classList.remove('commentingLine');
     divElement.classList.add('commentingLine');
     this.commentingLine = divElement;
-    console.log(`comment on line ${line}`);
+    this.commentLineNum = line;
+    this.commentCancel = true;
   }
-
-  deleteConfirmShow = false;
-  linkCopyMessage = false;
-  commentCancel = true;
-
   linkShareConfirm() {
     this.linkCopyMessage = true;
     this.onSave()
@@ -73,10 +82,11 @@ export class ViewComponent implements OnInit {
 
   confirmDelete() {
     this.hideDeleteConfirm()
-    //blahblah delete document from DB here idk
+    //TODO: delete document from DB here idk
   }
 
   dismissComment() {
+    if (this.commentingLine != null) this.commentingLine.classList.remove('commentingLine');
     this.commentCancel = false;
   }
 
@@ -107,5 +117,20 @@ class MessageData {
     this.icon = icon;
     this.text = msg;
     this.date = date;
+  }
+}
+
+class CommentData {
+  username: string;
+  icon: string;
+  text: string;
+  date: number;
+  line:number;
+  constructor(username:string, icon:string, msg:string, date:number, line:number) {
+    this.username = username;
+    this.icon = icon;
+    this.text = msg;
+    this.date = date;
+    this.line = line;
   }
 }
