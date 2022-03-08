@@ -5,6 +5,7 @@ const router = express.Router();
 
 /* Unguarded Routes */
 // return list of documents to "View" page in AG
+// don't return content of document for faster loading in AG
 router.get("", (req, res) => {});
 
 /* Guarded Routes */
