@@ -114,8 +114,8 @@
 
   </div>
 
-  <div [hidden]="!linkCopyMessage" *ngIf="show" @fadeOut>
-    <div class="link-copy-div" (click)="onSave()">
+  <div [hidden]="!linkCopyMessage">
+    <div class="link-copy-div" *ngIf="show" @fadeOut>
       <span>Link copied to clipboard!</span>
     </div>
   </div>

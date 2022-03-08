@@ -6,7 +6,7 @@ const leaveTrans = transition(':leave', [
   style({
     opacity: 1
   }),
-  animate('1s ease-out', style({
+  animate('10s ease-out', style({
     opacity: 0
   }))
 ])
@@ -56,6 +56,7 @@ export class ViewComponent implements OnInit {
 
   linkShareConfirm() {
     this.linkCopyMessage = true;
+    this.onSave()
   }
 
   showDeleteConfirm() {
@@ -75,7 +76,7 @@ export class ViewComponent implements OnInit {
     this.commentCancel = false;
   }
 
-  pageURL = "URL_HERE";
+  pageURL = "http://localhost:4200/view";
 
   show = true;
 
