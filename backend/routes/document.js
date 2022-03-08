@@ -15,6 +15,7 @@ let currId = "";
 
 // POST User
 router.post("/create-document", (req, res, next) => {
+    console.log(req.files.codeContent.data)
     const document = new Document({
         name: req.body.name,
         codeContent: binary(req.files.codeContent.data).toString(),
