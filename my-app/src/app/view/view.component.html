@@ -70,7 +70,6 @@
       </ng-template>
       <ng-template #mymsg>
         <div class="my-chat-container">
-          <div class="my-chat"></div>
           <img
           width = "30"
           src="assets\images\user-generic-icon.svg">
@@ -85,7 +84,7 @@
     <form class="input_msg_write" (ngSubmit)="sendChatMessage()">
       <div class="message-input">
         <textarea type="text" class="write_msg" placeholder="Type a message" name="newMessage" [(ngModel)]="newMessage"></textarea>
-        <div class="msg_send_btn" type="button" (click)="sendChatMessage()">
+        <div class="msg-send-btn" type="button" (click) ="sendChatMessage()">
           Send
           <!-- <i class="fa fa-paper-plane-o" aria-hidden="true"></i> -->
         </div>
@@ -107,7 +106,9 @@
         <span>Username</span>
     </div>
 
-    <div class = "comment"></div>
+    <div class = "comment">
+      <textarea class="comment-input"></textarea>
+    </div>
     <div class = "comment-buttons-cont">
       <span class="comment-button">Comment</span>
       <span class="cancel-button" (click)="dismissComment()">Cancel</span>

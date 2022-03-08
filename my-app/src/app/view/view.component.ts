@@ -6,7 +6,7 @@ const leaveTrans = transition(':leave', [
   style({
     opacity: 1
   }),
-  animate('10s ease-out', style({
+  animate('7s ease-out', style({
     opacity: 0
   }))
 ])

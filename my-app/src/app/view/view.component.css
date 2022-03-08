@@ -76,8 +76,8 @@ img {
 }
 
 .message-input {
-  height: 10%;
-  width: 90%;
+  height: 20%;
+  width: 92%;
   position: absolute;
   margin-left: 16px;
   margin-top: 480px;
@@ -87,26 +87,29 @@ img {
 .write_msg {
   resize: none;
   width: 94%;
-  height: 50px;
+  height: 60px;
 
 }
 
-.msg_send_btn {
+.msg-send-btn {
+  color: rgb(31, 31, 31);
   float: right;
   font-weight: bold;
   margin-right: 8px;
   background-color: #ffffff;
+  font-size: larger;
 }
 
 .my-chat-container {
   margin-top: 17px;
   display: flex;
-  align-items: center;
+  align-items: left;
   padding-bottom: 10px;
 }
 
 .my-chat-container img {
-  margin-left: 85%;
+  float: left;
+  margin-left: 6px;
 }
 
 .my-chat {
@@ -138,6 +141,12 @@ img {
   height: 20px;
 }
 
+.comment-input {
+  resize: none;
+  height: 96%;
+  width: 100%;
+}
+
 .comment-button {
   margin-left: 3px;
   padding: 10px;
@@ -165,7 +174,6 @@ img {
 }
 
 .comment {
-  outline: solid 1px black;
   height: 50%;
   width: 90%;
   margin-top: 10px;
