@@ -6,7 +6,6 @@ import { HttpErrorResponse, HttpClient } from '@angular/common/http';
 @Injectable({
   providedIn: 'root',
 })
-
 export class FileUploadService {
   constructor(private http: HttpClient) {}
 
@@ -16,7 +15,7 @@ export class FileUploadService {
     formData.append('codeContent', profileImage);
 
     return this.http
-      .post('http://localhost:4000/api/create-user', formData, {
+      .post('http://localhost:3000/api/documents/create-document', formData, {
         reportProgress: true,
         observe: 'events',
       })
@@ -24,10 +23,11 @@ export class FileUploadService {
   }
 
   getUser(): Observable<any> {
-    return this.http.get('http://localhost:4000/api/get-user')
-    .pipe(catchError(this.errorMgmt));
+    return this.http
+      .get('http://localhost:3000/api/documents/get-document')
+      .pipe(catchError(this.errorMgmt));
   }
-  
+
   errorMgmt(error: HttpErrorResponse) {
     let errorMessage = '';
     if (error.error instanceof ErrorEvent) {

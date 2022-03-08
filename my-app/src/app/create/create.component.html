@@ -33,7 +33,7 @@
 
 <div class="container">
   <form [formGroup]="form" (ngSubmit)="submitUser()">
-    
+
 
     <div class="form-group input-group-lg">
       <input class="form-control" placeholder="Name of Document" formControlName="name" />
@@ -61,19 +61,19 @@
     <div class="form-group">
       <button class="btn btn-danger btn-block btn-lg">Upload</button>
     </div>
-  
+
   </form>
-  
+
   <br>
 
   <div id="viewDoc">
-    <a routerLink="/view">
+
       <button class="btn btn-danger btn-block btn-lg"(click)="viewFile() ">View</button>
-    </a>
+
   </div>
-  
-  <textarea id="textbox" cols="50" style="display:none;"></textarea>
-  
+
+  <textarea id="textbox" cols="50"></textarea>
+
 
 
 </div>
