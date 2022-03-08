@@ -87,7 +87,11 @@ export class ViewComponent implements OnInit {
   loadTextarea () {
     let viewBox = <HTMLInputElement>document.getElementById("viewBox");
     viewBox.value = sessionStorage.getItem("textContent")!;
-    console.log(viewBox.value)
+    //console.log(viewBox.value)
+    let arrayValues = viewBox.value.split("\n")
+    //console.log("Print these values: " ,arrayValues);
+    this.documentLines = arrayValues;
+    //return arrayValues;
   }
 }
 
