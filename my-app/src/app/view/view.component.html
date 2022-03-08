@@ -114,6 +114,10 @@
 
   </div>
 
+  <div id="resultBox"> {{ loadTextarea() }}
+    <textarea id="viewBox" cols="80" rows="30"></textarea>
+  </div>
+
   <div [hidden]="!linkCopyMessage" *ngIf="show" @fadeOut>
     <div class="link-copy-div" (click)="onSave()">
       <span>Link copied to clipboard!</span>
