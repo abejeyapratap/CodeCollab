@@ -68,7 +68,7 @@ export class SocketService {
   }
 
   onNewComment() {
-    // Message: senderName: string, senderIcon: string, message: string, line:number, time: number
+    // Message: senderName: string, senderIcon: string, message: string, time: number, line:number
     // Display the chat message
     return this.socket.fromEvent<any[]>('newComment');
     // How to use:

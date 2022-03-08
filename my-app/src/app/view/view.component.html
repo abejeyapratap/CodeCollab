@@ -97,7 +97,7 @@
   </div>
 
   <div class="document">
-    <div #refEl class="docLine" *ngFor="let line of documentLines; let i = index" (click)="startComment(i, refEl)">
+    <div #refEl class="docLine" *ngFor="let line of documentLines; let i = index" (click)="startComment(i, refEl)" #codeLines>
       <span class="lineNum">{{i + 1}}</span><code class="codeLine">{{line}}</code>
     </div>
   </div>
@@ -112,22 +112,22 @@
     </div>
 
     <div class = "comment">
-      <textarea class="comment-input"></textarea>
+      <textarea class="comment-input" [(ngModel)]="newComment"></textarea>
     </div>
     <div class = "comment-buttons-cont">
-      <span class="comment-button">Comment</span>
+      <span class="comment-button" (click)="postComment()">Comment</span>
       <span class="cancel-button" (click)="dismissComment()">Cancel</span>
     </div>
   </div>
 
-    <div class = "comment-cont" *ngFor="let comment of comments">
+    <div class = "comment-cont" *ngFor="let comment of comments" (mouseenter)="onCommentHover(comment, true)" (mouseleave)="onCommentHover(comment, false)">
       <div class = "user-cont">
         <img
           width = "30"
           src="assets\images\user-generic-icon.svg">
           <span>{{comment.username}}</span>
       </div>
-  
+
       <div class = "comment">
         <textarea readonly class="comment-text">{{comment.text}}</textarea>
       </div>

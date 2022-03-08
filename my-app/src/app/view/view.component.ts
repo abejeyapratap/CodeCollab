@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, QueryList, Renderer2, ViewChildren } from '@angular/core';
 import { SocketService } from '../services/socket.service';
 import { transition, style, animate, trigger } from '@angular/animations';
 
@@ -33,13 +33,16 @@ export class ViewComponent implements OnInit {
   documentLines: string[] = ['function foo() {', '\treturn 0;', '}'];
   commentingLine: HTMLDivElement;
   commentLineNum: number;
+  newComment = '';
+
+  @ViewChildren('codeLines') codeLines!: QueryList<ElementRef>;
 
   ngOnInit(): void {
-    this.sockets.onNewChatMessage().subscribe((data) => {
-      this.addChatMessage(data[0], data[1], data[2], data[3]);
-    });
     this.sockets.onNewComment().subscribe((data) => {
       this.addComment(data[0], data[1], data[2], data[3], data[4]);
+    });
+    this.sockets.onNewChatMessage().subscribe((data) => {
+      this.addChatMessage(data[0], data[1], data[2], data[3]);
     });
     // TEMP
     this.addComment('jerk', '', 'your code sux', 0, 0);
@@ -61,12 +64,24 @@ export class ViewComponent implements OnInit {
     date: number,
     line: number
   ): void {
-    this.comments.push(new CommentData(username, icon, msg, date, line));
+    this.comments.push(new CommentData(username, icon, `Line ${line + 1}: ${msg}`, date, line));
+    this.comments.sort((a, b) => { return a.line - b.line });
   }
 
   sendChatMessage() {
     this.sockets.sendChatMessage(this.newMessage);
     this.newMessage = '';
+  }
+
+  postComment() {
+    if (this.newComment.trim() == '') {
+      this.dismissComment();
+      this.newComment = '';
+      return;
+    }
+    this.sockets.postComment(this.newComment, this.commentLineNum);
+    this.newComment = '';
+    this.dismissComment();
   }
 
   deleteConfirmShow = false;
@@ -81,6 +96,16 @@ export class ViewComponent implements OnInit {
     this.commentLineNum = line;
     this.commentCancel = true;
   }
+
+  onCommentHover(comment: CommentData, enter: boolean) {
+    // console.log(this.codeLines.first.classList);
+    if (enter) {
+      this.codeLines.get(comment.line)?.nativeElement.classList.add('commentHover');
+    } else {
+      this.codeLines.get(comment.line)?.nativeElement.classList.remove('commentHover');
+    }
+  }
+
   linkShareConfirm() {
     this.linkCopyMessage = true;
     this.onSave();
@@ -117,7 +142,7 @@ export class ViewComponent implements OnInit {
     let viewBox = <HTMLInputElement>document.getElementById('viewBox');
     viewBox.value = sessionStorage.getItem('textContent')!;
     let arrayValues = viewBox.value.split('\n');
-    this.documentLines = arrayValues;
+    // this.documentLines = arrayValues; REMOVED FOR TESTING
   }
 }
 

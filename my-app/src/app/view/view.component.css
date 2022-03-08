@@ -414,3 +414,7 @@ img {
 .commentingLine {
   background-color: cyan;
 }
+
+.commentHover {
+  background-color: yellow;
+}
