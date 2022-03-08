@@ -32,6 +32,7 @@ export class ViewComponent implements OnInit {
   myDisplayName: string = '';
 
   documentLines:string[] = ["function foo() {", "\treturn 0;", "}"]
+  commentingLine:HTMLDivElement;
 
   ngOnInit(): void {
     this.sockets.onNewChatMessage().subscribe((data) => { this.addChatMessage(data[0], data[1], data[2], data[3]) })
@@ -46,7 +47,8 @@ export class ViewComponent implements OnInit {
     this.newMessage = '';
   }
 
-  startComment(line:number) {
+  startComment(line:number, divElement:HTMLDivElement) {
+    divElement.classList.add('commentingLine');
     console.log(`comment on line ${line}`);
   }
 

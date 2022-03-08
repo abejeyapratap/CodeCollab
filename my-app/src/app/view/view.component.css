@@ -384,3 +384,7 @@ img {
 .codeLine:not(.document):hover {
   background-color: yellow;
 }
+
+.commentingLine {
+  background-color: cyan;
+}
