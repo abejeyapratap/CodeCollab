@@ -18,7 +18,7 @@ import { AuthInterceptor } from './services/auth-interceptor';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { ClipboardModule } from '@angular/cdk/clipboard';
-
+import { ReactiveFormsModule } from '@angular/forms';
 const config: SocketIoConfig = {
   url: environment.socketUrl, // socket server url;
   options: {
@@ -43,6 +43,7 @@ const config: SocketIoConfig = {
     SocketIoModule.forRoot(config),
     BrowserAnimationsModule,
     ClipboardModule,
+    ReactiveFormsModule,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }, // register interceptor
