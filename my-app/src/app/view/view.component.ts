@@ -48,7 +48,9 @@ export class ViewComponent implements OnInit {
   }
 
   startComment(line:number, divElement:HTMLDivElement) {
+    if (this.commentingLine != null) this.commentingLine.classList.remove('commentingLine');
     divElement.classList.add('commentingLine');
+    this.commentingLine = divElement;
     console.log(`comment on line ${line}`);
   }
 
