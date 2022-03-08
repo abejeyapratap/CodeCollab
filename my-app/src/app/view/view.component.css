@@ -146,6 +146,12 @@ img {
   width: 100%;
 }
 
+.comment-text {
+  resize: none;
+  height: 94%;
+  width: 100%;
+}
+
 .comment-button {
   margin-left: 3px;
   padding: 10px;
@@ -202,6 +208,7 @@ img {
 
 .my-account span {
   position: flex;
+  font-weight: bold;
 }
 
 .spacer {
@@ -285,13 +292,16 @@ img {
 }
 
 .delete-confirm-cont {
-  outline: solid 2px rgb(65, 64, 64);
+  outline: solid 3px rgb(0, 0, 0);
+  position: fixed;
   width: 200px;
-  height: 90px;
+  height: 80px;
   border-radius: 20px;
   padding: 10px;
-  z-index: 100;
+  z-index: 99;
   background-color: white;
+  left: 630px;
+  top: 10px;
 }
 
 .delete-confirm-cont p {
@@ -321,6 +331,10 @@ img {
   float: right;
   font-weight: 700;
   color: rgb(197, 2, 2);
+}
+
+#resultBox {
+  z-index: 0;
 }
 
 .card-container {
@@ -374,7 +388,7 @@ img {
 }
 
 .codeLine {
-  width: 50%;
+  width: 90%;
   display: inline-block;
   white-space: pre-wrap;
   tab-size: 20px;
