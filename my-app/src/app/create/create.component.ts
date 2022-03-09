@@ -6,7 +6,7 @@ import { HttpEvent, HttpEventType } from '@angular/common/http';
 @Component({
   selector: 'app-create',
   templateUrl: './create.component.html',
-  styleUrls: ['./create.component.css']
+  styleUrls: ['./create.component.css'],
 })
 export class CreateComponent implements OnInit {
   form: FormGroup;
@@ -24,8 +24,8 @@ export class CreateComponent implements OnInit {
       codeContent: [null],
     });
   }
-  
-  ngOnInit(): void {}
+
+  ngOnInit() {}
 
   // Occurs when clicking "Choose File..." button
   uploadFile(event: any) {
@@ -79,12 +79,11 @@ export class CreateComponent implements OnInit {
             console.log(`Uploaded! ${this.progress}%`);
             break;
           case HttpEventType.Response:
-            console.log('User successfully created!', event.body);
+            console.log('Document successfully created!', event.body);
             setTimeout(() => {
               this.progress = 0;
             }, 1500);
         }
       });
   }
-
 }

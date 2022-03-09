@@ -19,7 +19,7 @@ export class FileUploadService {
 
     // Post request to API to send to MongoDB database
     return this.http
-      .post('http://localhost:3000/api/documents/create-document', formData, {
+      .post('http://localhost:3000/api/documents/create', formData, {
         reportProgress: true,
         observe: 'events',
       })
