@@ -98,7 +98,8 @@ router.get("/:documentId", checkAuth, (req, res) => {
 
 // delete document based on :id
 router.delete("/:id", checkAuth, (req, res) => {
-    console.log("deleting");
+    console.log("trying to delete");
+    
     Document.deleteOne({
         _id: req.params.id,
         creator: req.userData.userId,
@@ -107,7 +108,7 @@ router.delete("/:id", checkAuth, (req, res) => {
 
         // if no documents deleted, the documentId did not match the creatorId also
         if (result["deletedCount"] > 0) {
-            res.json({ message: "Deletion successful!" });
+            res.json({ message: "Success" });
         } else {
             res.status(401).json({ message: "Not authorized!" });
         }
