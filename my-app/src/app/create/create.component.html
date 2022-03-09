@@ -1,51 +1,47 @@
 <!-- <router-outlet></router-outlet> -->
 <div class="toolbar" role="banner">
-  <a href = "/home">
-    <img
-      width="40"
-      alt="CodeCollab Logo"
-      src="assets\images\logo.svg"
-    />
-    </a>
-    <span>CodeCollab</span>
-      <div class="spacer"></div>
+  <a href="/home">
+    <img width="40" alt="CodeCollab Logo" src="assets\images\logo.svg" />
+  </a>
+  <span>CodeCollab</span>
+  <div class="spacer"></div>
 </div>
-
-
 
 <div class="content" role="main">
   <div class="create-doc-title">
     <h1>Create a Document</h1>
   </div>
 
-  <div class = "card-container">
+  <div class="card-container">
     <a class="card" target="_self" rel="noopener" href="/create">
       <span>Upload a File</span>
     </a>
   </div>
 
-  <div class = "card-container">
+  <div class="card-container">
     <a class="card" target="_self" rel="noopener" href="/view">
       <span>View File</span>
     </a>
   </div>
 
-
   <div class="container">
     <form [formGroup]="form" (ngSubmit)="submitUser()">
-  
       <div class="form-group input-group-lg">
-        <input class="form-control" placeholder="Name of Document" formControlName="name" />
+        <input
+          class="form-control"
+          placeholder="Name of Document"
+          formControlName="name"
+        />
       </div>
-  
-      <br>
-  
+
+      <br />
+
       <div class="form-group">
-        <input type="file" name="uploadedFile" (change)="uploadFile($event)"/>
+        <input type="file" name="uploadedFile" (change)="uploadFile($event)" />
       </div>
-  
-      <br>
-  
+
+      <br />
+
       <!-- Progress Bar -->
       <div class="progress form-group" *ngIf="progress > 0">
         <div
@@ -54,27 +50,22 @@
           [style.width.%]="progress"
         ></div>
       </div>
-  
-      <br>
-  
+
+      <br />
+
       <div class="form-group">
         <button class="btn btn-danger btn-block btn-lg">Upload</button>
       </div>
-  
     </form>
-  
-    <br>
-  
+
+    <br />
+
     <div id="viewDoc">
-  
-      <button class="btn btn-danger btn-block btn-lg"(click)="viewFile() ">View</button>
-  
+      <button class="btn btn-danger btn-block btn-lg" (click)="viewFile()">
+        View
+      </button>
     </div>
-  
+
     <textarea id="textbox" cols="50"></textarea>
-  
   </div>
-
 </div>
-
-

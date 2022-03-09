@@ -27,7 +27,7 @@ router.get(
     (req, res) => {
         // Generate JWT for Angular
         const token = jwt.sign(
-            { userGoogleId: req.user.googleId, userEmail: req.user.email },
+            { userId: req.user._id, email: req.user.email },
             process.env.JWT_SECRET_KEY,
             { expiresIn: "1h" } // secure against XSS security-attacks
         );
@@ -41,7 +41,7 @@ router.get(
 
 router.get("/failure", (req, res) => res.send("Log in failed."));
 
-// TODO
+// TODO - maybe?
 router.get("/logout", (req, res) => {
     req.logout(); // logout from Passport
     // delete cookie?
