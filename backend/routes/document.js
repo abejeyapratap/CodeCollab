@@ -60,8 +60,34 @@ router.get("/get-document", (req, res) => {
 
 /* Unguarded Routes */
 // return list of documents to "View" page in AG
+router.get("", (req, res) => {
+    Document.find()
+        .then((documentsList) => {
+            const filteredDocuments = filterCodeContent(documentsList);
+            res.json({
+                message: "Documents fetched successfully!",
+                documents: filteredDocuments,
+            });
+        })
+        .catch((err) => {
+            console.log("Error with fetching all documents");
+        });
+});
+
 // don't return content of document for faster loading in AG
-// router.get("", (req, res) => {});
+function filterCodeContent(documentsList) {
+    let filteredDocumentsList = [];
+
+    for (let documentObj of documentsList) {
+        filteredDocumentsList.push({
+            id: documentObj._id,
+            name: documentObj.name,
+            creator: documentObj.creator,
+        });
+    }
+
+    return filteredDocumentsList;
+}
 
 /* Guarded Routes */
 // return specific document for chat/comment based on :id

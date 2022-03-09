@@ -1,6 +1,8 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { AuthService } from '../services/auth.service';
+import { DocumentsService } from '../services/documents.service';
+import { DocumentFiles } from './documents.model';
 
 @Component({
   selector: 'app-documents',
@@ -10,8 +12,13 @@ import { AuthService } from '../services/auth.service';
 export class DocumentsComponent implements OnInit, OnDestroy {
   isUserAuthenticated = false;
   private authStatusSub: Subscription;
+  private documentsSub: Subscription;
+  documents: DocumentFiles[] = [];
 
-  constructor(private authService: AuthService) {}
+  constructor(
+    private authService: AuthService,
+    private documentsService: DocumentsService
+  ) {}
 
   ngOnInit() {
     this.authStatusSub = this.authService
@@ -19,14 +26,20 @@ export class DocumentsComponent implements OnInit, OnDestroy {
       .subscribe((isAuthenticated) => {
         this.isUserAuthenticated = isAuthenticated;
       });
+
+    this.documentsService.getDocumentList(); // trigger the subscription-update
+    this.documentsSub = this.documentsService
+      .getDocumentsUpdateListener()
+      .subscribe((documentsList) => {
+        this.documents = documentsList;
+      });
   }
 
   ngOnDestroy() {
     this.authStatusSub.unsubscribe();
+    this.documentsSub.unsubscribe();
   }
 
   // TODO
-  getAccountInfo() {
-
-  }
+  getAccountInfo() {}
 }

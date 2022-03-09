@@ -26,8 +26,12 @@
     <h2>Online Now:</h2>
   </div>
 
-  <div class="document-container">
-    <a class="document">
+  <!-- Display fetched documents -->
+  <div class="document-container" *ngIf="documents.length > 0">
+    <a class="document" *ngFor="let document of documents">
+      <span>{{ document.name }}</span>
+    </a>
+    <!-- <a class="document">
       <span>Document 1</span>
     </a>
     <a class="document">
@@ -41,6 +45,9 @@
     </a>
     <a class="document">
       <span>Document 5</span>
-    </a>
+    </a> -->
   </div>
+
+  <!-- TODO: maybe style? -->
+  <div class="emptyDiv" *ngIf="documents.length <= 0">No documents yet!</div>
 </div>

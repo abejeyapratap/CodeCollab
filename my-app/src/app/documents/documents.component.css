@@ -230,6 +230,12 @@
     align-items: center;
   }
 
+  .emptyDiv {
+    /* border: 2px solid red;
+    display: flex;
+    justify-content: center; */
+  }
+
   /* Responsive Styles */
   @media screen and (max-width: 767px) {
     .card-container > *:not(.circle-link) ,
