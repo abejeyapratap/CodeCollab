@@ -46,18 +46,6 @@ router.post("/create", checkAuth, (req, res) => {
         });
 });
 
-// GET Document
-router.get("/get-document", (req, res) => {
-    console.log("ID to search: ", currId);
-    Document.findById(currId).then((data) => {
-        console.log(data);
-        res.status(200).json({
-            message: "documents retrieved successfully!",
-            results: data.codeContent,
-        });
-    });
-});
-
 /* Unguarded Routes */
 // return list of documents to "View" page in AG
 router.get("", (req, res) => {
@@ -90,8 +78,22 @@ function filterCodeContent(documentsList) {
 }
 
 /* Guarded Routes */
-// return specific document for chat/comment based on :id
-// router.get("/:documentId", checkAuth, (req, res) => {});
+// return specific document for chat/comment based on :id; need to be logged in to view
+router.get("/:documentId", (req, res) => {
+    const id = req.params.documentId;
+
+    Document.findById(id)
+        .then((data) => {
+            console.log("Found document!");
+            res.json({
+                message: "Document retrieved successfully!",
+                document: data.codeContent,
+            });
+        })
+        .catch((err) => {
+            console.log("Error with GETting a document");
+        });
+});
 
 // delete document based on :id
 router.delete("/:id", checkAuth, (req, res) => {

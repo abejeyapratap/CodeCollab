@@ -27,15 +27,15 @@ const routes: Routes = [
     /* canActivate: [AuthGuard], */
   },
   {
-    path: 'view/:id',
+    path: 'view/:documentId',
     component: ViewComponent,
     /* canActivate: [AuthGuard], */
   },
-  {
+  /* {
     path: 'view',
     component: ViewComponent,
-    /* canActivate: [AuthGuard], */
-  },
+    // canActivate: [AuthGuard],
+  }, */
   {
     path: '**',
     component: PageNotFoundComponent,

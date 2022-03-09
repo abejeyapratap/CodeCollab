@@ -1,6 +1,15 @@
-import { Component, ElementRef, OnInit, QueryList, Renderer2, ViewChildren } from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  OnInit,
+  QueryList,
+  Renderer2,
+  ViewChildren,
+} from '@angular/core';
 import { SocketService } from '../services/socket.service';
 import { transition, style, animate, trigger } from '@angular/animations';
+import { ActivatedRoute, Router } from '@angular/router';
+import { DocumentsService } from '../services/documents.service';
 
 const leaveTrans = transition(':leave', [
   style({
@@ -23,21 +32,41 @@ const fadeOut = trigger('fadeOut', [leaveTrans]);
   animations: [fadeOut],
 })
 export class ViewComponent implements OnInit {
-  constructor(private sockets: SocketService) {}
-
   messages: MessageData[] = [];
   comments: CommentData[] = [];
   newMessage = '';
   myDisplayName: string = '';
 
-  documentLines: string[] = ['function foo() {', '\treturn 0;', '}'];
+  // documentLines: string[] = ['function foo() {', '\treturn 0;', '}'];
+  documentLines: string[] = [];
   commentingLine: HTMLDivElement;
   commentLineNum: number;
   newComment = '';
 
+  constructor(
+    private sockets: SocketService,
+    private documentsService: DocumentsService,
+    private router: Router,
+    private route: ActivatedRoute
+  ) {}
+
   @ViewChildren('codeLines') codeLines!: QueryList<ElementRef>;
 
-  ngOnInit(): void {
+  ngOnInit() {
+    // listen to changes in route URL & render correct file
+    this.route.paramMap.subscribe((paramMap) => {
+      if (!paramMap.has('documentId')) {
+        this.router.navigateByUrl('/');
+      }
+
+      // Initialize document file
+      this.documentsService
+        .getDocumentById(paramMap.get('documentId')!)
+        .subscribe((documentContent) => {
+          this.documentLines = documentContent.document.split('\n');
+        });
+    });
+
     this.sockets.onNewComment().subscribe((data) => {
       this.addComment(data[0], data[1], data[2], data[3], data[4]);
     });
@@ -64,8 +93,12 @@ export class ViewComponent implements OnInit {
     date: number,
     line: number
   ): void {
-    this.comments.push(new CommentData(username, icon, `Line ${line + 1}: ${msg}`, date, line));
-    this.comments.sort((a, b) => { return a.line - b.line });
+    this.comments.push(
+      new CommentData(username, icon, `Line ${line + 1}: ${msg}`, date, line)
+    );
+    this.comments.sort((a, b) => {
+      return a.line - b.line;
+    });
   }
 
   sendChatMessage() {
@@ -100,9 +133,13 @@ export class ViewComponent implements OnInit {
   onCommentHover(comment: CommentData, enter: boolean) {
     // console.log(this.codeLines.first.classList);
     if (enter) {
-      this.codeLines.get(comment.line)?.nativeElement.classList.add('commentHover');
+      this.codeLines
+        .get(comment.line)
+        ?.nativeElement.classList.add('commentHover');
     } else {
-      this.codeLines.get(comment.line)?.nativeElement.classList.remove('commentHover');
+      this.codeLines
+        .get(comment.line)
+        ?.nativeElement.classList.remove('commentHover');
     }
   }
 

@@ -27,4 +27,11 @@ export class DocumentsService {
   getDocumentsUpdateListener() {
     return this.documentStatusUpdate.asObservable();
   }
+
+  // Fetch document by id for view page
+  getDocumentById(documentId: string) {
+    return this.http.get<{ message: string; document: string }>(
+      'http://localhost:3000/api/documents/' + documentId
+    );
+  }
 }
