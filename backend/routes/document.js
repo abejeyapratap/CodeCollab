@@ -78,8 +78,9 @@ function filterCodeContent(documentsList) {
 }
 
 /* Guarded Routes */
-// return specific document for chat/comment based on :id; need to be logged in to view
-router.get("/:documentId", (req, res) => {
+// return specific document for chat/comment based on :id
+// need to be logged in to view
+router.get("/:documentId", checkAuth, (req, res) => {
     const id = req.params.documentId;
 
     Document.findById(id)
