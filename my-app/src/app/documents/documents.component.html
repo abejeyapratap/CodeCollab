@@ -28,9 +28,14 @@
 
   <!-- Display fetched documents -->
   <div class="document-container" *ngIf="documents.length > 0">
-    <a class="document" *ngFor="let document of documents">
+    <a
+      class="document"
+      *ngFor="let document of documents"
+      [routerLink]="['/', 'view', document.id]"
+    >
       <span>{{ document.name }}</span>
     </a>
+
     <!-- <a class="document">
       <span>Document 1</span>
     </a>

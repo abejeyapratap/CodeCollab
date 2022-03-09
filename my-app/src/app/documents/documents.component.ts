@@ -32,6 +32,7 @@ export class DocumentsComponent implements OnInit, OnDestroy {
       .getDocumentsUpdateListener()
       .subscribe((documentsList) => {
         this.documents = documentsList;
+        console.log(this.documents);
       });
   }
 

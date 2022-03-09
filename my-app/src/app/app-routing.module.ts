@@ -27,6 +27,11 @@ const routes: Routes = [
     /* canActivate: [AuthGuard], */
   },
   {
+    path: 'view/:id',
+    component: ViewComponent,
+    /* canActivate: [AuthGuard], */
+  },
+  {
     path: 'view',
     component: ViewComponent,
     /* canActivate: [AuthGuard], */
