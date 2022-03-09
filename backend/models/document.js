@@ -1,17 +1,15 @@
 const mongoose = require("mongoose");
 
-const documentsSchema = mongoose.Schema({
-    name: {
-        type: String,
+const documentSchema = mongoose.Schema({
+    name: { type: String, required: true }, // document's title
+    codeContent: { type: String, required: true },
+    creator: {
+        type: mongoose.Schema.Types.ObjectId, // mongo id of user who created
+        ref: "User", // document is related to user
         required: true,
     },
-    codeContent: {
-        type: String,
-        required: true,
-    },
-    // creator: { type: String, required: true },
 });
 
 // mongoose.Schema.Types.Subdocument
 
-module.exports = mongoose.model("Document", documentsSchema);
+module.exports = mongoose.model("Document", documentSchema);

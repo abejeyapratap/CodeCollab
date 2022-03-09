@@ -11,18 +11,22 @@ router.use(fileUpload());
 
 const Document = require("../models/document");
 
-let currId = "";
+let currId = ""; // DELETE
 
 // POST User
-router.post("/create-document", (req, res, next) => {
-    console.log(req.files.codeContent.data)
+router.post("/create-document", checkAuth, (req, res) => {
+    // console.log(req.files.codeContent.data);
     const document = new Document({
         name: req.body.name,
         codeContent: binary(req.files.codeContent.data).toString(),
+        creator: req.userData.userId,
     });
-    document.save()
+
+    // console.log(req.userData);
+    document
+        .save()
         .then((result) => {
-            console.log(result);
+            // console.log(result);
             currId = result._id;
             console.log("CURRENT ID: ", currId);
             res.status(201).json({
@@ -43,7 +47,7 @@ router.post("/create-document", (req, res, next) => {
 });
 
 // GET Document
-router.get("/get-document", (req, res, next) => {
+router.get("/get-document", (req, res) => {
     console.log("ID to search: ", currId);
     Document.findById(currId).then((data) => {
         console.log(data);

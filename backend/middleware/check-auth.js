@@ -8,12 +8,15 @@ module.exports = (req, res, next) => {
     try {
         const token = req.headers.authorization.split(" ")[1]; // extract after "Bearer"
 
+        // Decode token for validating
         // if invalid (AKA someone modified the JWT) -> throws error
         const decodedToken = jwt.verify(token, process.env.JWT_SECRET_KEY);
-        /* req.userData = {
-            email: decodedToken.email,
+
+        // append a new field to "req" object
+        req.userData = {
             userId: decodedToken.userId,
-        }; */
+            email: decodedToken.email,
+        };
 
         next();
     } catch (error) {
