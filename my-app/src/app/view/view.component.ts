@@ -32,6 +32,7 @@ const fadeOut = trigger('fadeOut', [leaveTrans]);
   animations: [fadeOut],
 })
 export class ViewComponent implements OnInit {
+  documentId: string;
   messages: MessageData[] = [];
   comments: CommentData[] = [];
   newMessage = '';
@@ -60,8 +61,9 @@ export class ViewComponent implements OnInit {
       }
 
       // Initialize document file
+      this.documentId = paramMap.get('documentId')!;
       this.documentsService
-        .getDocumentById(paramMap.get('documentId')!)
+        .getDocumentById(this.documentId)
         .subscribe((documentContent) => {
           this.documentLines = documentContent.document.split('\n');
         });
@@ -158,7 +160,15 @@ export class ViewComponent implements OnInit {
 
   confirmDelete() {
     this.hideDeleteConfirm();
-    //TODO: delete document from DB here idk
+    this.documentsService
+      .deleteDocumentById(this.documentId)
+      .subscribe((response) => {
+        if (response.message === 'Success') {
+          this.router.navigateByUrl('/');
+        } else {
+          console.log('Failed to delete.');
+        }
+      });
   }
 
   dismissComment() {

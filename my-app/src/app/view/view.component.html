@@ -1,145 +1,173 @@
-<!-- <router-outlet></router-outlet> -->
 <!DOCTYPE html>
 <html lang="en">
+  <!-- TODO: Delete should only show if document belongs to the user -->
   <div [hidden]="!deleteConfirmShow" class="delete-confirm-cont">
     <p>Are you sure you want to delete this document?</p>
-    <p class="confirm-delete"(click)=confirmDelete()>Confirm</p> <p class="cancel-delete" (click)=hideDeleteConfirm()>Cancel</p>
+    <p class="confirm-delete" (click)="confirmDelete()">Confirm</p>
+    <p class="cancel-delete" (click)="hideDeleteConfirm()">Cancel</p>
   </div>
 
-<div class="toolbar" role="banner">
-  <a routerLink="/home">
-    <img width="40" alt="CodeCollab Logo" src="assets\images\logo.svg" />
-  </a>
-  <span>CodeCollab</span>
-
-  <div class="spacer1"></div>
-
-  <div [cdkCopyToClipboard]="pageURL" class="share-button-container" (click)="linkShareConfirm()">
-    <a class="card" style="background-color: #ffffff; border-radius: 12px;">
-      <div class = "link-icon">
-        <a>
-          <i class="pi pi-link"></i>
-        </a>
-      </div>
-      <span style="color: navy;font-size: larger; font-weight: 700;">Share Board</span>
+  <div class="toolbar" role="banner">
+    <a routerLink="/home">
+      <img width="40" alt="CodeCollab Logo" src="assets\images\logo.svg" />
     </a>
-  </div>
+    <span>CodeCollab</span>
 
-  <div class="spacer1"></div>
+    <div class="spacer1"></div>
 
-  <div class="delete-button-container" (click)=showDeleteConfirm()>
-    <button class="card" type="button" style="background-color: #ffffff; border-radius: 12px;">
-      <div class = "trash-icon">
-        <a>
-          <i class="pi pi-trash"></i>
-        </a>
-      </div>
-      <span style="color: navy;font-size: larger; font-weight: 700;">Delete Board</span>
-    </button>
-  </div>
-
-  <div class="spacer"></div>
-  <a>
-    <div class = "my-account">
-      <img
-        src="assets\images\user-generic-icon.svg"
-        width=""
-      />
-      <div class="spacer1"></div>
-      <span class = "text">My Account</span>
+    <div
+      [cdkCopyToClipboard]="pageURL"
+      class="share-button-container"
+      (click)="linkShareConfirm()"
+    >
+      <a class="card" style="background-color: #ffffff; border-radius: 12px">
+        <div class="link-icon">
+          <a>
+            <i class="pi pi-link"></i>
+          </a>
+        </div>
+        <span style="color: navy; font-size: larger; font-weight: 700"
+          >Share Board</span
+        >
+      </a>
     </div>
-  </a>
-  <div class="spacer1"></div>
-</div>
 
-<div class="content" role="main">
+    <div class="spacer1"></div>
 
-  <div class="chat-box">
-    <h2>CHAT:</h2>
-    <div class = "inner-online">
-      <div *ngFor="let message of messages">
-      <div *ngIf="
-        message.username !== myDisplayName;
-        then othermsg
-        else mymsg
-      "></div>
-      <ng-template #othermsg>
-        <div class ="chat-container">
-          <img
-          width = "30"
-          src="assets\images\user-generic-icon.svg">
-          <div class="chat">
-            <span>{{message.username}}: {{message.text}}</span>
+    <div class="delete-button-container" (click)="showDeleteConfirm()">
+      <button
+        class="card"
+        type="button"
+        style="background-color: #ffffff; border-radius: 12px"
+      >
+        <div class="trash-icon">
+          <a>
+            <i class="pi pi-trash"></i>
+          </a>
+        </div>
+        <span style="color: navy; font-size: larger; font-weight: 700"
+          >Delete Board</span
+        >
+      </button>
+    </div>
+
+    <div class="spacer"></div>
+    <a>
+      <div class="my-account">
+        <img src="assets\images\user-generic-icon.svg" width="" />
+        <div class="spacer1"></div>
+        <span class="text">My Account</span>
+      </div>
+    </a>
+    <div class="spacer1"></div>
+  </div>
+
+  <div class="content" role="main">
+    <div class="chat-box">
+      <h2>CHAT:</h2>
+      <div class="inner-online">
+        <div *ngFor="let message of messages">
+          <div
+            *ngIf="
+              message.username !== myDisplayName;
+              then othermsg;
+              else mymsg
+            "
+          ></div>
+          <ng-template #othermsg>
+            <div class="chat-container">
+              <img width="30" src="assets\images\user-generic-icon.svg" />
+              <div class="chat">
+                <span>{{ message.username }}: {{ message.text }}</span>
+              </div>
+            </div>
+          </ng-template>
+          <ng-template #mymsg>
+            <div class="my-chat-container">
+              <img width="30" src="assets\images\user-generic-icon.svg" />
+              <div class="chat">
+                <span>{{ message.username }}: {{ message.text }}</span>
+              </div>
+            </div>
+          </ng-template>
+        </div>
+      </div>
+
+      <form class="input_msg_write" (ngSubmit)="sendChatMessage()">
+        <div class="message-input">
+          <textarea
+            type="text"
+            class="write_msg"
+            placeholder="Type a message"
+            name="newMessage"
+            [(ngModel)]="newMessage"
+          ></textarea>
+          <div class="msg-send-btn" type="button" (click)="sendChatMessage()">
+            Send
           </div>
         </div>
-      </ng-template>
-      <ng-template #mymsg>
-        <div class="my-chat-container">
-          <img
-          width = "30"
-          src="assets\images\user-generic-icon.svg">
-          <div class="chat">
-            <span>{{message.username}}: {{message.text}}</span>
-          </div>
+      </form>
+    </div>
+
+    <div class="document">
+      <div
+        #refEl
+        class="docLine"
+        *ngFor="let line of documentLines; let i = index"
+        (click)="startComment(i, refEl)"
+        #codeLines
+      >
+        <span class="lineNum">{{ i + 1 }}</span
+        ><code class="codeLine">{{ line }}</code>
+      </div>
+    </div>
+    <div class="commentsContainer">
+      <div [hidden]="!commentCancel" class="comment-cont">
+        <div class="user-cont">
+          <img width="30" src="assets\images\user-generic-icon.svg" />
+          <span>Username</span>
         </div>
-      </ng-template>
-    </div>
-    </div>
 
-    <form class="input_msg_write" (ngSubmit)="sendChatMessage()">
-      <div class="message-input">
-        <textarea type="text" class="write_msg" placeholder="Type a message" name="newMessage" [(ngModel)]="newMessage"></textarea>
-        <div class="msg-send-btn" type="button" (click) ="sendChatMessage()">
-          Send
+        <div class="comment">
+          <textarea class="comment-input" [(ngModel)]="newComment"></textarea>
+        </div>
+        <div class="comment-buttons-cont">
+          <span class="comment-button" (click)="postComment()">Comment</span>
+          <span class="cancel-button" (click)="dismissComment()">Cancel</span>
         </div>
       </div>
-    </form>
-  </div>
 
-  <div class="document">
-    <div #refEl class="docLine" *ngFor="let line of documentLines; let i = index" (click)="startComment(i, refEl)" #codeLines>
-      <span class="lineNum">{{i + 1}}</span><code class="codeLine">{{line}}</code>
-    </div>
-  </div>
-  <div class="commentsContainer">
+      <div
+        class="comment-cont"
+        *ngFor="let comment of comments"
+        (mouseenter)="onCommentHover(comment, true)"
+        (mouseleave)="onCommentHover(comment, false)"
+      >
+        <div class="user-cont">
+          <img width="30" src="assets\images\user-generic-icon.svg" />
+          <span>{{ comment.username }}</span>
+        </div>
 
-  <div [hidden]="!commentCancel" class = "comment-cont">
-    <div class = "user-cont">
-      <img
-        width = "30"
-        src="assets\images\user-generic-icon.svg">
-        <span>Username</span>
-    </div>
-
-    <div class = "comment">
-      <textarea class="comment-input" [(ngModel)]="newComment"></textarea>
-    </div>
-    <div class = "comment-buttons-cont">
-      <span class="comment-button" (click)="postComment()">Comment</span>
-      <span class="cancel-button" (click)="dismissComment()">Cancel</span>
-    </div>
-  </div>
-
-    <div class = "comment-cont" *ngFor="let comment of comments" (mouseenter)="onCommentHover(comment, true)" (mouseleave)="onCommentHover(comment, false)">
-      <div class = "user-cont">
-        <img
-          width = "30"
-          src="assets\images\user-generic-icon.svg">
-          <span>{{comment.username}}</span>
+        <div class="comment">
+          <textarea readonly class="comment-text">{{ comment.text }}</textarea>
+        </div>
       </div>
+    </div>
 
-      <div class = "comment">
-        <textarea readonly class="comment-text">{{comment.text}}</textarea>
+    <div id="resultBox">
+      {{ loadTextarea()
+      }}<textarea
+        id="viewBox"
+        cols="80"
+        rows="30"
+        style="display: none"
+      ></textarea>
+    </div>
+
+    <div class="link-copy-outer-div" [hidden]="!linkCopyMessage">
+      <div class="link-copy-div" *ngIf="show" @fadeOut>
+        <span><em>Link copied to clipboard!</em></span>
       </div>
     </div>
   </div>
-
-  <div id="resultBox"> {{ loadTextarea() }}<textarea id="viewBox" cols="80" rows="30"style="display:none;"></textarea></div>
-
-  <div class ="link-copy-outer-div" [hidden]="!linkCopyMessage">
-    <div class="link-copy-div" *ngIf="show" @fadeOut>
-      <span><em>Link copied to clipboard!</em></span>
-    </div>
-  </div>
-
-</div>
+</html>
