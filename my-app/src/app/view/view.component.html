@@ -1,6 +1,11 @@
 <!-- <router-outlet></router-outlet> -->
 <!DOCTYPE html>
 <html lang="en">
+  <div [hidden]="!deleteConfirmShow" class="delete-confirm-cont">
+    <p>Are you sure you want to delete this document?</p>
+    <p class="confirm-delete"(click)=confirmDelete()>Confirm</p> <p class="cancel-delete" (click)=hideDeleteConfirm()>Cancel</p>
+  </div>
+
 <div class="toolbar" role="banner">
   <a routerLink="/home">
     <img width="40" alt="CodeCollab Logo" src="assets\images\logo.svg" />
@@ -61,7 +66,7 @@
       <ng-template #othermsg>
         <div class ="chat-container">
           <img
-          width = "300"
+          width = "30"
           src="assets\images\user-generic-icon.svg">
           <div class="chat">
             <span>{{message.username}}: {{message.text}}</span>
@@ -86,17 +91,17 @@
         <textarea type="text" class="write_msg" placeholder="Type a message" name="newMessage" [(ngModel)]="newMessage"></textarea>
         <div class="msg-send-btn" type="button" (click) ="sendChatMessage()">
           Send
-          <!-- <i class="fa fa-paper-plane-o" aria-hidden="true"></i> -->
         </div>
       </div>
     </form>
   </div>
 
   <div class="document">
-    <div #refEl class="docLine" *ngFor="let line of documentLines; let i = index" (click)="startComment(i, refEl)">
+    <div #refEl class="docLine" *ngFor="let line of documentLines; let i = index" (click)="startComment(i, refEl)" #codeLines>
       <span class="lineNum">{{i + 1}}</span><code class="codeLine">{{line}}</code>
     </div>
   </div>
+  <div class="commentsContainer">
 
   <div [hidden]="!commentCancel" class = "comment-cont">
     <div class = "user-cont">
@@ -107,27 +112,34 @@
     </div>
 
     <div class = "comment">
-      <textarea class="comment-input"></textarea>
+      <textarea class="comment-input" [(ngModel)]="newComment"></textarea>
     </div>
     <div class = "comment-buttons-cont">
-      <span class="comment-button">Comment</span>
+      <span class="comment-button" (click)="postComment()">Comment</span>
       <span class="cancel-button" (click)="dismissComment()">Cancel</span>
     </div>
+  </div>
 
+    <div class = "comment-cont" *ngFor="let comment of comments" (mouseenter)="onCommentHover(comment, true)" (mouseleave)="onCommentHover(comment, false)">
+      <div class = "user-cont">
+        <img
+          width = "30"
+          src="assets\images\user-generic-icon.svg">
+          <span>{{comment.username}}</span>
+      </div>
+
+      <div class = "comment">
+        <textarea readonly class="comment-text">{{comment.text}}</textarea>
+      </div>
+    </div>
   </div>
 
   <div id="resultBox"> {{ loadTextarea() }}<textarea id="viewBox" cols="80" rows="30"style="display:none;"></textarea></div>
 
-  <div [hidden]="!linkCopyMessage" *ngIf="show" @fadeOut>
-    <div class="link-copy-div" (click)="onSave()">
-  <div [hidden]="!linkCopyMessage">
+  <div class ="link-copy-outer-div" [hidden]="!linkCopyMessage">
     <div class="link-copy-div" *ngIf="show" @fadeOut>
-      <span>Link copied to clipboard!</span>
+      <span><em>Link copied to clipboard!</em></span>
     </div>
   </div>
 
-  <div [hidden]="!deleteConfirmShow" class="delete-confirm-cont">
-    <p>Are you sure you want to delete this document?</p>
-    <p class="confirm-delete"(click)=confirmDelete()>Confirm</p> <p class="cancel-delete" (click)=hideDeleteConfirm()>Cancel</p>
-  </div>
 </div>

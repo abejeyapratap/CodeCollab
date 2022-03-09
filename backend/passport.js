@@ -23,6 +23,8 @@ const authUser = function (accessToken, refreshToken, profile, done) {
         User.findOne({ googleId: profile.id }).then((userDocument) => {
             if (userDocument) {
                 console.log("User exists");
+                /* console.log(userDocument._id);
+                console.log(userDocument); */
                 done(null, userDocument);
             } else {
                 const newUser = new User({
@@ -36,6 +38,7 @@ const authUser = function (accessToken, refreshToken, profile, done) {
                     .save()
                     .then((result) => {
                         console.log("User created");
+                        // console.log(result);
                         done(null, newUser);
                     })
                     .catch((err) => {

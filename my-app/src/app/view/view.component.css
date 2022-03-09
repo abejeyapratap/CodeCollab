@@ -146,6 +146,12 @@ img {
   width: 100%;
 }
 
+.comment-text {
+  resize: none;
+  height: 94%;
+  width: 100%;
+}
+
 .comment-button {
   margin-left: 3px;
   padding: 10px;
@@ -202,6 +208,7 @@ img {
 
 .my-account span {
   position: flex;
+  font-weight: bold;
 }
 
 .spacer {
@@ -265,12 +272,24 @@ img {
 }
 
 .link-copy-div {
+  outline: solid 1px rgb(58, 58, 58);
   text-align: center;
   border-radius: 10px;
   width: 180px;
   line-height: 50px;
   height: 50px;
   background-color: #cfcbcb;
+  z-index: 99;
+  left: 10px;
+  top: 10px;
+  color: black;
+}
+
+.link-copy-outer-div {
+  position: fixed;
+  z-index: 100;
+  left: 620px;
+  top: 10px;
 }
 
 .delete-button-container {
@@ -285,13 +304,16 @@ img {
 }
 
 .delete-confirm-cont {
-  outline: solid 2px rgb(65, 64, 64);
+  outline: solid 3px rgb(0, 0, 0);
+  position: fixed;
   width: 200px;
-  height: 90px;
+  height: 80px;
   border-radius: 20px;
   padding: 10px;
-  z-index: 10;
+  z-index: 99;
   background-color: white;
+  left: 630px;
+  top: 10px;
 }
 
 .delete-confirm-cont p {
@@ -321,6 +343,10 @@ img {
   float: right;
   font-weight: 700;
   color: rgb(197, 2, 2);
+}
+
+#resultBox {
+  z-index: 0;
 }
 
 .card-container {
@@ -374,7 +400,7 @@ img {
 }
 
 .codeLine {
-  width: 50%;
+  width: 90%;
   display: inline-block;
   white-space: pre-wrap;
   tab-size: 20px;
@@ -387,4 +413,8 @@ img {
 
 .commentingLine {
   background-color: cyan;
+}
+
+.commentHover {
+  background-color: yellow;
 }

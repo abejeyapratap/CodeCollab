@@ -2,7 +2,7 @@ const express = require("express");
 const mongoose = require("mongoose");
 
 const userRoutes = require("./routes/auth");
-const documentRoutes = require("./routes/documents");
+const documentRoutes = require("./routes/document");
 
 const app = express();
 
