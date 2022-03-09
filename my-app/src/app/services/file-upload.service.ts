@@ -15,7 +15,7 @@ export class FileUploadService {
     formData.append('codeContent', profileImage);
 
     return this.http
-      .post('http://localhost:3000/api/documents/create-document', formData, {
+      .post('http://localhost:3000/api/documents/create', formData, {
         reportProgress: true,
         observe: 'events',
       })

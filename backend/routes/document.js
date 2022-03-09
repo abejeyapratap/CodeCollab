@@ -14,7 +14,7 @@ const Document = require("../models/document");
 let currId = ""; // DELETE
 
 // POST User
-router.post("/create-document", checkAuth, (req, res) => {
+router.post("/create", checkAuth, (req, res) => {
     // console.log(req.files.codeContent.data);
     const document = new Document({
         name: req.body.name,

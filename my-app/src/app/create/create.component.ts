@@ -6,7 +6,7 @@ import { HttpEvent, HttpEventType } from '@angular/common/http';
 @Component({
   selector: 'app-create',
   templateUrl: './create.component.html',
-  styleUrls: ['./create.component.css']
+  styleUrls: ['./create.component.css'],
 })
 export class CreateComponent implements OnInit {
   form: FormGroup;
@@ -21,12 +21,11 @@ export class CreateComponent implements OnInit {
       codeContent: [null],
     });
   }
-  
+
   ngOnInit(): void {}
 
-
   uploadFile(event: any) {
-    sessionStorage.removeItem("textContent");
+    sessionStorage.removeItem('textContent');
     const file = (event.target as HTMLInputElement).files![0];
     this.form.patchValue({
       codeContent: file,
@@ -34,15 +33,13 @@ export class CreateComponent implements OnInit {
     this.form.get('codeContent')!.updateValueAndValidity();
   }
 
-  viewFile(){ 
-    let box = <HTMLInputElement>document.getElementById("textbox"); // cast to HTMLelement due to typesafe
-    this.fileUploadService.getUser().subscribe(
-      result => {
-        box.value = result.results; 
-        sessionStorage.setItem("textContent", result.results)
-      });
+  viewFile() {
+    let box = <HTMLInputElement>document.getElementById('textbox'); // cast to HTMLelement due to typesafe
+    this.fileUploadService.getUser().subscribe((result) => {
+      box.value = result.results;
+      sessionStorage.setItem('textContent', result.results);
+    });
     //this.fileUploadService.getUser().subscribe(result => sessionStorage.setItem("textContent", result.results));
-
   }
 
   submitUser() {
@@ -61,12 +58,11 @@ export class CreateComponent implements OnInit {
             console.log(`Uploaded! ${this.progress}%`);
             break;
           case HttpEventType.Response:
-            console.log('User successfully created!', event.body);
+            console.log('Document successfully created!', event.body);
             setTimeout(() => {
               this.progress = 0;
             }, 1500);
         }
       });
   }
-
 }

@@ -3,21 +3,22 @@ import { Socket } from 'ngx-socket-io';
 import { map } from 'rxjs';
 
 @Injectable({
-	providedIn: 'root'
+  providedIn: 'root',
 })
 export class SocketService {
-
-  documentListRequest:any = null;
-  documentViewRequest:any = null;
+  documentListRequest: any = null;
+  documentViewRequest: any = null;
 
   constructor(private socket: Socket) {
-    socket.on('requestAPIKey', () => {this.onRequestAPIKey(this)});
+    socket.on('requestAPIKey', () => {
+      this.onRequestAPIKey(this);
+    });
 
     socket.on('documentsList', this.onDocumentsList);
     socket.on('document', this.onDocument);
   }
 
-  onRequestAPIKey(s:SocketService) {
+  onRequestAPIKey(s: SocketService) {
     // TEMP CODE
     console.log('requestedAPIKey');
     s.sendAPIKey('testAPI');
@@ -25,7 +26,7 @@ export class SocketService {
     s.sendChatMessage('testMSG');
   }
 
-  sendAPIKey(key:string) {
+  sendAPIKey(key: string) {
     this.socket.emit('sendAPIKey', key);
   }
 
@@ -63,7 +64,7 @@ export class SocketService {
     // this.socketService.onNewChatMessage().subscribe((data: any) => this.movies = data)
   }
 
-  postComment(comment:string, line:number) {
+  postComment(comment: string, line: number) {
     this.socket.emit('postComment', comment, line);
   }
 
@@ -81,26 +82,26 @@ export class SocketService {
       return this.documentListRequest;
     }
     this.socket.emit('requestDocumentsList');
-    this.documentListRequest = new Promise<string>(() => { });
+    this.documentListRequest = new Promise<string>(() => {});
     return this.documentListRequest;
   }
 
-  onDocumentsList(data:string) {
+  onDocumentsList(data: string) {
     if (this.documentListRequest == null) return;
     this.documentListRequest.resolve(data);
     this.documentListRequest = null;
   }
 
-  viewDocument(documentID:string) {
+  viewDocument(documentID: string) {
     if (this.documentViewRequest != null) {
       return this.documentViewRequest;
     }
     this.socket.emit('viewDocument', documentID);
-    this.documentViewRequest = new Promise<string>(() => { });
+    this.documentViewRequest = new Promise<string>(() => {});
     return this.documentViewRequest;
   }
 
-  onDocument(data:string, error:boolean) {
+  onDocument(data: string, error: boolean) {
     if (this.documentViewRequest == null) return;
     if (error) {
       this.documentViewRequest.reject(data);
@@ -113,5 +114,4 @@ export class SocketService {
   endViewingDocument() {
     this.socket.emit('endViewingDocument');
   }
-
 }
