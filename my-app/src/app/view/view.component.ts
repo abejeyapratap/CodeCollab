@@ -177,7 +177,7 @@ export class ViewComponent implements OnInit {
     this.commentCancel = false;
   }
 
-  pageURL = 'http://localhost:4200/view';
+  pageURL = "http://localhost:4200" + this.router.url;
 
   show = true;
 

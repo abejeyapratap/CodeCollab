@@ -128,10 +128,16 @@
     margin: 0 5px;
   }
 
+  .progress-spinner {
+    align-items: center;
+  }
+
   .content {
+    position: fixed;
     display: flex;
     margin: 82px auto 32px;
     padding: 0 16px;
+    overflow: hidden;
   }
 
   .card svg.material-icons path {
@@ -190,7 +196,6 @@
   a,
   a:visited,
   a:hover {
-    color: #1976d2;
     text-decoration: none;
   }
 

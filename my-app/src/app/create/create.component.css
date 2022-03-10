@@ -48,16 +48,16 @@ img{
 
 .content {
   display: flex;
-  margin: 82px auto 32px;
+  margin: 82px;
   padding: 0 6px;
   max-width: 960px;
   flex-direction: column;
 }
 
 .create-doc-title {
-  display: block;
   margin: 5px;
   margin-top: 0.5m;
+  padding-bottom: 10%;
 }
 
 .create-doc-title h1{
