@@ -9,8 +9,8 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-h1{
-  font-size: 60px;
+h1 {
+  font-size: 370%;
   font-weight: lighter;
 }
 
@@ -56,11 +56,10 @@ img{
 .content {
   display: flex;
   margin: 82px auto 32px;
-  padding: 0 16px;
+  padding: 0;
   max-width: 960px;
   flex-direction: column;
   align-items: center;
-  
 }
 
 .card svg.material-icons path {

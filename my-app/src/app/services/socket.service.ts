@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Socket } from 'ngx-socket-io';
 import { map } from 'rxjs';
+import { AuthService } from './auth.service';
 
 @Injectable({
   providedIn: 'root',
@@ -9,7 +10,7 @@ export class SocketService {
   documentListRequest: any = null;
   documentViewRequest: any = null;
 
-  constructor(private socket: Socket) {
+  constructor(private socket: Socket, private auth:AuthService) {
     socket.on('requestAPIKey', () => {
       this.onRequestAPIKey(this);
     });
@@ -19,11 +20,9 @@ export class SocketService {
   }
 
   onRequestAPIKey(s: SocketService) {
-    // TEMP CODE
-    console.log('requestedAPIKey');
-    s.sendAPIKey('testAPI');
-    s.socket.emit('viewDocument', 'testDoc');
-    s.sendChatMessage('testMSG');
+    let key = this.auth.getToken();
+    if (key != '')
+      s.sendAPIKey(key);
   }
 
   sendAPIKey(key: string) {
@@ -93,12 +92,7 @@ export class SocketService {
   }
 
   viewDocument(documentID: string) {
-    if (this.documentViewRequest != null) {
-      return this.documentViewRequest;
-    }
     this.socket.emit('viewDocument', documentID);
-    this.documentViewRequest = new Promise<string>(() => {});
-    return this.documentViewRequest;
   }
 
   onDocument(data: string, error: boolean) {

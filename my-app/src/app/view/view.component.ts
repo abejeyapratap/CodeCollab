@@ -67,6 +67,8 @@ export class ViewComponent implements OnInit {
         .subscribe((documentContent) => {
           this.documentLines = documentContent.document.split('\n');
         });
+
+      this.sockets.viewDocument(this.documentId);
     });
 
     this.sockets.onNewComment().subscribe((data) => {
@@ -75,8 +77,10 @@ export class ViewComponent implements OnInit {
     this.sockets.onNewChatMessage().subscribe((data) => {
       this.addChatMessage(data[0], data[1], data[2], data[3]);
     });
-    // TEMP
-    this.addComment('jerk', '', 'your code sux', 0, 0);
+  }
+
+  ngOnDestroy() {
+    this.sockets.endViewingDocument();
   }
 
   addChatMessage(

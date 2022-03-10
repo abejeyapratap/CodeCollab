@@ -1,5 +1,7 @@
 const connectedUsers = new Map();
 const usersViewingDocs = new Map();
+// const checkAuth = require("../middleware/check-auth");
+const jwt = require("jsonwebtoken");
 
 class ConnectedUser {
     apiKey = null;
@@ -33,8 +35,11 @@ function isConnected(id) {
 }
 
 function sendAPIKey(user, key) {
-    user.apiKey = key;
-    // TODO: Retrieve the users display name and icon and save it here
+    let userData = checkAuth(key);
+    if (userData !== null) {
+        user.apiKey = key;
+        // TODO: Retrieve the users display name and icon and save it here
+    }
 }
 exports.sendAPIKey = sendAPIKey;
 
@@ -102,4 +107,30 @@ function createDocument(user, documentData) {
 
 function deleteDocument(user, document) {
 
+}
+
+function checkAuth(token) {
+    try {
+        // const token = req.headers.authorization.split(" ")[1]; // extract after "Bearer"
+
+        // Decode token for validating
+        // if invalid (AKA someone modified the JWT) -> throws error
+        const decodedToken = jwt.verify(token, process.env.JWT_SECRET_KEY);
+        let userData = {
+            userId: decodedToken.userId,
+            email: decodedToken.email,
+        };
+
+        return userData;
+        // append a new field to "req" object
+        // req.userData = {
+        //     userId: decodedToken.userId,
+        //     email: decodedToken.email,
+        // };
+
+        // next();
+    } catch (error) {
+        // no token - not authenticated - unauthorized
+        return null;
+    }
 }
