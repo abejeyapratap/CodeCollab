@@ -96,7 +96,7 @@
     border: 1px solid #ada9a9;
     background-color: #fafafa;
     height: 30px;
-    width: 500px;
+    width: 60%;
     margin: 0 px 16px;
     padding: 10px;
     display: flex;
@@ -128,16 +128,12 @@
     margin: 0 5px;
   }
 
-  .progress-spinner {
-    align-items: center;
-  }
-
   .content {
-    position: fixed;
     display: flex;
     margin: 82px auto 32px;
     padding: 0 16px;
     overflow: hidden;
+  
   }
 
   .card svg.material-icons path {
@@ -146,18 +142,17 @@
 
   .card-container {
     display: flex;
-    flex-wrap: wrap;
     justify-content: center;
     margin-top: 5px;
   }
 
   .card {
     all: unset;
-    border-radius: px;
+    border-radius: 10px;
     border: 1px solid #ada9a9;
     background-color: #fafafa;
-    height: 30px;
-    width: 150px;
+    height: 80%;
+    width: 93%;
     margin: 0 px 16px;
     padding: 10px;
     display: flex;

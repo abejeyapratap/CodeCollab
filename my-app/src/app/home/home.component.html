@@ -9,7 +9,7 @@
 
 <div class="content" role="main">
   <h1><em>Welcome to CodeCollab</em></h1>
-
+  
   <img width="320" src="assets\images\logo.svg" />
 
   <div class="card-container" (click)="onLogin()" *ngIf="!isUserAuthenticated">
@@ -23,7 +23,13 @@
     </a>
   </div>
 
-  <div class="card-container">
+  <div class="card-container" *ngIf="!isUserAuthenticated">
+    <a class="card" routerLink="/documents">
+      <span>Enter as a Guest</span>
+    </a>
+  </div>
+
+  <div class="card-container" *ngIf="isUserAuthenticated">
     <a class="card" routerLink="/documents">
       <span>Open CodeCollab</span>
     </a>

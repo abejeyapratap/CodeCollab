@@ -43,4 +43,9 @@ export class DocumentsComponent implements OnInit, OnDestroy {
 
   // TODO
   getAccountInfo() {}
+
+  getDisplayName(userID: string) {
+    // TODO / TEMP
+    return "username";
+  }
 }
