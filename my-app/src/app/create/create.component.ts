@@ -37,6 +37,7 @@ export class CreateComponent implements OnInit {
     // We set the file content of our key "codeContent" to whichever was selected
     // in the dropdown menu
     this.form.patchValue({
+      name: event.target.files[0].name,
       codeContent: file,
     });
     // Set codeContent status to valid
