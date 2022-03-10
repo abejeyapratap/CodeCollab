@@ -13,6 +13,7 @@ export class CreateComponent implements OnInit {
   form: FormGroup;
   progress: number = 0;
   file: any;
+  isNameEmpty = false;
 
   constructor(
     public fb: FormBuilder,
@@ -64,6 +65,12 @@ export class CreateComponent implements OnInit {
 
   // Called once the form has been submitted (uploadFile() has taken place)
   submitFile() {
+    if (!this.form.value.name) {
+      this.isNameEmpty = true;
+      return;
+    } else {
+      this.isNameEmpty = false;
+    }
     this.fileUploadService
       // Sends post request to API using the name of the file we manually input,
       // and the file that was selected

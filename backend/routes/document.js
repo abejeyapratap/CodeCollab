@@ -11,7 +11,7 @@ router.use(fileUpload());
 
 const Document = require("../models/document");
 
-let currId = ""; // DELETE
+// let currId = ""; // DELETE
 
 // POST User
 router.post("/create", checkAuth, (req, res) => {
@@ -27,8 +27,8 @@ router.post("/create", checkAuth, (req, res) => {
         .save()
         .then((result) => {
             // console.log(result);
-            currId = result._id;
-            console.log("CURRENT ID: ", currId);
+            // currId = result._id;
+            // console.log("CURRENT ID: ", currId);
             res.status(201).json({
                 message: "Document uploaded successfully!",
                 documentId: result._id,
