@@ -30,12 +30,8 @@ router.post("/create", checkAuth, (req, res) => {
             currId = result._id;
             console.log("CURRENT ID: ", currId);
             res.status(201).json({
-                message: "document registered successfully!",
-                documentCreated: {
-                    //_id: result._id,
-                    name: result.name,
-                    codeContent: result.codeContent,
-                },
+                message: "Document uploaded successfully!",
+                documentId: result._id,
             });
         })
         .catch((err) => {
@@ -99,7 +95,7 @@ router.get("/:documentId", checkAuth, (req, res) => {
 // delete document based on :id
 router.delete("/:id", checkAuth, (req, res) => {
     console.log("trying to delete");
-    
+
     Document.deleteOne({
         _id: req.params.id,
         creator: req.userData.userId,
