@@ -168,7 +168,7 @@ export class ViewComponent implements OnInit {
       .deleteDocumentById(this.documentId)
       .subscribe((response) => {
         if (response.message === 'Success') {
-          this.router.navigateByUrl('/');
+          this.router.navigateByUrl('/documents');
         } else {
           console.log('Failed to delete.');
         }
@@ -189,12 +189,12 @@ export class ViewComponent implements OnInit {
     this.show = false;
   }
 
-  loadTextarea() {
+  /* loadTextarea() {
     let viewBox = <HTMLInputElement>document.getElementById('viewBox');
     viewBox.value = sessionStorage.getItem('textContent')!;
     let arrayValues = viewBox.value.split('\n');
     // this.documentLines = arrayValues; REMOVED FOR TESTING
-  }
+  } */
 }
 
 class MessageData {
