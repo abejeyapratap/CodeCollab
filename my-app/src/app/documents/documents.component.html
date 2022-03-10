@@ -33,7 +33,7 @@
       *ngFor="let document of documents"
       [routerLink]="['/', 'view', document.id]"
     >
-      <span>{{ document.name }}</span>
+      <span>{{ document.name }} by {{getDisplayName(document.creator)}}</span>
     </a>
     
   </div>
