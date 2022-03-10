@@ -16,7 +16,6 @@ import { environment } from 'src/environments/environment';
 import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
 import { AuthInterceptor } from './services/auth-interceptor';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {ProgressSpinnerModule} from 'primeng/progressspinner';
 import { ClipboardModule } from '@angular/cdk/clipboard';
 import { ReactiveFormsModule } from '@angular/forms';
 const config: SocketIoConfig = {
@@ -44,7 +43,6 @@ const config: SocketIoConfig = {
     BrowserAnimationsModule,
     ClipboardModule,
     ReactiveFormsModule,
-    ProgressSpinnerModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }, // register interceptor
