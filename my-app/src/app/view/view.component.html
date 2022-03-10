@@ -90,23 +90,22 @@
               </div>
             </div>
           </ng-template>
+          
+        </div>
+        
+      </div>
+      <div class="message-input">
+        <textarea
+          type="text"
+          class="write_msg"
+          placeholder="Type a message"
+          name="newMessage"
+          [(ngModel)]="newMessage"
+        ></textarea>
+        <div class="msg-send-btn" type="button" (click)="sendChatMessage()">
+          Send
         </div>
       </div>
-
-      <form class="input_msg_write" (ngSubmit)="sendChatMessage()">
-        <div class="message-input">
-          <textarea
-            type="text"
-            class="write_msg"
-            placeholder="Type a message"
-            name="newMessage"
-            [(ngModel)]="newMessage"
-          ></textarea>
-          <div class="msg-send-btn" type="button" (click)="sendChatMessage()">
-            Send
-          </div>
-        </div>
-      </form>
     </div>
 
     <div class="document">
