@@ -133,9 +133,11 @@
   }
 
   .content {
+    position: fixed;
     display: flex;
     margin: 82px auto 32px;
     padding: 0 16px;
+    overflow: hidden;
   }
 
   .card svg.material-icons path {
