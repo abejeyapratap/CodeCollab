@@ -128,6 +128,10 @@
     margin: 0 5px;
   }
 
+  .progress-spinner {
+    align-items: center;
+  }
+
   .content {
     display: flex;
     margin: 82px auto 32px;
