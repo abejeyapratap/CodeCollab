@@ -196,7 +196,7 @@ img {
   width: 170px;
   right: 1px;
   bottom: 0;
-  border-radius: px;
+  border-radius: 3px;
   background-color: #cfcbcb;
   margin: 0 px 16px;
   padding: 10px;
@@ -204,6 +204,7 @@ img {
   justify-content: center;
   line-height: 24px;
 }
+
 .my-account img {
   position: flex;
   float: left;

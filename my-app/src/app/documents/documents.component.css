@@ -36,14 +36,14 @@
     margin: 5px;
   }
 
-  .my-account{
+  .my-account {
     outline: 1px solid black;
-    color:black;
+    color: black;
     height: 45px;
     width: 170px;
-    right:1px;
+    right: 1px;
     bottom: 0;
-    border-radius: px;
+    border-radius: 3px;
     background-color: #cfcbcb;
     margin: 0 px 16px;
     padding: 10px;
@@ -51,6 +51,7 @@
     justify-content: center;
     line-height: 24px;
   }
+
   .my-account img{
     position:flex;
     float:left;
