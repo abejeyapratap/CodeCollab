@@ -90,7 +90,7 @@ img {
   resize: none;
   width: 94%;
   height: 60px;
-  padding-top: 5%;
+  padding-top: .5%;
 }
 
 .msg-send-btn {

@@ -112,6 +112,7 @@
           placeholder="Type a message"
           name="newMessage"
           [(ngModel)]="newMessage"
+          (keyup.enter)="sendChatMessage()"
         ></textarea>
         <div class="msg-send-btn" type="button" (click)="sendChatMessage()">
           Send
