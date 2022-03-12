@@ -92,7 +92,7 @@ export class CreateComponent implements OnInit {
             setTimeout(() => {
               this.progress = 0;
             }, 1500);
-            console.log(event.body.documentId);
+            // console.log(event.body.documentId);
             this.router.navigate(['/', 'view', event.body.documentId]);
         }
       });
