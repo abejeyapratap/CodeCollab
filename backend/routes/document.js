@@ -14,7 +14,7 @@ const Document = require("../models/document");
 /* Unguarded Routes */
 // return list of documents to "View" page in AG
 router.get("", (req, res) => {
-    Document.find()
+    Document.find().sort({createdAt: -1})
         .then((documentsList) => {
             const filteredDocuments = filterCodeContent(documentsList);
             res.json({
