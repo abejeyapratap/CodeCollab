@@ -8,8 +8,7 @@ const documentSchema = mongoose.Schema({
         ref: "User", // document is related to user
         required: true,
     },
+    createdAt: { type: Date, default: Date.now },
 });
-
-// mongoose.Schema.Types.Subdocument
 
 module.exports = mongoose.model("Document", documentSchema);
