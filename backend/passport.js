@@ -19,8 +19,9 @@ const User = require("./models/auth");
  */
 const authUser = function (accessToken, refreshToken, profile, done) {
     // Check if user exists in DB; if so, return the user; if not, create & return
-    try {
-        User.findOne({ googleId: profile.id }).then((userDocument) => {
+
+    User.findOne({ googleId: profile.id })
+        .then((userDocument) => {
             if (userDocument) {
                 console.log("User exists");
                 /* console.log(userDocument._id);
@@ -45,10 +46,10 @@ const authUser = function (accessToken, refreshToken, profile, done) {
                         console.log("User creation failed");
                     });
             }
+        })
+        .catch((err) => {
+            console.log("Auth error occurred:", err);
         });
-    } catch (err) {
-        console.log("An error occurred", err);
-    }
 
     // return done(null, profile);
 };
