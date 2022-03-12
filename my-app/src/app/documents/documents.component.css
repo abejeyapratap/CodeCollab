@@ -242,9 +242,11 @@
   }
 
   .emptyDiv {
-    /* border: 2px solid red;
-    display: flex;
-    justify-content: center; */
+    background-color: #fafafa;
+    border-radius: 3px;
+    color: #333;
+    margin-top: 5px;
+    margin-left: 30%;
   }
 
   /* Responsive Styles */
