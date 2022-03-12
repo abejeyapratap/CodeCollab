@@ -3,9 +3,31 @@ const passport = require("passport");
 require("../passport");
 const jwt = require("jsonwebtoken");
 
-const User = require("../models/auth");
+const checkAuth = require("../middleware/check-auth");
 
 const router = express.Router();
+
+const User = require("../models/auth");
+
+// Fetch user profile info by token
+router.get("/userInfo", checkAuth, (req, res) => {
+    User.findOne({ _id: req.userData.userId })
+        .then((user) => {
+            const fetchedUser = {
+                userId: user._id,
+                displayName: user.displayName,
+                profilePic: user.profilePic,
+            };
+
+            res.json({
+                message: "User profile fetched successfully!",
+                user: fetchedUser,
+            });
+        })
+        .catch((err) => {
+            console.log("Couldn't fetch user");
+        });
+});
 
 // Google login "prompt"
 // Scope: what info we want from Google user-profile
