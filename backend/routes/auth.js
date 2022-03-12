@@ -3,9 +3,31 @@ const passport = require("passport");
 require("../passport");
 const jwt = require("jsonwebtoken");
 
-const User = require("../models/auth");
+const checkAuth = require("../middleware/check-auth");
 
 const router = express.Router();
+
+const User = require("../models/auth");
+
+// Fetch user profile info by token
+router.get("/userInfo", checkAuth, (req, res) => {
+    User.findOne({ _id: req.userData.userId })
+        .then((user) => {
+            const fetchedUser = {
+                userId: user._id,
+                displayName: user.displayName,
+                profilePic: user.profilePic,
+            };
+
+            res.json({
+                message: "User profile fetched successfully!",
+                user: fetchedUser,
+            });
+        })
+        .catch((err) => {
+            console.log("Couldn't fetch user");
+        });
+});
 
 // Google login "prompt"
 // Scope: what info we want from Google user-profile
@@ -33,13 +55,17 @@ router.get(
         );
         res.cookie("coco_auth", token); // store JWT in cookie for Angular; { httpOnly: true }
         res.redirect("http://localhost:4200");
-        
+
         // console.log(req.user.id, req.user.displayName, req.user.emails[0].value); // for profile
         // console.log(req.user.googleId, req.user.displayName, req.user.email); // for mongo user
     }
 );
 
-router.get("/failure", (req, res) => res.send("Log in failed."));
+// TODO - maybe?
+router.get("/failure", (req, res) => {
+    res.status(500);
+    res.redirect("http://localhost:4200");
+});
 
 // TODO - maybe?
 router.get("/logout", (req, res) => {

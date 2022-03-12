@@ -37,38 +37,48 @@ img {
   right: 0;
   text-align: center;
   margin: 5px;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-items: center;
+  padding-left: 1px;
+  padding-right: 1px;
 }
 
 .inner-online {
   outline: 2px solid black;
   background-color: #ffffff;
   height: 65%;
-  width: 90%;
-  position: absolute;
-  margin-left: 16px;
+  width: 92%;
   overflow-y: auto;
+  margin-bottom: 4%;
+  display: flex;
+  flex-direction: column;
+  padding: 2px;
+  gap: 4px;
 }
 
 .chat {
-  outline: 2px solid black;
-  min-height: 8%;
+  outline: 1.5px solid black;
+  height: auto;
   width: 70%;
-  position: absolute;
-  margin-left: 50px;
+  margin-left: 10px;
   text-align: left;
-  padding: 6px;
+  padding-right: 5px;
+  padding-left: 4px;
+  display: inline-block;
 }
 
 .chat span {
-  display: inline;
+  display: inline-block;
   font-size: smaller;
 }
 
 .chat-container {
   margin-top: 17px;
-  display: flex;
   align-items: center;
-  padding-bottom: 10px;
+  padding-bottom: 5px;
+  height: auto;
 }
 
 .chat-container img {
@@ -78,16 +88,14 @@ img {
 .message-input {
   height: 20%;
   width: 92%;
-  position: relative;
-  margin-left: 16px;
-  margin-top: 280%;
-  overflow: auto;
+  overflow-y: auto;
 }
 
 .write_msg {
   resize: none;
   width: 94%;
   height: 60px;
+  padding-top: 0.5%;
 }
 
 .msg-send-btn {
@@ -100,10 +108,9 @@ img {
 }
 
 .my-chat-container {
-  margin-top: 17px;
-  display: flex;
+  margin-top: 12px;
   align-items: left;
-  padding-bottom: 10px;
+  padding-bottom: 1px;
 }
 
 .my-chat-container img {
@@ -193,7 +200,7 @@ img {
   width: 170px;
   right: 1px;
   bottom: 0;
-  border-radius: px;
+  border-radius: 3px;
   background-color: #cfcbcb;
   margin: 0 px 16px;
   padding: 10px;
@@ -201,6 +208,7 @@ img {
   justify-content: center;
   line-height: 24px;
 }
+
 .my-account img {
   position: flex;
   float: left;
@@ -209,6 +217,14 @@ img {
 .my-account span {
   position: flex;
   font-weight: bold;
+}
+
+::ng-deep.mat-menu-panel {
+  width: 250px;
+}
+
+::ng-deep.mat-menu-item {
+  font-size: larger;
 }
 
 .spacer {
@@ -417,4 +433,9 @@ img {
 
 .commentHover {
   background-color: yellow;
+}
+
+.circleCrop {
+  object-fit: cover;
+  border-radius: 50%;
 }

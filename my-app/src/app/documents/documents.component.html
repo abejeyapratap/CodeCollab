@@ -13,18 +13,30 @@
   </div>
 
   <div class="spacer"></div>
-  <div class="my-account" (click)="getAccountInfo()">
-    <img src="assets\images\user-generic-icon.svg" width="26" />
+  <div class="my-account" [matMenuTriggerFor]="menu" (click)="getAccountInfo()" *ngIf="isUserAuthenticated">
+    <img src='{{(user != null) ? user.profilePic : "assets\\images\\user-generic-icon.svg"}}' width="26" class="circleCrop"/>
     <div class="spacer1"></div>
     <span class="text">My Account</span>
   </div>
   <div class="spacer1"></div>
+
+  <mat-menu #menu="matMenu">
+    <img src='{{(user != null) ? user.profilePic : "assets\\images\\user-generic-icon.svg"}}' width="40" style="float:left;margin-left: 10px;" class="circleCrop"/>
+    <div acct-info>
+      <h1 style="margin-left:34%;margin-top:6%;">{{(user != null) ? user.displayName : ""}}</h1>
+      <!-- <p style="margin-left:33%;">REAL NAME?</p> -->
+      <!-- <p style="margin-left:40%;">{{(user != null) ? user.email : ""}}</p> -->
+    </div>
+
+    <button mat-menu-item (click)="logoutUser()">Log Out</button>
+  </mat-menu>
 </div>
 
 <div class="content" role="main">
-  <div class="online-now">
+
+  <!-- <div class="online-now">
     <h2>Online Now:</h2>
-  </div>
+  </div> -->
 
   <!-- Display fetched documents -->
   <div class="document-container" *ngIf="documents.length > 0">
@@ -33,11 +45,14 @@
       *ngFor="let document of documents"
       [routerLink]="['/', 'view', document.id]"
     >
-      <span>{{ document.name }} by {{getDisplayName(document.creator)}}</span>
+      <span>{{ document.name }} by {{document.creator}}</span>
     </a>
-    
+
   </div>
 
   <!-- TODO: maybe style? -->
-  <div class="emptyDiv" *ngIf="documents.length <= 0">No documents yet!</div>
+  <div class="emptyDiv" *ngIf="documents.length <= 0">
+    <h1>No Documents Yet!</h1>
+    <h2>Try creating a new one!</h2>
+  </div>
 </div>
