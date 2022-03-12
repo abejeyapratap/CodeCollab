@@ -1,6 +1,8 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { CookieService } from 'ngx-cookie-service';
 import { BehaviorSubject } from 'rxjs';
+import { User } from './user.model';
 
 @Injectable({
   providedIn: 'root',
@@ -11,17 +13,36 @@ export class AuthService {
   private authStatusListener = new BehaviorSubject<boolean>(false); // "push" auth status to rest of app
   private tokenTimerObj: any;
   private expiresInDuration = 3600;
+  authenticatedUser: User;
 
-  constructor(private cookieService: CookieService) {}
+  constructor(private cookieService: CookieService, private http: HttpClient) {}
+
+  // TODO
+  fetchUserInfo() {
+    this.http
+      .get<{
+        message: string;
+        user: { userId: string; displayName: string; profilePic: string };
+      }>('http://localhost:3000' + '/api/auth/userInfo')
+      .subscribe((results) => {
+        this.authenticatedUser = new User(
+          results.user.userId,
+          results.user.displayName,
+          results.user.profilePic
+        );
+        // console.log(results);
+      });
+  }
+
+  getUser() {
+    return this.authenticatedUser;
+  }
 
   // should only be called upon successful login
   setToken() {
     this.token = this.cookieService.get('coco_auth');
 
     if (this.token) {
-      this.isAuth = true;
-      this.authStatusListener.next(true); // tell rest of app that authenticated
-
       this.setTokenTimer();
 
       // Set expiration in Local Storage if DNE
@@ -34,6 +55,11 @@ export class AuthService {
       } else {
         console.log('Already set expiry');
       }
+
+      this.isAuth = true;
+      this.authStatusListener.next(true); // tell rest of app that authenticated
+
+      this.fetchUserInfo();
     }
   }
 
@@ -67,7 +93,7 @@ export class AuthService {
    * @param expiresInDuration: seconds
    */
   setTokenTimer(expiresInDuration = 3600) {
-    console.log("Setting time: " + expiresInDuration);
+    console.log('Setting time: ' + expiresInDuration);
     if (!this.token) return;
 
     if (this.tokenTimerObj) clearTimeout(this.tokenTimerObj); // clear any old timers
@@ -81,7 +107,7 @@ export class AuthService {
   // Update the expiry timer upon reload
   autoAuthUser() {
     const expirationDate = this.getExpiration();
-    console.log("date: " + expirationDate);
+    // console.log('date: ' + expirationDate);
     if (!expirationDate) {
       return;
     }

@@ -14,7 +14,7 @@ import { ViewComponent } from './view/view.component';
 
 import { environment } from 'src/environments/environment';
 import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
-import { AuthInterceptor } from './services/auth-interceptor';
+import { AuthInterceptor } from './auth/auth-interceptor';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ClipboardModule } from '@angular/cdk/clipboard';
 import { ReactiveFormsModule } from '@angular/forms';

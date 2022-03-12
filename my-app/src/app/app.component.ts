@@ -2,7 +2,7 @@
 
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
-import { AuthService } from './services/auth.service';
+import { AuthService } from './auth/auth.service';
 
 declare var io: any;
 
