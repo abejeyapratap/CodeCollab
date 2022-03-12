@@ -13,15 +13,27 @@
   </div>
 
   <div class="spacer"></div>
-  <div class="my-account" (click)="getAccountInfo()">
+  <div class="my-account" [matMenuTriggerFor]="menu" (click)="getAccountInfo()">
     <img src="assets\images\user-generic-icon.svg" width="26" />
     <div class="spacer1"></div>
     <span class="text">My Account</span>
   </div>
   <div class="spacer1"></div>
+
+  <mat-menu #menu="matMenu">
+    <img src="assets\images\user-generic-icon.svg" width="40" style="float:left;margin-left: 10px;" />
+    <div acct-info>
+      <p style="margin-left:34%;margin-top:6%;">USERNAME</p>
+      <p style="margin-left:33%;">REAL NAME?</p>
+      <p style="margin-left:40%;">EMAIL</p>
+    </div>
+  
+    <button mat-menu-item>Log Out</button>
+  </mat-menu>
 </div>
 
 <div class="content" role="main">
+
   <div class="online-now">
     <h2>Online Now:</h2>
   </div>

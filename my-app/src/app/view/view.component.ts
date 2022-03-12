@@ -189,6 +189,14 @@ export class ViewComponent implements OnInit {
     this.show = false;
   }
 
+   // TODO
+   getAccountInfo() {}
+
+   getDisplayName(userID: string) {
+     // TODO / TEMP
+     return "username";
+   }
+
   /* loadTextarea() {
     let viewBox = <HTMLInputElement>document.getElementById('viewBox');
     viewBox.value = sessionStorage.getItem('textContent')!;

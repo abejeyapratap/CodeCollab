@@ -28,9 +28,10 @@
   .online-now {
     outline: 2px solid black;
     height: 100%;
-    width: 20%; /* Set the width of the sidebar */
-    position: fixed; /* Fixed Sidebar (stay in place on scroll) */
-    z-index: 1; /* Stay on top */
+    border-radius: 6px;
+    width: 20%; 
+    position: fixed;
+    z-index: 1; 
     right: 0;
     text-align: center;
     margin: 5px;
@@ -60,6 +61,15 @@
   .my-account span{
     position:flex;
     font-weight: bold;
+  }
+
+
+  ::ng-deep.mat-menu-panel {
+    width: 250px;
+  }
+
+  ::ng-deep.mat-menu-item {
+    font-size: larger;
   }
 
   .spacer {

@@ -219,6 +219,14 @@ img {
   font-weight: bold;
 }
 
+::ng-deep.mat-menu-panel {
+  width: 250px;
+}
+
+::ng-deep.mat-menu-item {
+  font-size: larger;
+}
+
 .spacer {
   flex: 1;
 }
