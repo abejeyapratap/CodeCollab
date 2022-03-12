@@ -13,9 +13,11 @@ export class AuthService {
   private authStatusListener = new BehaviorSubject<boolean>(false); // "push" auth status to rest of app
   private tokenTimerObj: any;
   private expiresInDuration = 3600;
-  authenticatedUser: User;
+  authenticatedUser: any;
 
-  constructor(private cookieService: CookieService, private http: HttpClient) {}
+  constructor(private cookieService: CookieService, private http: HttpClient) {
+    // this.fetchUserInfo();
+  }
 
   // TODO
   fetchUserInfo() {
@@ -82,6 +84,8 @@ export class AuthService {
     clearTimeout(this.tokenTimerObj);
     this.authStatusListener.next(false); // tell rest of app that we logged out
     this.clearExpiration();
+    this.authenticatedUser = null;
+    window.location.reload();
   }
 
   getIsAuth() {

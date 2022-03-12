@@ -60,21 +60,24 @@
 
     <div class="spacer"></div>
 
-    <div class="my-account" [matMenuTriggerFor]="menu" (click)="getAccountInfo()">
-      <img src="assets\images\user-generic-icon.svg" width="" />
+    <div class="my-account" [matMenuTriggerFor]="menu" (click)="getAccountInfo()" *ngIf="isUserAuthenticated">
+      <img src='{{(user != null) ? user.profilePic : "assets\\images\\user-generic-icon.svg"}}' width="26"
+        class="circleCrop" />
       <div class="spacer1"></div>
       <span class="text">My Account</span>
     </div>
+    <div class="spacer1"></div>
 
     <mat-menu #menu="matMenu">
-      <img src="assets\images\user-generic-icon.svg" width="40" style="float:left;margin-left: 10px;" />
+      <img src='{{(user != null) ? user.profilePic : "assets\\images\\user-generic-icon.svg"}}' width="40"
+        style="float:left;margin-left: 10px;" class="circleCrop" />
       <div acct-info>
-        <p style="margin-left:34%;margin-top:6%;">USERNAME</p>
-        <p style="margin-left:33%;">REAL NAME?</p>
-        <p style="margin-left:40%;">EMAIL</p>
+        <h1 style="margin-left:34%;margin-top:6%;">{{(user != null) ? user.displayName : ""}}</h1>
+        <!-- <p style="margin-left:33%;">REAL NAME?</p> -->
+        <!-- <p style="margin-left:40%;">{{(user != null) ? user.email : ""}}</p> -->
       </div>
-    
-      <button mat-menu-item>Log Out</button>
+
+      <button mat-menu-item (click)="logoutUser()">Log Out</button>
     </mat-menu>
 
     <div class="spacer1"></div>
@@ -86,7 +89,7 @@
       <div class="chat-header">
         <h2>CHAT:</h2>
       </div>
-      
+
       <div class="inner-online">
         <div *ngFor="let message of messages">
           <div
@@ -98,7 +101,7 @@
           ></div>
           <ng-template #othermsg>
             <div class="chat-container">
-              <img width="30" src="assets\images\user-generic-icon.svg" />
+              <img width="30" src="{{message.icon}}" class="circleCrop"/>
               <div class="chat">
                 <span>{{ message.username }}: {{ message.text }}</span>
               </div>
@@ -106,13 +109,13 @@
           </ng-template>
           <ng-template #mymsg>
             <div class="my-chat-container">
-              <img width="30" src="assets\images\user-generic-icon.svg" />
+              <img width="30" src="{{message.icon}}" class="circleCrop"/>
               <div class="chat">
                 <span>{{ message.username }}: {{ message.text }}</span>
               </div>
             </div>
           </ng-template>
-          
+
         </div>
       </div>
 
@@ -147,8 +150,8 @@
     <div class="commentsContainer">
       <div [hidden]="!commentCancel" class="comment-cont">
         <div class="user-cont">
-          <img width="30" src="assets\images\user-generic-icon.svg" />
-          <span>Username</span>
+          <img width="30" src='{{(user != null) ? user.profilePic : "assets\\images\\user-generic-icon.svg"}}' class="circleCrop"/>
+          <span>{{user.displayName}}</span>
         </div>
 
         <div class="comment">
@@ -167,7 +170,7 @@
         (mouseleave)="onCommentHover(comment, false)"
       >
         <div class="user-cont">
-          <img width="30" src="assets\images\user-generic-icon.svg" />
+          <img width="30" src='{{comment.icon}}' class="circleCrop" />
           <span>{{ comment.username }}</span>
         </div>
 

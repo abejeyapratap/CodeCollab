@@ -62,10 +62,11 @@ img {
   outline: 1.5px solid black;
   height: auto;
   width: 70%;
-  margin-left: 50px;
+  margin-left: 10px;
   text-align: left;
   padding-right: 5px;
   padding-left: 4px;
+  display: inline-block;
 }
 
 .chat span {
@@ -94,7 +95,7 @@ img {
   resize: none;
   width: 94%;
   height: 60px;
-  padding-top: .5%;
+  padding-top: 0.5%;
 }
 
 .msg-send-btn {
@@ -115,7 +116,6 @@ img {
 .my-chat-container img {
   float: left;
   margin-left: 6px;
-  
 }
 
 .my-chat {
@@ -433,4 +433,9 @@ img {
 
 .commentHover {
   background-color: yellow;
+}
+
+.circleCrop {
+  object-fit: cover;
+  border-radius: 50%;
 }

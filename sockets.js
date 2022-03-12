@@ -3,6 +3,8 @@ const usersViewingDocs = new Map();
 // const checkAuth = require("../middleware/check-auth");
 const jwt = require("jsonwebtoken");
 
+const User = require("./backend/models/auth");
+
 class ConnectedUser {
     apiKey = null;
     socket = null;
@@ -38,7 +40,10 @@ function sendAPIKey(user, key) {
     let userData = checkAuth(key);
     if (userData !== null) {
         user.apiKey = key;
-        // TODO: Retrieve the users display name and icon and save it here
+        getUserData(userData.userId).then((userD) => {
+            user.displayName = userD.displayName;
+            user.iconURL = userD.profilePic;
+        })
     }
 }
 exports.sendAPIKey = sendAPIKey;
@@ -133,4 +138,8 @@ function checkAuth(token) {
         // no token - not authenticated - unauthorized
         return null;
     }
+}
+
+function getUserData(id) {
+    return User.findOne({ _id: id });
 }

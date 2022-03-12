@@ -11,6 +11,10 @@ import { DocumentFiles } from './documents.model';
 })
 export class DocumentsComponent implements OnInit, OnDestroy {
   isUserAuthenticated = false;
+  user: any = {
+    displayName: "",
+    email: ""
+  };
   private authStatusSub: Subscription;
   private documentsSub: Subscription;
   documents: DocumentFiles[] = [];
@@ -25,6 +29,7 @@ export class DocumentsComponent implements OnInit, OnDestroy {
       .getAuthStatusListener()
       .subscribe((isAuthenticated) => {
         this.isUserAuthenticated = isAuthenticated;
+        this.user = this.authService.getUser();
       });
 
     this.documentsService.getDocumentList(); // trigger the subscription-update
@@ -44,8 +49,7 @@ export class DocumentsComponent implements OnInit, OnDestroy {
   // TODO
   getAccountInfo() {}
 
-  getDisplayName(userID: string) {
-    // TODO / TEMP
-    return "username";
+  logoutUser() {
+    this.authService.logout();
   }
 }

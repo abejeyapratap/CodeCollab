@@ -10,6 +10,8 @@ import { SocketService } from '../services/socket.service';
 import { transition, style, animate, trigger } from '@angular/animations';
 import { ActivatedRoute, Router } from '@angular/router';
 import { DocumentsService } from '../services/documents.service';
+import { AuthService } from '../auth/auth.service';
+import { Subscription } from 'rxjs';
 
 const leaveTrans = transition(':leave', [
   style({
@@ -32,6 +34,12 @@ const fadeOut = trigger('fadeOut', [leaveTrans]);
   animations: [fadeOut],
 })
 export class ViewComponent implements OnInit {
+  isUserAuthenticated = false;
+  user: any = {
+    displayName: "",
+    email: ""
+  };
+
   documentId: string;
   messages: MessageData[] = [];
   comments: CommentData[] = [];
@@ -44,16 +52,25 @@ export class ViewComponent implements OnInit {
   commentLineNum: number;
   newComment = '';
 
+  private authStatusSub: Subscription;
+
   constructor(
     private sockets: SocketService,
     private documentsService: DocumentsService,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private authService: AuthService
   ) {}
 
   @ViewChildren('codeLines') codeLines!: QueryList<ElementRef>;
 
   ngOnInit() {
+    this.authStatusSub = this.authService
+      .getAuthStatusListener()
+      .subscribe((isAuthenticated) => {
+        this.isUserAuthenticated = isAuthenticated;
+        this.user = this.authService.getUser();
+      });
     // listen to changes in route URL & render correct file
     this.route.paramMap.subscribe((paramMap) => {
       if (!paramMap.has('documentId')) {
@@ -80,6 +97,7 @@ export class ViewComponent implements OnInit {
   }
 
   ngOnDestroy() {
+    this.authStatusSub.unsubscribe();
     this.sockets.endViewingDocument();
   }
 
@@ -196,6 +214,10 @@ export class ViewComponent implements OnInit {
      // TODO / TEMP
      return "username";
    }
+
+  logoutUser() {
+    this.authService.logout();
+  }
 
   /* loadTextarea() {
     let viewBox = <HTMLInputElement>document.getElementById('viewBox');
