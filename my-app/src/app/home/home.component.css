@@ -149,10 +149,13 @@ a:hover {
 }
 
 footer {
-  margin-top: 8px;
+  margin-top: 70px;
   display: flex;
+  flex-direction: row;
   align-items: center;
+  justify-content: center;
   line-height: 20px;
+  font-size: smaller;
 }
 
 footer a {
