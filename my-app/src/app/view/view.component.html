@@ -152,7 +152,7 @@
         </div>
 
         <div class="comment">
-          <textarea class="comment-input" [(ngModel)]="newComment"></textarea>
+          <textarea class="comment-input" [(ngModel)]="newComment"(keyup.enter)="postComment()"></textarea>
         </div>
         <div class="comment-buttons-cont">
           <span class="comment-button" (click)="postComment()">Comment</span>
