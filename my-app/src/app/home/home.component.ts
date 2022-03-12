@@ -12,14 +12,14 @@ export class HomeComponent implements OnInit, OnDestroy {
   private authListenerSubs: Subscription;
 
   // fetch token on page re-load & start timer
-  @HostListener('window:load')
+  /* @HostListener('window:load')
   onLoad() {
     // console.log('setting token');
     this.authService.setToken();
     if (this.authService.getToken()) {
       this.authService.setTokenTimer();
     }
-  }
+  } */
 
   constructor(private authService: AuthService) {}
 
@@ -29,7 +29,7 @@ export class HomeComponent implements OnInit, OnDestroy {
       .subscribe((isAuthenticated) => {
         this.isUserAuthenticated = isAuthenticated;
       });
-    this.authService.setToken(); // maybe delete?
+    // this.authService.setToken(); // maybe delete?
   }
 
   ngOnDestroy() {
