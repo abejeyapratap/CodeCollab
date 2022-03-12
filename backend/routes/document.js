@@ -64,8 +64,8 @@ async function filteredCodeContentUsers(documentsList, res) {
 
 /* Guarded Routes */
 // return specific document for chat/comment based on :id
-// need to be logged in to view
-router.get("/:documentId", checkAuth, (req, res) => {
+// need to be logged in to view??
+router.get("/:documentId", (req, res) => {
     const id = req.params.documentId;
 
     Document.findById(id)
