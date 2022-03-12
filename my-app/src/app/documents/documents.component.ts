@@ -1,6 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { AuthService } from '../auth/auth.service';
+import { User } from '../auth/user.model';
 import { DocumentsService } from '../services/documents.service';
 import { DocumentFiles } from './documents.model';
 
@@ -11,10 +12,11 @@ import { DocumentFiles } from './documents.model';
 })
 export class DocumentsComponent implements OnInit, OnDestroy {
   isUserAuthenticated = false;
-  user: any = {
-    displayName: "",
-    email: ""
-  };
+  user: User | null;
+  /* user: any = {
+    displayName: '',
+    email: '',
+  }; */
   private authStatusSub: Subscription;
   private documentsSub: Subscription;
   documents: DocumentFiles[] = [];
@@ -25,11 +27,14 @@ export class DocumentsComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit() {
+    this.user = this.authService.getUser();
     this.authStatusSub = this.authService
       .getAuthStatusListener()
       .subscribe((isAuthenticated) => {
         this.isUserAuthenticated = isAuthenticated;
         this.user = this.authService.getUser();
+        // console.log('Updating user');
+        // console.log(this.user);
       });
 
     this.documentsService.getDocumentList(); // trigger the subscription-update
@@ -46,10 +51,7 @@ export class DocumentsComponent implements OnInit, OnDestroy {
     this.documentsSub.unsubscribe();
   }
 
-  // TODO
-  getAccountInfo() {}
-
-  logoutUser() {
+  onLogout() {
     this.authService.logout();
   }
 }

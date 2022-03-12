@@ -13,27 +13,15 @@ export class AuthService {
   private authStatusListener = new BehaviorSubject<boolean>(false); // "push" auth status to rest of app
   private tokenTimerObj: any;
   private expiresInDuration = 3600;
-  authenticatedUser: any;
+  authenticatedUser: User | null;
 
-  constructor(private cookieService: CookieService, private http: HttpClient) {
-    // this.fetchUserInfo();
-  }
+  constructor(private cookieService: CookieService, private http: HttpClient) {}
 
-  // TODO
   fetchUserInfo() {
-    this.http
-      .get<{
-        message: string;
-        user: { userId: string; displayName: string; profilePic: string };
-      }>('http://localhost:3000' + '/api/auth/userInfo')
-      .subscribe((results) => {
-        this.authenticatedUser = new User(
-          results.user.userId,
-          results.user.displayName,
-          results.user.profilePic
-        );
-        // console.log(results);
-      });
+    return this.http.get<{
+      message: string;
+      user: User;
+    }>('http://localhost:3000' + '/api/auth/userInfo');
   }
 
   getUser() {
@@ -58,10 +46,16 @@ export class AuthService {
         console.log('Already set expiry');
       }
 
-      this.isAuth = true;
-      this.authStatusListener.next(true); // tell rest of app that authenticated
-
-      this.fetchUserInfo();
+      this.fetchUserInfo().subscribe((results) => {
+        this.authenticatedUser = new User(
+          results.user.userId,
+          results.user.displayName,
+          results.user.profilePic
+        );
+        // console.log(results);
+        this.isAuth = true;
+        this.authStatusListener.next(true); // tell rest of app that authenticated
+      });
     }
   }
 
@@ -82,10 +76,11 @@ export class AuthService {
     this.token = '';
     this.deleteTokenInCookie();
     clearTimeout(this.tokenTimerObj);
-    this.authStatusListener.next(false); // tell rest of app that we logged out
     this.clearExpiration();
+
     this.authenticatedUser = null;
-    window.location.reload();
+    this.authStatusListener.next(false); // tell rest of app that we logged out
+    // window.location.reload(); // TODO - delete?
   }
 
   getIsAuth() {
