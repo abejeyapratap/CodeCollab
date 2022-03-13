@@ -2,6 +2,9 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { DocumentFiles } from '../documents/documents.model';
+import { environment } from '../../environments/environment';
+
+const BACKEND_URL = environment.apiUrl + '/documents/';
 
 @Injectable({
   providedIn: 'root',
@@ -15,9 +18,7 @@ export class DocumentsService {
   // Fetch documents list from server; send it to all subscriptions in other components
   getDocumentList() {
     this.http
-      .get<{ message: string; documents: DocumentFiles[] }>(
-        'http://localhost:3000/api/documents/'
-      )
+      .get<{ message: string; documents: DocumentFiles[] }>(BACKEND_URL)
       .subscribe((documentsData) => {
         this.documentsList = documentsData.documents;
         this.documentStatusUpdate.next([...this.documentsList]);
@@ -35,13 +36,11 @@ export class DocumentsService {
       document: string;
       creator: string;
       commentsList: string[]; // TODO - it's actually a list containing comment info
-    }>('http://localhost:3000/api/documents/' + documentId);
+    }>(BACKEND_URL + documentId);
   }
 
   // Delete document by ID
   deleteDocumentById(documentId: string) {
-    return this.http.delete<{ message: string }>(
-      'http://localhost:3000/api/documents/' + documentId
-    );
+    return this.http.delete<{ message: string }>(BACKEND_URL + documentId);
   }
 }

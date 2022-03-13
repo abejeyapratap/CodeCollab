@@ -5,6 +5,7 @@ import { AuthService } from '../auth/auth.service';
 import { User } from '../auth/user.model';
 import { DocumentsService } from '../services/documents.service';
 import { DocumentFiles } from './documents.model';
+import { environment } from '../../environments/environment';
 
 @Component({
   selector: 'app-documents',
@@ -54,7 +55,7 @@ export class DocumentsComponent implements OnInit, OnDestroy {
   }
 
   onLogin() {
-    window.location.href = 'http://localhost:3000/api/auth/google';
+    window.location.href = environment.apiUrl + '/auth/google';
   }
 
   onLogout() {

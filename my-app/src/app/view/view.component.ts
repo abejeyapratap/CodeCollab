@@ -13,6 +13,7 @@ import { DocumentsService } from '../services/documents.service';
 import { AuthService } from '../auth/auth.service';
 import { Subscription } from 'rxjs';
 import { User } from '../auth/user.model';
+import { environment } from '../../environments/environment';
 
 const leaveTrans = transition(':leave', [
   style({
@@ -37,10 +38,6 @@ const fadeOut = trigger('fadeOut', [leaveTrans]);
 export class ViewComponent implements OnInit {
   isUserAuthenticated = false;
   user: User | null;
-  /* user: any = {
-    displayName: "",
-    email: ""
-  }; */
 
   documentId: string;
   creatorId: string;
@@ -49,8 +46,7 @@ export class ViewComponent implements OnInit {
   newMessage = '';
   myDisplayName: string = '';
 
-  // documentLines: string[] = ['function foo() {', '\treturn 0;', '}'];
-  documentLines: string[] = [];
+  documentLines: string[] = []; // the codeContent
   commentingLine: HTMLDivElement;
   commentLineNum: number;
   newComment = '';
@@ -225,7 +221,7 @@ export class ViewComponent implements OnInit {
   }
 
   onLogin() {
-    window.location.href = 'http://localhost:3000/api/auth/google';
+    window.location.href = environment.apiUrl + '/auth/google';
   }
 
   onLogout() {

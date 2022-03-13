@@ -2,6 +2,9 @@ import { Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { HttpErrorResponse, HttpClient } from '@angular/common/http';
+import { environment } from '../../environments/environment';
+
+const BACKEND_URL = environment.apiUrl + '/documents';
 
 @Injectable({
   providedIn: 'root',
@@ -21,7 +24,7 @@ export class FileUploadService {
     return (
       this.http
         .post<{ message: string; documentId: string }>(
-          'http://localhost:3000/api/documents/create',
+          BACKEND_URL + '/create',
           formData,
           {
             reportProgress: true,
@@ -31,13 +34,6 @@ export class FileUploadService {
         // Error handling
         .pipe(catchError(this.errorMgmt))
     );
-  }
-
-  // Get request to API to retrieve most recent entry from database (using currID from document.js)
-  getDocument(): Observable<any> {
-    return this.http
-      .get('http://localhost:3000/api/documents/get-document')
-      .pipe(catchError(this.errorMgmt));
   }
 
   // Error handling

@@ -3,6 +3,9 @@ import { Injectable } from '@angular/core';
 import { CookieService } from 'ngx-cookie-service';
 import { BehaviorSubject } from 'rxjs';
 import { User } from './user.model';
+import { environment } from '../../environments/environment';
+
+const BACKEND_URL = environment.apiUrl + '/auth';
 
 @Injectable({
   providedIn: 'root',
@@ -21,7 +24,7 @@ export class AuthService {
     return this.http.get<{
       message: string;
       user: User;
-    }>('http://localhost:3000' + '/api/auth/userInfo');
+    }>(BACKEND_URL + '/userInfo');
   }
 
   getUser() {
