@@ -30,7 +30,7 @@ export class DocumentsService {
 
   // Fetch document by id for view page
   getDocumentById(documentId: string) {
-    return this.http.get<{ message: string; document: string }>(
+    return this.http.get<{ message: string; document: string; creator: string }>(
       'http://localhost:3000/api/documents/' + documentId
     );
   }

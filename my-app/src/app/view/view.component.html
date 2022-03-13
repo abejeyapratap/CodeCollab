@@ -38,7 +38,11 @@
 
   <div class="spacer1"></div>
 
-  <div class="delete-button-container" (click)="showDeleteConfirm()">
+  <div
+    class="delete-button-container"
+    (click)="showDeleteConfirm()"
+    *ngIf="user?.userId === creatorId"
+  >
     <button
       class="card"
       type="button"

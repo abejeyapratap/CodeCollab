@@ -43,6 +43,7 @@ export class ViewComponent implements OnInit {
   }; */
 
   documentId: string;
+  creatorId: string;
   messages: MessageData[] = [];
   comments: CommentData[] = [];
   newMessage = '';
@@ -87,6 +88,7 @@ export class ViewComponent implements OnInit {
         .getDocumentById(this.documentId)
         .subscribe((documentContent) => {
           this.documentLines = documentContent.document.split('\n');
+          this.creatorId = documentContent.creator;
         });
 
       this.sockets.viewDocument(this.documentId);

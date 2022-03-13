@@ -75,6 +75,7 @@ router.get("/:documentId", (req, res) => {
             res.json({
                 message: "Document retrieved successfully!",
                 document: data.codeContent,
+                creator: data.creator,
             });
         })
         .catch((err) => {
@@ -111,7 +112,7 @@ router.post("/create", checkAuth, (req, res) => {
 
 // delete document based on :id
 router.delete("/:id", checkAuth, (req, res) => {
-    console.log("Trying to delete");
+    console.log("Deleting document");
 
     Document.deleteOne({
         _id: req.params.id,
