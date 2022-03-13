@@ -1,8 +1,0 @@
-{
-    "_id":{"$oid":"62200a73d3ddaf2af31f72d8"},
-    "ownerID": 12345,
-    "creationTime": {"$date":{"$numberLong":"1646266995252"}},
-    "body": "function foo()\n{\nreturn true;\n}",
-    "comments": [12345,67890],
-    "chat": [12345,67890]
-}
