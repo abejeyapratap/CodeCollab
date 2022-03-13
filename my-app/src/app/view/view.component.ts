@@ -218,6 +218,10 @@ export class ViewComponent implements OnInit {
     return 'username';
   }
 
+  onLogin() {
+    window.location.href = 'http://localhost:3000/api/auth/google';
+  }
+
   onLogout() {
     this.authService.logout();
     this.router.navigateByUrl('/');

@@ -77,6 +77,9 @@
       <div class="spacer1"></div>
       <span class="text">My Account</span>
     </div>
+    <div class="my-account" *ngIf="!isUserAuthenticated" (click)="onLogin()">
+      <span class="text">Login with Google</span>
+    </div>
     <div class="spacer1"></div>
 
     <mat-menu #menu="matMenu">
@@ -138,7 +141,7 @@
         </div>
       </div>
 
-      <div class="message-input">
+      <div class="message-input" *ngIf="isUserAuthenticated">
         <textarea
           type="text"
           class="write_msg"
@@ -166,7 +169,7 @@
       </div>
     </div>
     <div class="commentsContainer">
-      <div [hidden]="!commentCancel" class="comment-cont">
+      <div [hidden]="!commentCancel" class="comment-cont" *ngIf="isUserAuthenticated">
         <div class="user-cont">
           <img
             width="30"
