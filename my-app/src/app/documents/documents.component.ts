@@ -1,4 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { AuthService } from '../auth/auth.service';
 import { User } from '../auth/user.model';
@@ -23,7 +24,8 @@ export class DocumentsComponent implements OnInit, OnDestroy {
 
   constructor(
     private authService: AuthService,
-    private documentsService: DocumentsService
+    private documentsService: DocumentsService,
+    private router: Router
   ) {}
 
   ngOnInit() {
@@ -57,5 +59,6 @@ export class DocumentsComponent implements OnInit, OnDestroy {
 
   onLogout() {
     this.authService.logout();
+    this.router.navigateByUrl('/');
   }
 }

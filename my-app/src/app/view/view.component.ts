@@ -12,6 +12,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { DocumentsService } from '../services/documents.service';
 import { AuthService } from '../auth/auth.service';
 import { Subscription } from 'rxjs';
+import { User } from '../auth/user.model';
 
 const leaveTrans = transition(':leave', [
   style({
@@ -35,10 +36,11 @@ const fadeOut = trigger('fadeOut', [leaveTrans]);
 })
 export class ViewComponent implements OnInit {
   isUserAuthenticated = false;
-  user: any = {
+  user: User | null;
+  /* user: any = {
     displayName: "",
     email: ""
-  };
+  }; */
 
   documentId: string;
   messages: MessageData[] = [];
@@ -65,12 +67,14 @@ export class ViewComponent implements OnInit {
   @ViewChildren('codeLines') codeLines!: QueryList<ElementRef>;
 
   ngOnInit() {
+    this.user = this.authService.getUser();
     this.authStatusSub = this.authService
       .getAuthStatusListener()
       .subscribe((isAuthenticated) => {
         this.isUserAuthenticated = isAuthenticated;
         this.user = this.authService.getUser();
       });
+
     // listen to changes in route URL & render correct file
     this.route.paramMap.subscribe((paramMap) => {
       if (!paramMap.has('documentId')) {
@@ -88,6 +92,7 @@ export class ViewComponent implements OnInit {
       this.sockets.viewDocument(this.documentId);
     });
 
+    // Sockets initialization
     this.sockets.onNewComment().subscribe((data) => {
       this.addComment(data[0], data[1], data[2], data[3], data[4]);
     });
@@ -116,7 +121,7 @@ export class ViewComponent implements OnInit {
     msg: string,
     date: number,
     line: number
-  ): void {
+  ) {
     this.comments.push(
       new CommentData(username, icon, `Line ${line + 1}: ${msg}`, date, line)
     );
@@ -148,6 +153,7 @@ export class ViewComponent implements OnInit {
   startComment(line: number, divElement: HTMLDivElement) {
     if (this.commentingLine != null)
       this.commentingLine.classList.remove('commentingLine');
+
     divElement.classList.add('commentingLine');
     this.commentingLine = divElement;
     this.commentLineNum = line;
@@ -199,7 +205,7 @@ export class ViewComponent implements OnInit {
     this.commentCancel = false;
   }
 
-  pageURL = "http://localhost:4200" + this.router.url;
+  pageURL = 'http://localhost:4200' + this.router.url;
 
   show = true;
 
@@ -207,16 +213,14 @@ export class ViewComponent implements OnInit {
     this.show = false;
   }
 
-   // TODO
-   getAccountInfo() {}
+  getDisplayName(userID: string) {
+    // TODO / TEMP
+    return 'username';
+  }
 
-   getDisplayName(userID: string) {
-     // TODO / TEMP
-     return "username";
-   }
-
-  logoutUser() {
+  onLogout() {
     this.authService.logout();
+    this.router.navigateByUrl('/');
   }
 
   /* loadTextarea() {
