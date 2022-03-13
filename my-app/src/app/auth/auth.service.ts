@@ -42,9 +42,9 @@ export class AuthService {
           now.getTime() + this.expiresInDuration * 1000
         );
         this.saveExpiration(expirationDate);
-      } else {
+      } /* else {
         console.log('Already set expiry');
-      }
+      } */
 
       this.fetchUserInfo().subscribe((results) => {
         this.authenticatedUser = new User(
@@ -92,7 +92,7 @@ export class AuthService {
    * @param expiresInDuration: seconds
    */
   setTokenTimer(expiresInDuration = 3600) {
-    console.log('Setting time: ' + expiresInDuration);
+    // console.log('Setting time: ' + expiresInDuration);
     if (!this.token) return;
 
     if (this.tokenTimerObj) clearTimeout(this.tokenTimerObj); // clear any old timers
