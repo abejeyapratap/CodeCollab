@@ -82,11 +82,16 @@ exports.endViewingDocument = endViewingDocument;
 function postComment(user, comment, line) {
     if (user.apiKey == null || user.viewingDocument == null) return;
 
-    // TODO: save in database
-    let userData = checkAuth(user.apiKey);
-    if (userData !== null) {
-        saveCommentInDB(comment, user.displayName, user.viewingDocument, line, user.iconURL);
-    }
+    // let userData = checkAuth(user.apiKey);
+    //if (userData !== null) {
+    saveCommentInDB(
+        comment,
+        user.displayName,
+        user.viewingDocument,
+        line,
+        user.iconURL
+    );
+    //}
 
     let viewers = usersViewingDocs.get(user.viewingDocument);
     for (let u of viewers) {
