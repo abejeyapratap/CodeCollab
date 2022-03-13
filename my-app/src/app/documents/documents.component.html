@@ -28,6 +28,13 @@
     <div class="spacer1"></div>
     <span class="text">My Account</span>
   </div>
+  <div
+    class="my-account"
+    *ngIf="!isUserAuthenticated"
+    (click)="onLogin()"
+  >
+    <span class="text">Login with Google</span>
+  </div>
   <div class="spacer1"></div>
 
   <mat-menu #menu="matMenu">

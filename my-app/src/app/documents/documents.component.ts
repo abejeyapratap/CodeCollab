@@ -51,6 +51,10 @@ export class DocumentsComponent implements OnInit, OnDestroy {
     this.documentsSub.unsubscribe();
   }
 
+  onLogin() {
+    window.location.href = 'http://localhost:3000/api/auth/google';
+  }
+
   onLogout() {
     this.authService.logout();
   }
