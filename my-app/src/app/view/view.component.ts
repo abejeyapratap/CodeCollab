@@ -89,7 +89,10 @@ export class ViewComponent implements OnInit {
         .subscribe((documentContent) => {
           this.documentLines = documentContent.document.split('\n');
           this.creatorId = documentContent.creator;
-          console.log(documentContent.commentsList); // TODO render the saved comments
+          let com: any;
+          for (com of documentContent.commentsList) {
+            this.addComment(com.creator, com.profilePic, com.content, com.createdAt, com.line);
+          }
         });
 
       this.sockets.viewDocument(this.documentId);
