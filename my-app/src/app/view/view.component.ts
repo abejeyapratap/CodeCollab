@@ -121,7 +121,7 @@ export class ViewComponent implements OnInit {
     msg: string,
     date: number,
     line: number
-  ): void {
+  ) {
     this.comments.push(
       new CommentData(username, icon, `Line ${line + 1}: ${msg}`, date, line)
     );

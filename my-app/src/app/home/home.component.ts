@@ -11,7 +11,7 @@ import { User } from '../auth/user.model';
 export class HomeComponent implements OnInit, OnDestroy {
   isUserAuthenticated = false;
   private authListenerSubs: Subscription;
-  user:any = null;
+  user: User | null;
 
   // fetch token on page re-load & start timer
   /* @HostListener('window:load')
@@ -26,7 +26,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   constructor(private authService: AuthService) {}
 
   ngOnInit() {
-    this.user = this.authService.getUser(); // TODO
+    this.user = this.authService.getUser();
     this.authListenerSubs = this.authService
       .getAuthStatusListener()
       .subscribe((isAuthenticated) => {
