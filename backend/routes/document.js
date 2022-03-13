@@ -15,7 +15,8 @@ const User = require("../models/auth");
 /* Unguarded Routes */
 // return list of documents to "View" page in AG
 router.get("", (req, res) => {
-    Document.find().sort({createdAt: -1})
+    Document.find()
+        .sort({ createdAt: -1 })
         .then((documentsList) => {
             filteredCodeContentUsers(documentsList, res);
             // const filteredDocuments = filterCodeContent(documentsList);
@@ -57,9 +58,9 @@ async function filteredCodeContentUsers(documentsList, res) {
     }
 
     res.json({
-                message: "Documents fetched successfully!",
-                documents: filteredDocumentsList,
-            });
+        message: "Documents fetched successfully!",
+        documents: filteredDocumentsList,
+    });
 }
 
 /* Guarded Routes */

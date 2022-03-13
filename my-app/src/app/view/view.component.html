@@ -1,11 +1,10 @@
-<!-- TODO: Delete should only show if document belongs to the user -->
-
 <div class="link-copy-outer-div" [hidden]="!linkCopyMessage">
   <div class="link-copy-div" *ngIf="show" @fadeOut>
     <span><em>Link copied to clipboard!</em></span>
   </div>
 </div>
 
+<!-- TODO: Delete should only show if document belongs to the user -->
 <div [hidden]="!deleteConfirmShow" class="delete-confirm-cont">
   <p>Are you sure you want to delete this document?</p>
   <p class="confirm-delete" (click)="confirmDelete()">Confirm</p>
