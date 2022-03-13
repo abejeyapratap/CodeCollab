@@ -30,13 +30,15 @@ export class DocumentsService {
 
   // Fetch document by id for view page
   getDocumentById(documentId: string) {
-    return this.http.get<{ message: string; document: string; creator: string }>(
-      'http://localhost:3000/api/documents/' + documentId
-    );
+    return this.http.get<{
+      message: string;
+      document: string;
+      creator: string;
+      commentsList: string[]; // TODO - it's actually a list containing comment info
+    }>('http://localhost:3000/api/documents/' + documentId);
   }
 
   // Delete document by ID
-  // TODO - MUST be user who created document
   deleteDocumentById(documentId: string) {
     return this.http.delete<{ message: string }>(
       'http://localhost:3000/api/documents/' + documentId

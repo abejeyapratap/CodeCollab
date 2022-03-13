@@ -12,6 +12,8 @@ router.use(fileUpload());
 const Document = require("../models/document");
 const User = require("../models/auth");
 
+const { getCommentsFromDB } = require("./comment");
+
 /* Unguarded Routes */
 // return list of documents to "View" page in AG
 router.get("", (req, res) => {
@@ -72,11 +74,22 @@ router.get("/:documentId", (req, res) => {
     Document.findById(id)
         .then((data) => {
             console.log("Found document!");
-            res.json({
-                message: "Document retrieved successfully!",
-                document: data.codeContent,
-                creator: data.creator,
-            });
+            getCommentsFromDB(id)
+                .then((comments) => {
+                    const commentsList = comments;
+                    console.log("Fetched comments!");
+                    // console.log(comments);
+                    res.json({
+                        message: "Document retrieved successfully!",
+                        document: data.codeContent,
+                        creator: data.creator,
+                        commentsList: commentsList,
+                    });
+                })
+                .catch((err) => {
+                    console.log("Couldn't fetch comments!");
+                    // TODO - maybe send res.json({everything except comments})?
+                });
         })
         .catch((err) => {
             console.log("Error with GETting a document");

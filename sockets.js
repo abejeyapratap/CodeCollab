@@ -1,17 +1,17 @@
 const connectedUsers = new Map();
 const usersViewingDocs = new Map();
-// const checkAuth = require("../middleware/check-auth");
 const jwt = require("jsonwebtoken");
 
 const User = require("./backend/models/auth");
+const { saveCommentInDB } = require("./backend/routes/comment");
 
 class ConnectedUser {
     apiKey = null;
     socket = null;
     viewingDocument = null;
 
-    displayName = '';
-    iconURL = '';
+    displayName = "";
+    iconURL = "";
 
     constructor(s) {
         this.socket = s;
@@ -21,7 +21,7 @@ class ConnectedUser {
 function onConnect(socket) {
     let user = new ConnectedUser(socket);
     connectedUsers.set(socket.id, user);
-    socket.emit('requestAPIKey');
+    socket.emit("requestAPIKey");
     return user;
 }
 exports.onConnect = onConnect;
@@ -43,15 +43,15 @@ function sendAPIKey(user, key) {
         getUserData(userData.userId).then((userD) => {
             user.displayName = userD.displayName;
             user.iconURL = userD.profilePic;
-        })
+        });
     }
 }
 exports.sendAPIKey = sendAPIKey;
 
 function logoutUser(user) {
     user.apiKey = null;
-    user.displayName = '';
-    user.iconURL = '';
+    user.displayName = "";
+    user.iconURL = "";
 }
 exports.logoutUser = logoutUser;
 
@@ -60,7 +60,7 @@ function viewDocument(user, documentID) {
     // TODO: Check to see document exists
     user.viewingDocument = documentID;
     if (!usersViewingDocs.has(documentID)) {
-        usersViewingDocs.set(documentID, [])
+        usersViewingDocs.set(documentID, []);
     }
     usersViewingDocs.get(documentID).push(user.socket.id);
 }
@@ -83,9 +83,22 @@ function postComment(user, comment, line) {
     if (user.apiKey == null || user.viewingDocument == null) return;
 
     // TODO: save in database
+    let userData = checkAuth(user.apiKey);
+    if (userData !== null) {
+        saveCommentInDB(comment, user.displayName, user.viewingDocument, line, user.iconURL);
+    }
+
     let viewers = usersViewingDocs.get(user.viewingDocument);
     for (let u of viewers) {
-        connectedUsers.get(u).socket.emit('newComment', [user.displayName, user.iconURL, comment, Date.now(), line]);
+        connectedUsers
+            .get(u)
+            .socket.emit("newComment", [
+                user.displayName,
+                user.iconURL,
+                comment,
+                Date.now(),
+                line,
+            ]);
     }
 }
 exports.postComment = postComment;
@@ -95,24 +108,25 @@ function sendChatMessage(user, message) {
     if (user.viewingDocument == null) return;
 
     let viewers = usersViewingDocs.get(user.viewingDocument);
-    for(let u of viewers) {
-        connectedUsers.get(u).socket.emit('newChatMessage', [user.displayName, user.iconURL, message, Date.now()]);
+    for (let u of viewers) {
+        connectedUsers
+            .get(u)
+            .socket.emit("newChatMessage", [
+                user.displayName,
+                user.iconURL,
+                message,
+                Date.now(),
+            ]);
     }
 }
 exports.sendChatMessage = sendChatMessage;
 
 // We may decide not to use these
-function requestDocumentsList(user) {
+function requestDocumentsList(user) {}
 
-}
+function createDocument(user, documentData) {}
 
-function createDocument(user, documentData) {
-
-}
-
-function deleteDocument(user, document) {
-
-}
+function deleteDocument(user, document) {}
 
 function checkAuth(token) {
     try {
