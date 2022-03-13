@@ -24,18 +24,12 @@ const routes: Routes = [
   {
     path: 'create',
     component: CreateComponent,
-    /* canActivate: [AuthGuard], */
+    canActivate: [AuthGuard],
   },
   {
     path: 'view/:documentId',
     component: ViewComponent,
-    /* canActivate: [AuthGuard], */
   },
-  /* {
-    path: 'view',
-    component: ViewComponent,
-    // canActivate: [AuthGuard],
-  }, */
   {
     path: '**',
     component: PageNotFoundComponent,
