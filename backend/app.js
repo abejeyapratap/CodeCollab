@@ -3,7 +3,6 @@ const mongoose = require("mongoose");
 
 const userRoutes = require("./routes/auth");
 const documentRoutes = require("./routes/document");
-const commentRoutes = require("./routes/comment");
 
 const app = express();
 
@@ -23,7 +22,8 @@ mongoose
 // CORS Middleware
 const ANGULAR_ORIGIN = process.env.ANGULAR_CLIENT_URL;
 app.use((req, res, next) => {
-    res.setHeader("Access-Control-Allow-Origin", ANGULAR_ORIGIN); // filter domain
+    res.setHeader("Access-Control-Allow-Origin", "*"); // filter domain
+    // res.setHeader("Access-Control-Allow-Origin", ANGULAR_ORIGIN); // filter domain
     res.setHeader(
         "Access-Control-Allow-Headers",
         "Origin, X-Requested-With, Content-Type, Accept, Authorization"
@@ -37,6 +37,5 @@ app.use((req, res, next) => {
 
 app.use("/api/auth", userRoutes); // forward requests to /api/auth to userRoutes
 app.use("/api/documents", documentRoutes); // forward requests to /api/documents
-// app.use("/api/comments", commentRoutes.router); // forward requests to /api/comments
 
 module.exports = app;
