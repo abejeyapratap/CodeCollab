@@ -87,13 +87,13 @@ router.get("/:documentId", (req, res) => {
                     });
                 })
                 .catch((err) => {
+                    // TODO - maybe send res.json({everything except comments})?
                     res.status(404).json({message: "failed"})
                     console.log("Couldn't fetch comments!");
-                    // TODO - maybe send res.json({everything except comments})?
                 });
         })
         .catch((err) => {
-            res.status(401).json({message: "Document does not exist!"})
+            res.status(404).json({message: "Document does not exist!"})
             console.log("Error with GETting a document");
         });
 });
