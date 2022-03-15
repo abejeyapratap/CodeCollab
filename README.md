@@ -1,6 +1,6 @@
 # CodeCollab
 
-Note: All developers have a file called `nodemon.json` with secret keys that is required to run the app (Should have been sent to you separately).
+Note: All developers have a file called `nodemon.json` in the root directory `/` that contains secret keys that is required to run the app (should have been sent to you separately).
 
 ## Dependencies
 
