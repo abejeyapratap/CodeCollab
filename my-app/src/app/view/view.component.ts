@@ -89,6 +89,8 @@ export class ViewComponent implements OnInit {
           for (com of documentContent.commentsList) {
             this.addComment(com.creator, com.profilePic, com.content, com.createdAt, com.line);
           }
+        }, (error) => {
+          this.router.navigateByUrl('/invalid');
         });
 
       this.sockets.viewDocument(this.documentId);
