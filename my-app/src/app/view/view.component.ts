@@ -29,6 +29,8 @@ const leaveTrans = transition(':leave', [
 
 const fadeOut = trigger('fadeOut', [leaveTrans]);
 
+const ANGULAR_URL = environment.angularUrl;
+
 @Component({
   selector: 'app-view',
   templateUrl: './view.component.html',
@@ -209,7 +211,7 @@ export class ViewComponent implements OnInit {
     this.commentCancel = false;
   }
 
-  pageURL = 'http://localhost:4200' + this.router.url;
+  pageURL = ANGULAR_URL + this.router.url;
 
   show = true;
 

@@ -6,6 +6,7 @@ export const environment = {
   production: false,
   socketUrl: 'localhost:3000',
   apiUrl: 'http://localhost:3000/api',
+  angularUrl: 'http://localhost:4200'
 };
 
 /*
