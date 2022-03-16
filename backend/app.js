@@ -26,7 +26,7 @@ mongoose
 // CORS Middleware
 const ANGULAR_ORIGIN = process.env.ANGULAR_CLIENT_URL;
 app.use((req, res, next) => {
-    res.setHeader("Access-Control-Allow-Origin", "*"); // filter domain
+    res.setHeader("Access-Control-Allow-Origin", ANGULAR_ORIGIN); // filter domain
     // res.setHeader("Access-Control-Allow-Origin", ANGULAR_ORIGIN); // filter domain
     res.setHeader(
         "Access-Control-Allow-Headers",

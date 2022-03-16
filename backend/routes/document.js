@@ -11,6 +11,7 @@ router.use(fileUpload());
 
 const Document = require("../models/document");
 const User = require("../models/auth");
+const Comment = require("../models/comment");
 
 const { getCommentsFromDB } = require("./comment");
 
@@ -88,12 +89,12 @@ router.get("/:documentId", (req, res) => {
                 })
                 .catch((err) => {
                     // TODO - maybe send res.json({everything except comments})?
-                    res.status(404).json({message: "failed"})
+                    res.status(404).json({ message: "failed" });
                     console.log("Couldn't fetch comments!");
                 });
         })
         .catch((err) => {
-            res.status(404).json({message: "Document does not exist!"})
+            res.status(404).json({ message: "Document does not exist!" });
             console.log("Error with GETting a document");
         });
 });
@@ -134,13 +135,16 @@ router.delete("/:id", checkAuth, (req, res) => {
         creator: req.userData.userId,
     }).then((result) => {
         // console.log(result);
+        Comment.deleteMany({ document: req.params.id }).then((something) => {
+            console.log("Deleted comments from document!");
 
-        // if no documents deleted, the documentId did not match the creatorId also
-        if (result["deletedCount"] > 0) {
-            res.json({ message: "Success" });
-        } else {
-            res.status(401).json({ message: "Not authorized!" });
-        }
+            // if no documents deleted, the documentId did not match the creatorId also
+            if (result["deletedCount"] > 0) {
+                res.json({ message: "Success" });
+            } else {
+                res.status(401).json({ message: "Not authorized!" });
+            }
+        });
     });
 });
 
