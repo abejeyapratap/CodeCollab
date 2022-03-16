@@ -1,10 +1,14 @@
 const express = require("express");
 const mongoose = require("mongoose");
+const path = require("path");
 
 const userRoutes = require("./routes/auth");
 const documentRoutes = require("./routes/document");
 
 const app = express();
+
+// Serve static files in angular/ directory
+app.use("/", express.static(path.join(__dirname, "angular")));
 
 mongoose
     .connect(
@@ -37,5 +41,10 @@ app.use((req, res, next) => {
 
 app.use("/api/auth", userRoutes); // forward requests to /api/auth to userRoutes
 app.use("/api/documents", documentRoutes); // forward requests to /api/documents
+
+// Render Angular app for all requests NOT to routes defined above
+app.use((req, res, next) => {
+    res.sendFile(path.join(__dirname, "angular", "index.html"));
+});
 
 module.exports = app;

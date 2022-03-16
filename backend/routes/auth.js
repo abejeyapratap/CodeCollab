@@ -54,7 +54,8 @@ router.get(
             { expiresIn: "1h" } // secure against XSS security-attacks
         );
         res.cookie("coco_auth", token); // store JWT in cookie for Angular; { httpOnly: true }
-        res.redirect(process.env.ANGULAR_CLIENT_URL);
+        // res.redirect(process.env.ANGULAR_CLIENT_URL);
+        res.redirect("/");
 
         // console.log(req.user.id, req.user.displayName, req.user.emails[0].value); // for profile
         // console.log(req.user.googleId, req.user.displayName, req.user.email); // for mongo user
@@ -64,7 +65,9 @@ router.get(
 // TODO - maybe?
 router.get("/failure", (req, res) => {
     res.status(500);
-    res.redirect(process.env.ANGULAR_CLIENT_URL);
+    // res.redirect(process.env.ANGULAR_CLIENT_URL);
+    res.redirect("/");
+
 });
 
 module.exports = router;
