@@ -1,5 +1,8 @@
 nodemon.json
 .vscode
+angular/
+*.zip
+.DS_Store
 
 # Logs
 logs
